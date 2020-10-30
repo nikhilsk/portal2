@@ -1,0 +1,82 @@
+/* a.panel-block:hover {
+  color: blue;
+} */
+
+.panel-block:hover ~ .fa-book {
+  color: blue;
+}
+
+.fa-github {
+  color: black;
+}
+
+.containerform2 {
+  padding-top: 15px;
+  border-radius: 80%;
+  margin-left: 80px;
+  border-radius: 20px;
+  border-color: #445ae3;
+}
+
+
+
+.container {
+  align-content: center;
+  margin-top: 100px;
+  padding: 10px;
+}
+
+.container:hover {
+  background-color: white;
+}
+
+.cf2text {
+  margin-left: 0px;
+  margin-right: 20px;
+}
+
+.heading {
+  text-transform: uppercase;
+  font-size: 2.1rem;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  margin-top: 0px;
+  text-align: center;
+  color: #333333;
+  position: relative;
+}
+
+.heading::after {
+  content: "";
+  width: 10rem;
+  height: 1rem;
+  background-color: #45e19f;
+  position: absolute;
+  bottom: -2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 2rem;
+}
+
+.btn {
+  padding: 1rem;
+  background-color: #445ae3;
+  border-radius: 2rem;
+  margin: 1rem 0;
+  text-transform: uppercase;
+  color: #eee;
+  font-size: 0.8rem;
+}
+
+.btn:hover {
+  background-color: #ff5700;
+  color: #ebeef8;
+  transform: translateY(-2px);
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.5);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+  background-color: #445ae3;
+}

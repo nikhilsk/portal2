@@ -1,0 +1,115 @@
+@import "compass";
+
+*,
+*:after,
+*:before {
+  @include box-sizing(border-box);
+  font-family: arial;
+}
+$prime: #0399e5;
+@function shadow($color) {
+  $val: 0px 0px $color;
+  @for $i from 1 through 100 {
+    $val: #{$val}, #{$i}px #{$i}px #{$color};
+  }
+  @return $val;
+}
+body {
+  text-align: center;
+  padding-top: 25px;
+  background: #ddd;
+}
+
+.btn {
+  width: 300px;
+  height: 300px;
+  background: #ddd;
+  position: relative;
+  text-align: center;
+  margin: 15px;
+  overflow: hidden;
+  background: $prime;
+  @include border-radius(100%);
+  @include box-shadow(0 5px 10px #bbb);
+  display: inline-block;
+}
+.cloud {
+  width: 200px;
+  height: 80px;
+  position: relative;
+  background: #fff;
+  display: inline-block;
+  @include border-radius(50px);
+  margin: 120px auto 0;
+  @include box-shadow(shadow(darken($prime, 10%)));
+  &:after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 80px;
+    @include border-radius(80px 80px 0 0);
+    top: -40px;
+    background: #fff;
+    left: 40px;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    background: #636262;
+    @include border-radius(10px);
+    width: 90px;
+    height: 6px;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    bottom: 25px;
+    margin: auto;
+  }
+}
+.file {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 5;
+  top: 50px;
+  width: 80px;
+  height: 100px;
+  display: inline-block;
+  overflow: hidden;
+  &:after {
+    content: "";
+    position: absolute;
+    background: #577fc0;
+    width: 80px;
+    height: 80px;
+    left: 0;
+    top: 0;
+    @include border-radius(0 0 10px 10px);
+    @include animation(uplaod 3s linear infinite);
+  }
+  &:before {
+    content: "";
+    background: #e2e3e3;
+    color: #e2e3e3;
+    width: 60px;
+    height: 5px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20px;
+    z-index: 3;
+    margin: auto;
+    @include animation(uplaod 3s linear infinite);
+    @include box-shadow(0 15px, 0 30px);
+  }
+}
+
+@include keyframes(uplaod) {
+  0% {
+    @include translateY(0px);
+  }
+  100% {
+    @include translateY(-100px);
+  }
+}
