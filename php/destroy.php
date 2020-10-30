@@ -11,5 +11,5 @@ $conn ->select_db($db) or die( "Unable to select database");
 
 session_destroy();
 
-header("location:login.php");
+header("location:main.php");
 ?>

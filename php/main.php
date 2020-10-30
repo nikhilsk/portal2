@@ -181,7 +181,7 @@ session_start();
           <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1170px;">Description</button>
+        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1140px;">Description</button>
         <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
 
         <!--MODAL-->
@@ -239,7 +239,7 @@ session_start();
           <i class="fas fa-file-video" aria-hidden="true" style="color:red;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal3" style="margin-left:1150px;">Description</button>
+        <button class = "button is-primary modal-button" data-target = "#modal3" style="margin-left:1180px;">Description</button>
         <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
 
         <div id = "modal3" class = "modal">

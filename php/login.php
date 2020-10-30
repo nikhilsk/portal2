@@ -44,17 +44,15 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="pen-title">
-      <h1>Login Form</h1>
-      <!-- <span
-        >Pen <i class="fa fa-code"></i> by
-        <a href="http://andytran.me">Andy Tran</a></span
-      > -->
-    </div>
+    <br>
+    <br>
+    <br>
+
     <div class="container">
       <div class="card"></div>
       <div class="card">
         <h1 class="title">Login</h1>
+        
         <form action="" method="post">
           <div class="input-container">
             <input type="email" name="emailid" required />
@@ -69,7 +67,6 @@
           <div class="button-container">
             <button type="submit" value="submit" name="btn-save"><span>Login</span></button>
           </div>
-          <div class="footer"><a href="#">Forgot your password?</a></div>
         </form>
       </div>
       
