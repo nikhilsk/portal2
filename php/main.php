@@ -1,5 +1,5 @@
 <?php 
-  
+  include 'download.php';
   $host='localhost';
   $user='root';
   $password='';
@@ -12,7 +12,6 @@
   $workshopquery=mysqli_query($conn,"Select * from resources where category='workshops'");
   $webinarquery=mysqli_query($conn,"Select * from resources where category='webinars'");
   $projectsquery=mysqli_query($conn,"Select * from resources where category='projects'");
-  
   $researchquery=mysqli_query($conn,"Select * from resources where category='research'");
   
 ?>
@@ -104,8 +103,9 @@
         </span>
         <div style="overflow:hidden">
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal" style="float:right" >Description</button>
-        <button class="button is-info ml-2" style="float: right;" >Download</button>
+        <button class = "button is-primary modal-button" data-target = "#modal" style="margin-left:1170px" >Description</button>
+        <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
         </div>
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
@@ -121,7 +121,7 @@
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
                                  <br>
-                                 <p>Google drive Link:ssbdfj 
+                                 <p>Google drive Link: 
                                  <?php if($row['link']==NULL)
                                           {echo 'NA';}
                                        else {echo $row['drivelink'];}?></p>
@@ -159,8 +159,9 @@
           <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1000px;">Description</button>
-        <button class="button is-info ml-2">Download</button>
+        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1170px;">Description</button>
+        <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
         <!--MODAL-->
         <div id = "modal2" class = "modal">
                <div class = "modal-background"></div>
@@ -171,12 +172,17 @@
                         <div class = "media-content">
                            <div class = "content">
                               <p>
-                                 <strong><?php echo $row['filename'];?> -</strong> 
+                              <strong> <?php echo $row['filename'];?> -</strong> 
                                  <small><?php echo $row['category'];?> </small> 
-                                 
                                  <br>
-                                 This is simple text. This is simple text. 
-                                 This is simple text. This is simple text.
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Project Link:
+                                 <?php echo $row['link'];?>
                               </p>
                            </div>  
                         </div>
@@ -212,7 +218,8 @@
         </span>
         <?php echo $row['filename']; ?>
         <button class = "button is-primary modal-button" data-target = "#modal3" style="margin-left:1150px;">Description</button>
-        <button class="button is-info ml-2">Download</button>
+        <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
         <div id = "modal3" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
@@ -222,12 +229,17 @@
                         <div class = "media-content">
                            <div class = "content">
                               <p>
-                                 <strong>Will Smith</strong> 
-                                 <small>@wsmith</small> 
-                                 
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo $row['category'];?> </small> 
                                  <br>
-                                 This is simple text. This is simple text. 
-                                 This is simple text. This is simple text.
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Web Link:
+                                 <?php echo $row['link'];?>
                               </p>
                            </div>  
                         </div> 
@@ -262,8 +274,9 @@
           <i class="fas fa-scroll" aria-hidden="true" style="color:black;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal4" style="margin-left:1150px;">Description</button>
-        <button class="button is-info ml-2">Download</button>
+        <button class = "button is-primary modal-button" data-target = "#modal4" style="margin-left:1170px;">Description</button>
+        <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
         <div id = "modal4" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
