@@ -121,7 +121,7 @@
                                  <p><?php echo $row['descrip'];?></p>
                                  <br>
                                  <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
+                                 <?php if($row['drivelink']==NULL)
                                           {echo 'NA';}
                                        else {echo $row['drivelink'];}?></p>
                               </p>

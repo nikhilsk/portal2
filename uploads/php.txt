@@ -1,0 +1,45 @@
+$filename = $_FILES['myfile']['name'];
+
+    $driv= mysqli_real_escape_string($conn, $_REQUEST['drive']);// functon used to remove special characters
+    $topic= mysqli_real_escape_string($conn, $_REQUEST['fname']);
+    $mess= mysqli_real_escape_string($conn, $_REQUEST['msg']);
+    $categ= mysqli_real_escape_string($conn, $_REQUEST['cat']);
+
+    // destination of the file on the server
+    $destination = 'uploads/' . $filename;//need to have a folder named 'uploads'
+
+    // get the file extension
+    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+
+    // the physical file on a temporary uploads directory on the server
+    $file = $_FILES['myfile']['tmp_name'];
+    $size = $_FILES['myfile']['size'];
+
+    if (!in_array($extension, ['zip', 'pdf', 'docx'])) 
+    {
+        echo "You file extension must be .zip, .pdf or .docx";
+    } 
+    elseif ($_FILES['myfile']['size'] > 100000000) 
+    { // file shouldn't be larger than 10Megabyte
+        echo "File too large!";
+    }
+    else
+    {
+        // move the uploaded (temporary) file to the specified destination
+        if (move_uploaded_file($file, $destination))
+         {
+            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, link, confer) values ('$categ', '$topic', '$filename', '$size', '$mess' , '$driv', 'NULL', 'NULL)";
+            if (mysqli_query($conn, $sql)) 
+            {
+               /* echo '<script type="text/javascript">
+
+                  window.onload = function () { alert("File uploaded successfully"); }
+
+                      </script>';*/
+                      echo '<script>alert("File uploaded successfully")</script>'; 
+            }
+          }
+        else
+        {
+            echo '<script>alert("File upload FAILED")</script>';
+        }
