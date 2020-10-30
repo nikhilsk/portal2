@@ -1,5 +1,5 @@
 <?php 
-  
+  session_start();
   $host='localhost';
   $user='root';
   $password='';
@@ -88,31 +88,53 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a href="main.php" class="navbar-item">
         Home
       </a>
-
-      <a class="navbar-item" href="./main.php">
-        Logout
-      </a>
+      <?php
+   if(!isset($_SESSION['loginid']))
+   {
+      echo "<a class='navbar-item' href='./login.php'>
+        Login
+      </a>";
+   }
+   else{
+               
+      echo "<a class='navbar-item' href='./destroy.php'>";
+      echo "Logout";
+      echo "</a>";
+    
+    echo "<a class='navbar-item' href=''>Hello , ";
+    echo $_SESSION['name'];
+      echo "</a>";
+   }
+   ?>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
-        <a class="button is-success is-outlined" href="./mainup.php">
-            <strong>Go Back</strong>
-          </a>
+        <?php 
+            if(isset($_SESSION['loginid']))
+            {
+               echo "<a class='button is-danger is-outlined' href='./main.php'>
+               <strong>Go Back</strong>
+             </a>";
+            }
+        ?>
           <a class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
-          
           
         </div>
       </div>
     </div>
   </div>
 </nav>
+
+
+
+
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
     </nav>

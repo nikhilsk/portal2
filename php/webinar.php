@@ -1,4 +1,6 @@
 <?php 
+  
+session_start();
   include 'download.php';
   $host='localhost';
   $user='root';
@@ -58,15 +60,37 @@
       <a href="main.php" class="navbar-item">
         Home
       </a>
-
-      <a class="navbar-item" href="./login.php">
+      <?php
+   if(!isset($_SESSION['loginid']))
+   {
+      echo "<a class='navbar-item' href='./login.php'>
         Login
-      </a>
+      </a>";
+   }
+   else{
+               
+      echo "<a class='navbar-item' href='./destroy.php'>";
+      echo "Logout";
+      echo "</a>";
+    
+    echo "<a class='navbar-item' href=''>Hello , ";
+    echo $_SESSION['name'];
+      echo "</a>";
+   }
+   ?>
     </div>
 
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
+        <?php 
+            if(isset($_SESSION['loginid']))
+            {
+               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+               <strong>Upload</strong>
+             </a>";
+            }
+        ?>
           <a class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>

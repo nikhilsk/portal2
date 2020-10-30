@@ -1,4 +1,5 @@
 <?php
+  session_start();
      $host='localhost';
      $user='root';
      $password='';
@@ -7,8 +8,27 @@
      $conn = new mysqli($host, $user, $password,$db);
      
      $conn ->select_db($db) or die( "Unable to select database");
+     
+  if(isset($_POST['emailid']))
+  {
+    $_SESSION['loginid']=$_POST['emailid'];
+    
+    $myusername = mysqli_real_escape_string($conn, $_POST['emailid']);
+    $mypassword = mysqli_real_escape_string($conn, $_POST['psw']);
+    echo $mypassword;
+    echo $myusername;
+    $helloname= mysqli_query($conn, "SELECT * from login WHERE email= '$myusername' and passwords='$mypassword'");
+    $name1=$helloname->fetch_assoc();
+   $_SESSION['name']=$name1['username'];
+   echo $_SESSION['name'];
+   $_SESSION['pass']=$mypassword;
+   echo $_SESSION['pass'];
+
+    header("location:main.php");
+  }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +55,7 @@
       <div class="card"></div>
       <div class="card">
         <h1 class="title">Login</h1>
-        <form action="mainup.php" method="post">
+        <form action="" method="post">
           <div class="input-container">
             <input type="email" name="emailid" required />
             <label for="emailid">Email</label>
