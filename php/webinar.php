@@ -107,7 +107,7 @@
         <?php echo $row['filename']; ?>
       
       <button class = "button is-primary modal-button" data-target = "#modal" style="margin-left:1150px;">Description</button>
-      <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='webinar.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+      <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='webinar.php?file_id=<?php echo $row['id']?>';">Download</button>
 
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>

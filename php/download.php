@@ -8,9 +8,6 @@ $host='localhost';
   
   $conn ->select_db($db) or die( "Unable to select database");
   
-  $workshopquery=mysqli_query($conn,"Select * from resources where category='workshops'");
-  $webinarquery=mysqli_query($conn,"Select * from resources where category='webinars'");
-  $projectsquery=mysqli_query($conn,"Select * from resources where category='projects'");
   
   if (isset($_GET['file_id'])) 
 {
