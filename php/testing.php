@@ -45,7 +45,6 @@ session_start();
 	$Previous = $page - 1;
     $Next = $page + 1;
   }
-    
  
 ?>
 <!DOCTYPE html>
