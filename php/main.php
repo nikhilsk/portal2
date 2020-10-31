@@ -9,8 +9,8 @@ session_start();
   $conn = new mysqli($host, $user, $password,$db);
   
   $conn ->select_db($db) or die( "Unable to select database");
-  
-  $workshopquery=mysqli_query($conn,"Select * from resources where category='workshops'");
+  $limit=100;
+  $workshopquery=mysqli_query($conn,"Select * from resources where category='workshops' LIMIT $limit");
   $webinarquery=mysqli_query($conn,"Select * from resources where category='webinars'");
   $projectsquery=mysqli_query($conn,"Select * from resources where category='projects'");
   $researchquery=mysqli_query($conn,"Select * from resources where category='research'");
@@ -38,6 +38,9 @@ session_start();
     <title>Document</title>
   </head>
   <body>
+
+  <marquee behavior="scroll" direction="left">Here is some scrolling text... right to left!</marquee>
+
   <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
@@ -134,8 +137,8 @@ session_start();
         </span>
         <div style="overflow:hidden">
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal" style="margin-left:1170px" >Description</button>
-        <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+        <button class = "button is-primary modal-button" data-target = "#modal" style="margin-left:70vw;position:absolute;" >Description</button>
+        <button class="button is-info ml-2" type="submit" name="down" style="margin-left:7vw;position:absolute;" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
 
         </div>
         <div id = "modal" class = "modal">
@@ -190,7 +193,7 @@ session_start();
           <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1140px;">Description</button>
+        <button class = "button is-primary modal-button" data-target = "#modal2" style="margin-left:1170px;">Description</button>
         <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
 
         <!--MODAL-->
@@ -248,7 +251,7 @@ session_start();
           <i class="fas fa-file-video" aria-hidden="true" style="color:red;"></i>
         </span>
         <?php echo $row['filename']; ?>
-        <button class = "button is-primary modal-button" data-target = "#modal3" style="margin-left:1180px;">Description</button>
+        <button class = "button is-primary modal-button" data-target = "#modal3" style="margin-left:1150px;">Description</button>
         <button class="button is-info ml-2" type="submit" name="down" onclick="window.location.href='main.php?file_id=<?php echo $row['id'] ?>';">Download</button>
 
         <div id = "modal3" class = "modal">
@@ -352,6 +355,20 @@ session_start();
       
 
     </nav>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+  <a class="pagination-previous">Previous</a>
+  <a class="pagination-next">Next page</a>
+  <ul class="pagination-list">
+    <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link" aria-label="Goto page 45">45</a></li>
+    <li><a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a></li>
+    <li><a class="pagination-link" aria-label="Goto page 47">47</a></li>
+    <li><span class="pagination-ellipsis">&hellip;</span></li>
+    <li><a class="pagination-link" aria-label="Goto page 86">86</a></li>
+  </ul>
+</nav>
+
     <footer class="footer">
   <div class="content has-text-centered">
     <p>
