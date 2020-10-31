@@ -29,11 +29,14 @@
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)||$file==NULL)
          {
-           
+           $que= mysqli_query($conn,"select max(id) as id from resources");
+           $q=mysqli_fetch_assoc($que);
+           $newid= $q['id']+1;
+
           $nameofteacher=$_SESSION['name'];
           
           
-            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values(100,'workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
+            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values('$newid','workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
            
             if (mysqli_query($conn, $sql)) 
             {
@@ -117,7 +120,7 @@
         <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-danger is-outlined' href='./main.php'>
+               echo "<a class='button is-danger is-outlined' href='./testing.php'>
                <strong>Go Back</strong>
              </a>";
             }

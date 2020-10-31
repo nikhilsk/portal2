@@ -119,7 +119,7 @@
         <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-danger is-outlined' href='./main.php'>
+               echo "<a class='button is-danger is-outlined' href='./testing.php'>
                <strong>Go Back</strong>
              </a>";
             }

@@ -46,6 +46,14 @@ session_start();
 	$Previous = $page - 1;
     $Next = $page + 1;
   }
+
+  $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
+ $r=mysqli_fetch_assoc($sqlq);
+ $rid=$r['id'];
+ $new=mysqli_query($conn, "select * from resources where id=$rid");
+ $r1=mysqli_fetch_assoc($new);
+ $_SESSION["marq1"]=$r1['filename'];
+  $_SESSION["marq2"]=$r1['category'];
   
   
  
@@ -70,7 +78,6 @@ session_start();
   </head>
   <body>
 
-  <marquee behavior="scroll" direction="left">Here is some scrolling text... right to left!</marquee>
 
   <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
@@ -137,6 +144,10 @@ session_start();
 
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
+      <marquee>
+      <span style="color:red"  style="font-weight:bold">NEW- </span><?php 
+         echo $_SESSION["marq1"]." (". ucfirst($_SESSION["marq2"]).")"; 
+       ?></marquee>
       
       <form action="" method="post">
       <div class="panel-block">
@@ -221,11 +232,49 @@ session_start();
         <?php echo $row['filename'] ?></th>
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
-        <th><button class="button is-success is-outlined"type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <th><button class="button is-link is-outlined" data-target = "#modal">View Details</button></th>
+              <div id = "modal" class = "modal">
+               <div class = "modal-background"></div>
+               <div class = "modal-content">
+                  <div class = "box">
+                     <article class = "media">
+                        
+                        <div class = "media-content">
+                           <div class = "content">
+                              <p>
+                                 <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo $row['category'];?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['drivelink']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                              </p>
+                           </div>  
+                        </div>
+                     </article>
+                  </div>
+               </div>
+               <button class = "modal-close is-large" aria-label = "close"></button>
+            </div>
+         </div>
+      
+      <script>
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+         
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
 
-</th>
-<th><button class="button is-link is-outlined">View Details</button>
-</th>
 <?php 
 if(isset($_SESSION['loginid']))
 {
