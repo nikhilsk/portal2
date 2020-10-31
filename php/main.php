@@ -14,7 +14,7 @@ session_start();
   $webinarquery=mysqli_query($conn,"Select * from resources where category='webinars'");
   $projectsquery=mysqli_query($conn,"Select * from resources where category='projects'");
   $researchquery=mysqli_query($conn,"Select * from resources where category='research'");
-  $sqlq=mysqli_query($conn, "Select * from resources where id=1");
+  $sqlq=mysqli_query($conn, "Select * from resources where id=12");
   $r=mysqli_fetch_assoc($sqlq);
   $_SESSION["marq1"]=$r['filename'];
   $_SESSION["marq2"]=$r['category'];
