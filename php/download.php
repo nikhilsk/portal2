@@ -21,8 +21,7 @@ $host='localhost';
     $file = mysqli_fetch_assoc($result);
     $filepath = '../uploads/'.$file['file'];
 
-    if (file_exists($filepath)) 
-    {
+    if (file_exists($filepath)) {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . basename($filepath));
@@ -34,8 +33,9 @@ $host='localhost';
 
         // Now update downloads count
         $newCount = $file['dcount'] + 1;
-        $updateQuery =  mysqli_query($conn, "update resourses set dcount=$newCount WHERE id=$id");
-       
+        echo $id;  
+        $updateQuery = "UPDATE resources SET dcount='$newCount' WHERE id='$id'";
+        mysqli_query($conn, $updateQuery);
         exit;
     }
 
