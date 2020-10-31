@@ -213,8 +213,9 @@ session_start();
         <?php endif; ?>
         <?php echo $row['filename'] ?></th>
       <th><?php echo $row['uploader'] ?></th>
-        <th><?php echo "0"; ?></th>
-        <th><button class="button is-success is-outlined">Download</button>
+        <th><?php echo $row['dcount'] ?></th>
+        <th><button class="button is-success is-outlined"type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
 </th>
 <th><button class="button is-link is-outlined">View Details</button>
 </th>
