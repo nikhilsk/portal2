@@ -45,6 +45,8 @@ session_start();
 	$Previous = $page - 1;
     $Next = $page + 1;
   }
+  $_SESSION['num']=0;
+  
  
 ?>
 <!DOCTYPE html>
@@ -194,7 +196,8 @@ session_start();
   <tbody>
   <?php foreach($records as $row) :  ?>    
     <tr>
-    <th><?php echo $row['id']; ?></th>
+    <th><?php $_SESSION['num']=$_SESSION['num']+1;
+    echo $_SESSION['num'];?></th>
       <th>
             <?php if ($row['category']=='projects'):?>
           <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
@@ -210,8 +213,9 @@ session_start();
         <?php endif; ?>
         <?php echo $row['filename'] ?></th>
       <th><?php echo $row['uploader'] ?></th>
-        <th><?php echo "0"; ?></th>
-        <th><button class="button is-success is-outlined">Download</button>
+        <th><?php echo $row['dcount'] ?></th>
+        <th><button class="button is-success is-outlined"type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button>
+
 </th>
 <th><button class="button is-link is-outlined">View Details</button>
 </th>
