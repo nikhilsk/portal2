@@ -32,9 +32,11 @@
     
     {
         // move the uploaded (temporary) file to the specified destination
+
         if (move_uploaded_file($file, $destination))
          {
-            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, link) values ('projects', '$topic', '$filename', '$size', '$mess' , '$driv', '$git')";
+           $nameofteacher=$_SESSION['name'];
+            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, link, uploader) values ('projects', '$topic', '$filename', '$size', '$mess' , '$driv', '$git','$nameofteacher')";
             if (mysqli_query($conn, $sql)) 
             {
                       echo '<script>alert("File uploaded successfully")</script>'; 
