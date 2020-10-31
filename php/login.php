@@ -15,18 +15,25 @@
     
     $myusername = mysqli_real_escape_string($conn, $_POST['emailid']);
     $mypassword = mysqli_real_escape_string($conn, $_POST['psw']);
-    echo $mypassword;
-    echo $myusername;
+    // echo $mypassword;
+    // echo $myusername;
     $helloname= mysqli_query($conn, "SELECT * from login WHERE email= '$myusername' and passwords='$mypassword'");
     $name1=$helloname->fetch_assoc();
    $_SESSION['name']=$name1['username'];
-   echo $_SESSION['name'];
+  //  echo $_SESSION['name'];
    $_SESSION['pass']=$mypassword;
-   echo $_SESSION['pass'];
-
-    header("location:main.php");
+  //  echo $_SESSION['pass'];
+  
+if(mysqli_num_rows($helloname)>0)
+{
+    header("location:testing.php");
+  }
+  else{
+    echo "<script>alert('Invalid credentials');</script>";
   }
 
+  
+  }
 ?>
 
 
