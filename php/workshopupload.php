@@ -31,39 +31,20 @@
          {
            
           $nameofteacher=$_SESSION['name'];
-<<<<<<< HEAD
-          echo $nameofteacher;
-          echo $topic;
-            $sql = "INSERT INTO `resources` (id,category) VALUES (100,'workshops')";
-            // echo mysqli_num_rows($sql);
-            // mysqli_query($conn,$sql) or die('Error, insert query failed');
-
-=======
           
           
-            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values(100,'workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
+            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values(101,'workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
            
->>>>>>> 79959a0296fc2c00c1c7a18fc4610b4033e6e0dc
             if (mysqli_query($conn, $sql)) 
             {
                       echo '<script>alert("File uploaded successfully");</script>'; 
             }
-<<<<<<< HEAD
-         }
-        else
-        {
-            echo '<script>alert("File upload FAILED")</script>';
-        }
-      
-    
-=======
           
             else
             {
                 echo '<script>alert("File upload FAILED")</script>';
             }
          }
->>>>>>> 79959a0296fc2c00c1c7a18fc4610b4033e6e0dc
 }
 
 ?>  
