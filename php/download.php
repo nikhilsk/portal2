@@ -34,8 +34,9 @@ $host='localhost';
 
         // Now update downloads count
         $newCount = $file['dcount'] + 1;
-        $updateQuery =  mysqli_query($conn, "update resourses set dcount=$newCount WHERE id=$id");
-       
+        $updateQuery =  mysqli_query($conn, "update resources set dcount='$newCount' WHERE id='$id'");
+        // echo '<script>alert("File uploaded successfully")</script>'; 
+        header("location:testing.php");
         exit;
     }
 

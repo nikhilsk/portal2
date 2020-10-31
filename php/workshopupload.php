@@ -31,6 +31,7 @@
          {
            
           $nameofteacher=$_SESSION['name'];
+          echo $nameofteacher;
             $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink,uploader) values ('workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
             if (mysqli_query($conn, $sql)) 
             {

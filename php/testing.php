@@ -1,6 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
+//   include 'abcd.php';
   $host='localhost';
   $user='root';
   $password='';
@@ -19,7 +20,7 @@ session_start();
   }
   else
   {
-      $limit=5;
+      $limit=10;
   }
   
   if(isset($_POST['search']))
@@ -45,7 +46,7 @@ session_start();
 	$Previous = $page - 1;
     $Next = $page + 1;
   }
-  $_SESSION['num']=0;
+  
   
  
 ?>
@@ -188,16 +189,22 @@ session_start();
       <th>Download Count</th>
       <th>Download</th>
       <th>Description</th>
-      <th>Delete</th>
-     
+      <?php 
+      if(isset($_SESSION['loginid']))
+{
+      echo "<th>Delete</th>";
+}
+?>
     </tr>
   </thead>
   
   <tbody>
   <?php foreach($records as $row) :  ?>    
     <tr>
-    <th><?php $_SESSION['num']=$_SESSION['num']+1;
-    echo $_SESSION['num'];?></th>
+    <th><?php 
+        // $_SESSION['num']=$_SESSION['num']+1;
+        echo $row['id'];
+    ?></th>
       <th>
             <?php if ($row['category']=='projects'):?>
           <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
@@ -219,12 +226,18 @@ session_start();
 </th>
 <th><button class="button is-link is-outlined">View Details</button>
 </th>
-<th><button class="button is-danger is-outlined">Remove</button>
-</th>
+<?php 
+if(isset($_SESSION['loginid']))
+{
+    echo "<th><button class='button is-danger is-outlined'>Remove</button></th>";
+}
+?>
 
     </tr>   
     
-        <?php endforeach; ?>
+        <?php endforeach; 
+        
+        ?>
     
   </tbody>
 </table>
