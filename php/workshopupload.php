@@ -17,22 +17,17 @@
     $driv= mysqli_real_escape_string($conn, $_REQUEST['drive']);// functon used to remove special characters
     $topic= mysqli_real_escape_string($conn, $_REQUEST['fname']);
     $mess= mysqli_real_escape_string($conn, $_REQUEST['msg']);
-    
-
     // destination of the file on the server
     $destination = '../uploads/' . $filename;//need to have a folder named 'uploads'
-
     // get the file extension
     $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
     // the physical file on a temporary uploads directory on the server
     $file = $_FILES['myfile']['tmp_name'];
     $size = $_FILES['myfile']['size'];
-
    
-    {
+    
         // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($file, $destination))
+        if (move_uploaded_file($file, $destination) || $filename==NULL)
          {
             $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink) values ('workshops', '$topic', '$filename', '$size', '$mess' , '$driv')";
             if (mysqli_query($conn, $sql)) 
@@ -44,7 +39,7 @@
         {
             echo '<script>alert("File upload FAILED")</script>';
         }
-    }
+    
 }
 
 ?>  
