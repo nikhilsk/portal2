@@ -22,6 +22,15 @@ session_start();
       $limit=5;
   }
   
+  if(isset($_POST['search']))
+  {
+    //   echo $_POST['search'];
+      $string=mysqli_real_escape_string($conn,$_POST['search']);
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%'");
+      $records=$result->fetch_all(MYSQLI_ASSOC);
+  }
+  else
+  {
   $result1 = $conn->query("SELECT count(id) AS id FROM resources");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
@@ -35,6 +44,7 @@ session_start();
     
 	$Previous = $page - 1;
     $Next = $page + 1;
+  }
     
  
 ?>
@@ -125,14 +135,18 @@ session_start();
 
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
+      
+      <form action="" method="post">
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" placeholder="Search" />
+          <input class="input" type="text" name="search" id="search" placeholder="Search" />
+          
           <span class="icon is-left">
             <i class="fas fa-search" aria-hidden="true"></i>
           </span>
         </p>
       </div>
+      </form>
       <p class="panel-tabs ">
         <a href="./main.php" class="is-active"><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
@@ -233,6 +247,11 @@ session_start();
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#filter").change(function(){
+			$('form').submit();
+		})
+	})
+    $(document).ready(function(){
+		$("#search").change(function(){
 			$('form').submit();
 		})
 	})
