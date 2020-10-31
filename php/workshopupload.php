@@ -32,16 +32,21 @@
            
           $nameofteacher=$_SESSION['name'];
           echo $nameofteacher;
-            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink,uploader) values ('workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
+          echo $topic;
+            $sql = "INSERT INTO `resources` (id,category) VALUES (100,'workshops')";
+            // echo mysqli_num_rows($sql);
+            // mysqli_query($conn,$sql) or die('Error, insert query failed');
+
             if (mysqli_query($conn, $sql)) 
             {
-                      echo '<script>alert("File uploaded successfully")</script>'; 
+                      echo '<script>alert("File uploaded successfully");</script>'; 
             }
-          }
+         }
         else
         {
             echo '<script>alert("File upload FAILED")</script>';
         }
+      
     
 }
 
