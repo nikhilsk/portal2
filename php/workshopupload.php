@@ -31,18 +31,20 @@
          {
            
           $nameofteacher=$_SESSION['name'];
-          echo $nameofteacher;
-            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink,uploader) values ('workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
+          
+          
+            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values(100,'workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
+           
             if (mysqli_query($conn, $sql)) 
             {
                       echo '<script>alert("File uploaded successfully")</script>'; 
             }
-          }
-        else
-        {
-            echo '<script>alert("File upload FAILED")</script>';
-        }
-    
+          
+            else
+            {
+                echo '<script>alert("File upload FAILED")</script>';
+            }
+         }
 }
 
 ?>  
@@ -221,8 +223,8 @@
 
 
    </div>
-                  </div>
-                  </div>
+    </div>
+    </div>
                
               
   </div>
