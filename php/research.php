@@ -114,7 +114,7 @@ session_start();
       </div>
       
       <p class="panel-tabs">
-        <a href="./main.php" ><strong>All</strong></a>
+        <a href="./testing.php" ><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
         <a href="./research.php" class="is-active"> <strong>Research Papers</strong> </a>
         <a href="./webinar.php"> <strong>Webinars</strong> </a>
