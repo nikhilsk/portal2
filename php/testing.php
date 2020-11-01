@@ -48,16 +48,30 @@ session_start();
   }
 
   $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
- $r=mysqli_fetch_assoc($sqlq);
- $rid=$r['id'];
- $new=mysqli_query($conn, "select * from resources where id=$rid");
- if (mysqli_num_rows($new)>0)
+  $z=mysqli_fetch_assoc($sqlq);
+
+ if ($z['id']>0)
  {
- $r1=mysqli_fetch_assoc($new);
- $_SESSION["marq1"]=$r1['filename'];
-  $_SESSION["marq2"]=$r1['category'];
+  $rid=$z['id'];
+  $new=mysqli_query($conn, "select * from resources where id=$rid");
+  if(mysqli_num_rows($new)>0)
+    {
+    $r1=mysqli_fetch_assoc($new);
+    $_SESSION["marq1"]=$r1['filename'];
+    $_SESSION["marq2"]=$r1['category'];
+    }
+  else
+    {
+    $_SESSION["marq1"]='null';
+    $_SESSION["marq2"]='null';
+    }
  }
-  
+ else
+    {
+    $_SESSION["marq1"]='null';
+    $_SESSION["marq2"]='null';
+    }
+ 
   
  
 ?>
@@ -238,7 +252,7 @@ session_start();
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
-              
+        
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
@@ -332,13 +346,20 @@ session_start();
 <?php 
 if(isset($_SESSION['loginid'])):?>
 
-    <th><button class="button is-danger is-outlined" type="submit" onclick="window.location.href='remove.php?file_id=<?php echo $row['id']?>';">Remove</button></th>
+    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('remove.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>
     
   </tbody>
 </table>
+      <script>
+      function confirmDelete(delUrl) {
+        if (confirm("Are you sure you want to delete")) {
+        document.location = delUrl;
+        }
+      }
+      </script>
 
     <nav class="pagination is-left" role="navigation" aria-label="pagination">
     <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous">Previous</a>
