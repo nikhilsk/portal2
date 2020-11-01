@@ -10,8 +10,8 @@ $conn ->select_db($db) or die( "Unable to select database");
  
 if (isset($_GET['file_id'])) 
 {
-    $confirma= "<script> window.confirm('Confirm to remove');</script>";
-    echo $confirma;
+    $confirma= "<script> confirm('Confirm to remove');</script>";
+    //echo $confirma;
     if($confirma== true)
     {
         $id = $_GET['file_id'];

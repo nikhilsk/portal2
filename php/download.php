@@ -12,16 +12,14 @@ $host='localhost';
   if (isset($_GET['file_id'])) 
 {
     $id = $_GET['file_id'];
-
-
     // fetch file to download from database
     $sql = "SELECT * FROM resources WHERE id=$id";
     $result = mysqli_query($conn, $sql);
-
     $file = mysqli_fetch_assoc($result);
     $filepath = '../uploads/'.$file['file'];
 
-    if (file_exists($filepath)) {
+    if (file_exists($filepath)||$file['file']==NULL) 
+    {
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename=' . basename($filepath));
@@ -34,9 +32,11 @@ $host='localhost';
         // Now update downloads count
         $newCount = $file['dcount'] + 1;
         $updateQuery =  mysqli_query($conn, "update resources set dcount='$newCount' WHERE id='$id'");
-        // echo '<script>alert("File uploaded successfully")</script>'; 
-        header("location:testing.php");
+        header("Location: testing.php");
+        //header("Refresh:0 ; url=testing.php");
+        
         exit;
+        
     }
 
 }
