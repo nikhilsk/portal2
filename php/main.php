@@ -168,7 +168,7 @@ session_start();
                <button class = "modal-close is-large" aria-label = "close"></button>
             </div>
          </div>
-      </section>
+      
       
       <script>
          $(".modal-button").click(function() {

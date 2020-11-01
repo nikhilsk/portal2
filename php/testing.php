@@ -51,9 +51,12 @@ session_start();
  $r=mysqli_fetch_assoc($sqlq);
  $rid=$r['id'];
  $new=mysqli_query($conn, "select * from resources where id=$rid");
+ if (mysqli_num_rows($new)>0)
+ {
  $r1=mysqli_fetch_assoc($new);
  $_SESSION["marq1"]=$r1['filename'];
   $_SESSION["marq2"]=$r1['category'];
+ }
   
   
  
@@ -98,7 +101,7 @@ session_start();
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="main.php" class="navbar-item">
+      <a href="testing.php" class="navbar-item">
         Home
       </a>
       <?php
@@ -132,7 +135,7 @@ session_start();
              </a>";
             }
         ?>
-          <a class="button is-link is-outlined">
+          <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
           
@@ -146,7 +149,7 @@ session_start();
       <p class="panel-heading">Resources</p>
       <marquee>
       <span style="color:red"  style="font-weight:bold">NEW- </span><?php 
-         echo $_SESSION["marq1"]." (". ucfirst($_SESSION["marq2"]).")"; 
+         echo ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")"; 
        ?></marquee>
       
       <form action="" method="post">
@@ -161,7 +164,7 @@ session_start();
       </div>
       </form>
       <p class="panel-tabs ">
-        <a href="./main.php" class="is-active"><strong>All</strong></a>
+        <a href="./testing.php.php" class="is-active"><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
         <a href="./research.php"> <strong>Research Papers</strong> </a>
         <a href="./webinar.php"> <strong>Webinars</strong> </a>
@@ -232,19 +235,21 @@ session_start();
         <?php echo $row['filename'] ?></th>
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
+
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined" data-target = "#modal">View Details</button></th>
-              <div id = "modal" class = "modal">
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
+              
+        <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
                   <div class = "box">
                      <article class = "media">
-                        
                         <div class = "media-content">
                            <div class = "content">
+                           <?php if($row['category']=='workshops'):?>
                               <p>
-                                 <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo $row['category'];?> </small> 
+                                   <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
                                  <br>
@@ -253,6 +258,55 @@ session_start();
                                           {echo 'NA';}
                                        else {echo $row['drivelink'];}?></p>
                               </p>
+                              <?php endif; ?>
+
+                              <?php if($row['category']=='projects'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Project Link:
+                                 <?php echo $row['link'];?>
+                              </p>
+                              <?php endif; ?>
+
+                              <?php if($row['category']=='webinars'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Web Link:
+                                 <?php echo $row['link'];?>
+                              </p>
+                              <?php endif;?>
+
+                              <?php if($row['category']=='research'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Name of conference/journal:
+                                 <?php echo $row['confer'];?>
+                              </p>
+                              <?php endif; ?>
                            </div>  
                         </div>
                      </article>
@@ -276,17 +330,12 @@ session_start();
       </script>
 
 <?php 
-if(isset($_SESSION['loginid']))
-{
-    echo "<th><button class='button is-danger is-outlined'>Remove</button></th>";
-}
-?>
+if(isset($_SESSION['loginid'])):?>
 
+    <th><button class="button is-danger is-outlined" type="submit" onclick="window.location.href='remove.php?file_id=<?php echo $row['id']?>';">Remove</button></th>
+<?php endif; ?>
     </tr>   
-    
-        <?php endforeach; 
-        
-        ?>
+        <?php endforeach; ?>
     
   </tbody>
 </table>

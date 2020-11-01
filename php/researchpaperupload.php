@@ -35,9 +35,11 @@
         // move the uploaded (temporary) file to the specified destination
         if (move_uploaded_file($file, $destination)||$file==NULL)
          {
-           
+          $que= mysqli_query($conn,"select max(id) as id from resources");
+          $q=mysqli_fetch_assoc($que);
+          $newid= $q['id']+1;
           $nameofteacher=$_SESSION['name'];
-            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, publish, confer, uploader) values ('research', '$topic', '$filename', '$size', '$mess' , '$driv', '$corj', '$resname','$nameofteacher')";
+            $sql = "insert into resources (id,category, filename, file, filesize, descrip, drivelink, publish, confer, uploader) values ('$newid','research', '$topic', '$filename', '$size', '$mess' , '$driv', '$corj', '$resname','$nameofteacher')";
             if (mysqli_query($conn, $sql)) 
             {
                       echo '<script>alert("File uploaded successfully")</script>'; 
