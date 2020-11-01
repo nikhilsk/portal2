@@ -37,7 +37,7 @@
          {
            
           $nameofteacher=$_SESSION['name'];
-            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, publish, confer, uploader) VALUES ('research', '$topic', '$filename', '$size', '$mess' , '$driv', '$corj', '$resname', '$nameofteacher')";
+            $sql = "insert into resources (category, filename, file, filesize, descrip, drivelink, publish, confer, uploader) values ('research', '$topic', '$filename', '$size', '$mess' , '$driv', '$corj', '$resname','$nameofteacher')";
             if (mysqli_query($conn, $sql)) 
             {
                       echo '<script>alert("File uploaded successfully")</script>'; 

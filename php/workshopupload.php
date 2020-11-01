@@ -36,11 +36,7 @@
           $nameofteacher=$_SESSION['name'];
           
           
-<<<<<<< HEAD
-            $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values(101,'workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
-=======
             $sql = "insert into resources (id, category, filename, file, filesize, descrip, drivelink,uploader) values('$newid','workshops', '$topic', '$filename', '$size', '$mess' , '$driv','$nameofteacher')";
->>>>>>> cbfa6a3da699eb03a0296c9cf3d8145a7b695bef
            
             if (mysqli_query($conn, $sql)) 
             {
