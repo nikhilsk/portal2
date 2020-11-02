@@ -41,45 +41,110 @@ if(mysqli_num_rows($helloname)>0)
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="../css/login.css" />
-    <script src="../js/login.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="../css/layout.css" /> -->
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+    ></script>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
+  
   </head>
   <body>
-    <br>
-    <br>
-    <br>
 
-    <div class="container">
-      <div class="card"></div>
-      <div class="card">
-        <h1 class="title">Login</h1>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="">
+        <div class="logo ml-4" style="color: #0168fa;font-size:1vw 1vh;">
+            <strong>BMSCE</strong>
+        </div>
         
-        <form action="" method="post">
-          <div class="input-container">
-            <input type="email" name="emailid" required />
-            <label for="emailid">Email</label>
-            <div class="bar"></div>
-          </div>
-          <div class="input-container">
-            <input type="password" name="psw" required />
-            <label for="psw">Password</label>
-            <div class="bar"></div>
-          </div>
-          <div class="button-container">
-            <button type="submit" value="submit" name="btn-save"><span>Login</span></button>
-          </div>
-        </form>
+        <span style="color: #0168fa;">CAMPUS</span>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      
+   
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+        
+          <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
+            <strong>Department of ISE</strong>
+          </a>
+          <button class="button is-link" onclick="location.href='./testing.php';">
+          <span class="icon is-small">
+      <i class="fas fa-home"></i>
+      <!-- <strong>Home</strong> -->
+    </span>
+            <span>Home</span>
+      </button>
+          
+        </div>
       </div>
+    
+    </div>
+  </div>
+
+</nav>
+  
+    <div class="columns">
       
-      <div class="card alt">
-        <div class="toggle"></div>
-      
+  <div class="column is-one-fifths m-6 p-6">
+  <br><br>
+    <div class="card p-4" style="background:hsl(217, 71%, 53%);">
+    <!-- <button class="button is-fullwidth is-outlined" style="color:blue;">Faculty Sign-In</button> -->
+    <strong style="color:white;font-family: 'Roboto Condensed', sans-serif;">WELCOME TO BMSCE RESOURCES</strong>
+    <br>
+    <h3 style="color:white;font-family: 'Roboto Condensed', sans-serif;">To keep connected with us please login with your personal credentials</h3>
+    <br>
+    <form action="" method="post">    <div class="field">
+    <label class="label" style="color:white;">Email</label>
+  <div class="control has-icons-left">
+    <input class="input is-info" type="text" name="emailid" placeholder="Enter your mail id" required>
+    <span class="icon is-small is-left">
+      <i class="fas fa-envelope"></i>
+    </span>
+  </div>
+</div>
+<div class="field">
+<label class="label" style="color:white;">Password</label>
+  <div class="control has-icons-left">
+    <input class="input is-info" name="psw" type="password" placeholder="Enter password" required>
+    <span class="icon is-small is-left">
+      <i class="fas fa-unlock"></i>
+    </span>
+  </div>
+  <br>
+  <button type="submit" class="button is-success is-fullwidth p-3" style="background:white;color:black;">Login</button>
+</div>
+
+</form>
+
+      </div>
+</div>
+      <div class="column m-4 p-4">
+      <br><br><br>
+      <img src="../img/login3.png" alt=""></div>
+      </div>
    
   </body>
 </html>

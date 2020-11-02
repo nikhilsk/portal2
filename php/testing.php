@@ -12,16 +12,16 @@ session_start();
   $conn ->select_db($db) or die( "Unable to select database");
 
   $slno=0;
-  if(isset($_POST['filter']))
-  {
-      $_SESSION['norecords']=$_POST['filter'];
-      $limit=$_SESSION['norecords'];
-    //   header("location:testing.php");
-  }
-  else
-  {
-      $limit=10;
-  }
+  // if(isset($_POST['filter']))
+  // {
+  //     $_SESSION['norecords']=$_POST['filter'];
+  //     $limit=$_SESSION['norecords'];
+  //   //   header("location:testing.php");
+  // }
+  // else
+  // {
+  //     $limit=10;
+  // }
   
 
   
@@ -29,6 +29,8 @@ session_start();
   if(isset($_POST['search']))
   {
     //   echo $_POST['search'];
+    
+    $limit = isset($_POST["filter"]) ? $_SESSION['filterno']=$_POST["filter"] : 1;
       $string=mysqli_real_escape_string($conn,$_POST['search']);
       $result=$conn->query("Select * from resources where filename LIKE '%$string%'");
       $records=$result->fetch_all(MYSQLI_ASSOC);
@@ -45,6 +47,18 @@ session_start();
   }
   else
   {
+    if(isset($_POST["filter"]))
+    {
+      $_SESSION['filterno']=$_POST["filter"];
+      $limit=$_SESSION['filterno'];
+      echo $_POST['filter'];
+    } 
+    else
+    {
+       $limit=1;
+    }
+    echo $limit;
+    echo isset($_SESSION['filterno'])?$_SESSION['filterno']:$limit;
   $result1 = $conn->query("SELECT count(id) AS id FROM resources");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
@@ -53,9 +67,14 @@ session_start();
 	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
 	$total = $recCount[0]['id'];
     $pages = ceil( $total / $limit );
-    
-	$Previous = $page - 1;
+    if($page>1)
+  {
+  $Previous = $page - 1;
+  }
+  if($page<$pages)
+  {
     $Next = $page + 1;
+  }
   }
 
   $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
@@ -213,18 +232,12 @@ session_start();
   
     <select name="filter" id="filter">
       <option disabled="disabled" selected="selected">--No of records--</option>
-      <?php foreach([1,5,10,25,50,100] as $limit): ?>
-      <option value="<?php 
-      if(isset($_POST['filter']))
-      {
-        echo $_POST['filter'];
-       }
-       else
-       {
-         echo $limit;
-       } ?>"><?= $limit; ?></option>
-		<?php endforeach; ?>
       
+      <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :1; ?>"><?= $limit=1; ?></option>
+		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :5; ?>"><?= $limit=5; ?></option>
+		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :10; ?>"><?= $limit=10; ?></option>
+		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :25; ?>"><?= $limit=25; ?></option>
+		      
     </select>
     </form>
   </div>
@@ -385,7 +398,7 @@ if(isset($_SESSION['loginid'])):?>
   <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
-    <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
+  <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
     <?php endfor; ?>
     </ul>
 </nav>
