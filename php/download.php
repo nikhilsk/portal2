@@ -32,12 +32,9 @@ $host='localhost';
         // Now update downloads count
         $newCount = $file['dcount'] + 1;
         $updateQuery =  mysqli_query($conn, "update resources set dcount='$newCount' WHERE id='$id'");
-        header("Location: testing.php");
-        //header("Refresh:0 ; url=testing.php");
-        
-        exit;
-        
+        //header("Location: testing.php");
+        header("Refresh:0 ; url=testing.php");
+        exit;        
     }
-
 }
 ?>
