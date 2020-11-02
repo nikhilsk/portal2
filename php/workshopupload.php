@@ -40,7 +40,7 @@
            
             if (mysqli_query($conn, $sql)) 
             {
-                      echo '<script>alert("File uploaded successfully")</script>'; 
+                      echo '<script>alert("File uploaded successfully");</script>'; 
             }
           
             else

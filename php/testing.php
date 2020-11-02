@@ -11,7 +11,7 @@ session_start();
   
   $conn ->select_db($db) or die( "Unable to select database");
 
-
+  $slno=0;
   if(isset($_POST['filter']))
   {
       $_SESSION['norecords']=$_POST['filter'];
@@ -23,12 +23,25 @@ session_start();
       $limit=10;
   }
   
+
+  
+
   if(isset($_POST['search']))
   {
     //   echo $_POST['search'];
       $string=mysqli_real_escape_string($conn,$_POST['search']);
       $result=$conn->query("Select * from resources where filename LIKE '%$string%'");
       $records=$result->fetch_all(MYSQLI_ASSOC);
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%'");
+      $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
+      $total = $recCount[0]['id'];
+        $pages = ceil( $total / $limit );
+        
+      $Previous = $page - 1;
+        $Next = $page + 1;
+    
   }
   else
   {
@@ -37,8 +50,6 @@ session_start();
 	$start = ($page - 1) * $limit;
     $result = $conn->query("SELECT * FROM resources LIMIT $start, $limit");
 	$records = $result->fetch_all(MYSQLI_ASSOC);
-// echo $start;
-// echo $limit;
 	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
 	$total = $recCount[0]['id'];
     $pages = ceil( $total / $limit );
@@ -130,9 +141,14 @@ session_start();
       echo "<a class='navbar-item' href='./destroy.php'>";
       echo "Logout";
       echo "</a>";
+
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
+      echo "</a>";
+
+      echo "<a class='navbar-item' href='./teacherupload.php'>";
+      echo "My uploads";
       echo "</a>";
    }
    ?>
@@ -169,7 +185,7 @@ session_start();
       <form action="" method="post">
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" name="search" id="search" placeholder="Search" />
+          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php if (isset($_POST['search'])) echo $_POST['search']; ?>" />
           
           <span class="icon is-left">
             <i class="fas fa-search" aria-hidden="true"></i>
@@ -191,24 +207,33 @@ session_start();
     </nav>
     <br>
     
+<div style="display:flex;margin:auto;width:94%;">
   <form action="" method="post">
   <div class="select is-right">
   
     <select name="filter" id="filter">
       <option disabled="disabled" selected="selected">--No of records--</option>
-      <?php foreach([10,25,50,100] as $limit): ?>
-			<option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= $limit; ?>"><?= $limit; ?></option>
+      <?php foreach([1,5,10,25,50,100] as $limit): ?>
+      <option value="<?php 
+      if(isset($_POST['filter']))
+      {
+        echo $_POST['filter'];
+       }
+       else
+       {
+         echo $limit;
+       } ?>"><?= $limit; ?></option>
 		<?php endforeach; ?>
       
     </select>
     </form>
   </div>
-
+</div>
 <br>
 <br>
 
-
-    <table class="table is-fullwidth is-striped">
+<div style="display:flex;margin:auto;width:94%;">
+    <table class="table is-bordered is-fullwidth is-striped">
   <thead>
   <tr>
         <th>Sl No</th>
@@ -227,6 +252,7 @@ session_start();
   </thead>
   
   <tbody>
+  
   <?php foreach($records as $row) :  ?>    
     <tr>
     <th><?php 
@@ -251,7 +277,7 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
+        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
@@ -262,7 +288,7 @@ session_start();
                            <div class = "content">
                            <?php if($row['category']=='workshops'):?>
                               <p>
-                                   <strong> <?php echo $row['filename'];?> -</strong> 
+                                   <strong> <?php echo $row['filename'];$slno=$slno+1;echo $slno;?></strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
@@ -276,7 +302,7 @@ session_start();
 
                               <?php if($row['category']=='projects'):?>
                                 <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
+                              <strong> <?php echo $row['filename'];echo $i;$i=$i+1;?> -</strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
@@ -330,18 +356,7 @@ session_start();
             </div>
          </div>
       
-      <script>
-         $(".modal-button").click(function() {
-            var target = $(this).data("target");
-            $("html").addClass("is-clipped");
-            $(target).addClass("is-active");
-         });
-         
-         $(".modal-close").click(function() {
-            $("html").removeClass("is-clipped");
-            $(this).parent().removeClass("is-active");
-         });
-      </script>
+      
 
 <?php 
 if(isset($_SESSION['loginid'])):?>
@@ -353,18 +368,21 @@ if(isset($_SESSION['loginid'])):?>
     
   </tbody>
 </table>
+</div>
+
       <script>
       function confirmDelete(delUrl) {
-        if (confirm("Are you sure you want to delete")) {
+        if (confirm("Are you sure you want to delete")) 
+        {
         document.location = delUrl;
         }
       }
       </script>
+<br>
+    <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+    <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
 
-    <nav class="pagination is-left" role="navigation" aria-label="pagination">
-    <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous">Previous</a>
-
-  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next">Next page</a>
+  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
     <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
@@ -391,5 +409,43 @@ if(isset($_SESSION['loginid'])):?>
 		})
 	})
 </script>
+<script>
+      var a=document.querySelectorAll(".modal-button");
+      console.log(a);
+      a.forEach((e, i) => {
+  // console.log(a[i].id);
+  // console.log(a[i].name);
+
+  e.addEventListener("click", () => {
+    // let c = prompt("Enter the number of plates u want to delete");
+    // if (c <= a[i].name) {
+    //   a[i].name -= c;
+    // } else {
+    //   alert("You havent ordered those many plates");
+    // // }
+    // data = {
+    //   dishn: a[i].id,
+    //   quan: a[i].name,
+    // };
+    // send1(data);
+    // location.reload();
+    console.log(e);
+    var target = $(this).data("target");
+    e.classList.toggle("is-clipped");
+    e.classList.toggle("is-active");
+  });
+});
+
+        //  $("./").click(function() {
+        //     var target = $(this).data("target");
+        //     $("html").addClass("is-clipped");
+        //     $(target).addClass("is-active");
+        //  });
+         
+        //  $(".modal-close").click(function() {
+        //     $("html").removeClass("is-clipped");
+        //     $(this).parent().removeClass("is-active");
+        //  });
+      </script>
   </body>
 </html>
