@@ -370,7 +370,7 @@ session_start();
                            <div class = "content">
                            <?php if($row['category']=='workshops'):?>
                               <p>
-                                   <strong> <?php echo $row['filename'];$slno=$slno+1;echo $slno;?></strong> 
+                                   <strong> <?php echo $row['filename'];?></strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
@@ -506,22 +506,10 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       var a=document.querySelectorAll(".modal-button");
       console.log(a);
       a.forEach((e, i) => {
-  // console.log(a[i].id);
-  // console.log(a[i].name);
+ 
 
   e.addEventListener("click", () => {
-    // let c = prompt("Enter the number of plates u want to delete");
-    // if (c <= a[i].name) {
-    //   a[i].name -= c;
-    // } else {
-    //   alert("You havent ordered those many plates");
-    // // }
-    // data = {
-    //   dishn: a[i].id,
-    //   quan: a[i].name,
-    // };
-    // send1(data);
-    // location.reload();
+    
     console.log(e);
     var target = $(this).data("target");
     e.classList.toggle("is-clipped");
@@ -529,16 +517,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
   });
 });
 
-        //  $("./").click(function() {
-        //     var target = $(this).data("target");
-        //     $("html").addClass("is-clipped");
-        //     $(target).addClass("is-active");
-        //  });
-         
-        //  $(".modal-close").click(function() {
-        //     $("html").removeClass("is-clipped");
-        //     $(this).parent().removeClass("is-active");
-        //  });
+      
       </script>
       
   </body>

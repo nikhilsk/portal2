@@ -1,7 +1,6 @@
 <?php 
 session_start();
   include 'download.php';
-  include 'modal1.php';
 //   include 'abcd.php';
   $host='localhost';
   $user='root';
@@ -30,12 +29,16 @@ session_start();
   if(isset($_POST['search']))
   {
     //   echo $_POST['search'];
-    
-    $limit = isset($_POST["filter"]) ? $_SESSION['filterno']=$_POST["filter"] : 1;
+    $_SESSION['search']=$_POST['search'];
+    $limit = isset($_POST["filter"]) ? $_SESSION['filter']=$_POST["filter"] : 5;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+	$start = ($page - 1) * $limit;
       $string=mysqli_real_escape_string($conn,$_POST['search']);
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%'");
+      
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%'");
+      
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start,$limit");
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
@@ -44,22 +47,76 @@ session_start();
         
       $Previous = $page - 1;
         $Next = $page + 1;
+
+
+
+        if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
+        {
+          if(isset($_POST['filter']))
+          {
+          $_SESSION['filter']=$_POST["filter"];
+          $limit=$_SESSION['filter'];
+          
+          // echo $_SESSION['filter'];
+          }
+          else{
+            $limit=$_SESSION['filter'];
+          //   echo $_SESSION['filter'];
+          // echo $limit;
+          }
+        }
+        else
+        {
+           $limit=5;
+           echo "hello";
+        }
+        // echo $limit;
+        // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
+      $page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $start = ($page - 1) * $limit;
+
+      $string=mysqli_real_escape_string($conn,$_POST['search']);
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
+      $records=$result->fetch_all(MYSQLI_ASSOC);
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start, $limit ");
+
+      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
+      $total = $recCount[0]['id'];
+        $pages = ceil( $total / $limit );
+        if($page>1)
+      {
+      $Previous = $page - 1;
+      }
+      if($page<$pages)
+      {
+        $Next = $page + 1;
+      }
     
   }
   else
   {
-    if(isset($_POST["filter"]))
+    if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
     {
-      $_SESSION['filterno']=$_POST["filter"];
-      $limit=$_SESSION['filterno'];
-      echo $_POST['filter'];
-    } 
+      if(isset($_POST['filter']))
+      {
+      $_SESSION['filter']=$_POST["filter"];
+      $limit=$_SESSION['filter'];
+      
+      // echo $_SESSION['filter'];
+      }
+      else{
+        $limit=$_SESSION['filter'];
+      //   echo $_SESSION['filter'];
+      // echo $limit;
+      }
+    }
     else
     {
-       $limit=1;
+       $limit=5;
+      //  echo "hello";
     }
-    echo $limit;
-    echo isset($_SESSION['filterno'])?$_SESSION['filterno']:$limit;
+    // echo $limit;
+    // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
   $result1 = $conn->query("SELECT count(id) AS id FROM resources");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
@@ -90,17 +147,20 @@ session_start();
     $r1=mysqli_fetch_assoc($new);
     $_SESSION["marq1"]=$r1['filename'];
     $_SESSION["marq2"]=$r1['category'];
+    $_SESSION["marq3"]=$r1['uploader'];
     }
   else
     {
     $_SESSION["marq1"]='null';
     $_SESSION["marq2"]='null';
+    $_SESSION["marq3"]='null';
     }
  }
  else
     {
     $_SESSION["marq1"]='null';
     $_SESSION["marq2"]='null';
+    $_SESSION["marq3"]='null';
     }
  
   
@@ -198,14 +258,22 @@ session_start();
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
       <marquee>
-      <span style="color:red"  style="font-weight:bold">NEW- </span><?php 
-         echo ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")"; 
+      <span style="color:red"  style="font-weight:bold">NEW FILE- </span><?php 
+         echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]) ; 
        ?></marquee>
       
       <form action="" method="post">
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php if (isset($_POST['search'])) echo $_POST['search']; ?>" />
+          <input class="input" type="text" name="search" id="search" style="color:red" placeholder="Search" value="<?php 
+          if (isset($_POST['search']))
+          {
+            echo $_POST['search'];
+          }
+          elseif(isset($_SESSION['search']))
+          {
+            echo $_SESSION['search'];
+          }  ?>" />
           
           <span class="icon is-left">
             <i class="fas fa-search" aria-hidden="true"></i>
@@ -234,10 +302,10 @@ session_start();
     <select name="filter" id="filter">
       <option disabled="disabled" selected="selected">--No of records--</option>
       
-      <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :1; ?>"><?= $limit=1; ?></option>
-		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :5; ?>"><?= $limit=5; ?></option>
-		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :10; ?>"><?= $limit=10; ?></option>
-		  <option <?php if( isset($_POST["filter"]) && $_POST["filter"] == $limit) echo "selected" ?> value="<?= isset($_POST['filter'])? $_POST['filter'] :25; ?>"><?= $limit=25; ?></option>
+      <option <?php ?> value="<?= 1; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 1) ? 'selected="selected"' : ''; ?>><?= $limit=1; ?></option>
+		  <option <?php ?> value="<?= 5; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 5) ? 'selected="selected"' : ''; ?> ><?= $limit=5; ?></option>
+		  <option <?php ?> value="<?= 10; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 10) ? 'selected="selected"' : ''; ?>><?= $limit=10; ?></option>
+		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
     </form>
@@ -270,7 +338,7 @@ session_start();
   <?php foreach($records as $row) :  ?>    
     <tr>
     <th><?php 
-        
+        // $_SESSION['num']=$_SESSION['num']+1;
         echo $row['id'];
     ?></th>
       <th>
@@ -287,20 +355,124 @@ session_start();
           <i class="fas fa-file-video" aria-hidden="true" style="color:red;"></i>
         <?php endif; ?>
         <?php echo $row['filename'] ?></th>
-        <th><?php echo $row['uploader'] ?></th>
+      <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
+
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <?php if ($row['category']=='workshops'):?>
-        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal1"  type="submit" name="mod" onclick="window.loaction.href='modal1.php?rowid=<?php echo $row['id'] ?>';">View Details</button></th>
-        <?php endif; ?>
-        <?php if ($row['category']=='projects'):?>
-        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal2">View Details</button></th>
-        <?php endif; ?>
+        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details </button></th>
+        
+        <div id = "modal" class = "modal">
+               <div class = "modal-background"></div>
+               <div class = "modal-content">
+                  <div class = "box">
+                     <article class = "media">
+                        <div class = "media-content">
+                           <div class = "content">
+                           <?php if($row['category']=='workshops'):?>
+                              <p>
+                                   <strong> <?php echo $row['filename'];?></strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['drivelink']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                              </p>
+                              <?php endif; ?>
+
+                              <?php if($row['category']=='projects'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Project Link:
+                                 <?php echo $row['link'];?>
+                              </p>
+                              <?php endif; ?>
+
+                              <?php if($row['category']=='webinars'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Web Link:
+                                 <?php echo $row['link'];?>
+                              </p>
+                              <?php endif;?>
+
+                              <?php if($row['category']=='research'):?>
+                                <p>
+                              <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Name of conference/journal:
+                                 <?php echo $row['confer'];?>
+                              </p>
+                              <?php endif; ?>
+                           </div>  
+                        </div>
+                     </article>
+                  </div>
+               </div>
+               <button class = "modal-close is-large" aria-label = "close"></button>
+            </div>
+         </div>
+         <script> 
+    // Bulma does not have JavaScript included, 
+    // hence custom JavaScript has to be 
+    // written to open or close the modal 
+    const modal =  
+          document.querySelector('.modal'); 
+    const btn =  
+          document.querySelector('#btn') 
+    const close =  
+          document.querySelector('.modal-close') 
+  
+    btn.addEventListener('click', 
+                         function () { 
+      modal.style.display = 'block' 
+    }) 
+  
+    close.addEventListener('click', 
+                           function () { 
+      modal.style.display = 'none' 
+    }) 
+  
+    window.addEventListener('click', 
+                            function (event) { 
+      if (event.target.className ===  
+          'modal-background') { 
+        modal.style.display = 'none' 
+      } 
+    }) 
+  </script> 
+      
+      
 
 <?php 
 if(isset($_SESSION['loginid'])):?>
 
-    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('remove.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
+    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('removetest.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>
@@ -311,7 +483,7 @@ if(isset($_SESSION['loginid'])):?>
 
       <script>
       function confirmDelete(delUrl) {
-        if (confirm("Are you sure you want to delete?")) 
+        if (confirm("Are you sure you want to delete")) 
         {
         document.location = delUrl;
         }
@@ -321,21 +493,14 @@ if(isset($_SESSION['loginid'])):?>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
     <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
 
-  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6">Next page</a>
+  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
-  <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
+  <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
     <?php endfor; ?>
     </ul>
 </nav>
 
-    <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>© Copyright 2020. All Rights Reserved.</strong> 
-    </p>
-  </div>
-</footer>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#filter").change(function(){
@@ -352,22 +517,10 @@ if(isset($_SESSION['loginid'])):?>
       var a=document.querySelectorAll(".modal-button");
       console.log(a);
       a.forEach((e, i) => {
-  // console.log(a[i].id);
-  // console.log(a[i].name);
+ 
 
   e.addEventListener("click", () => {
-    // let c = prompt("Enter the number of plates u want to delete");
-    // if (c <= a[i].name) {
-    //   a[i].name -= c;
-    // } else {
-    //   alert("You havent ordered those many plates");
-    // // }
-    // data = {
-    //   dishn: a[i].id,
-    //   quan: a[i].name,
-    // };
-    // send1(data);
-    // location.reload();
+    
     console.log(e);
     var target = $(this).data("target");
     e.classList.toggle("is-clipped");
@@ -375,16 +528,21 @@ if(isset($_SESSION['loginid'])):?>
   });
 });
 
-        //  $("./").click(function() {
-        //     var target = $(this).data("target");
-        //     $("html").addClass("is-clipped");
-        //     $(target).addClass("is-active");
-        //  });
-         
-        //  $(".modal-close").click(function() {
-        //     $("html").removeClass("is-clipped");
-        //     $(this).parent().removeClass("is-active");
-        //  });
+      
       </script>
+      
   </body>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p> 
+      <br>
+      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <br>
+      <strong>Contact us: </strong>
+      <br>Email: info@bmsce.ac.in 
+      <br>Fax: +91-80-26614357
+      <br><span style="color:grey">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+    </p>
+  </div>
+</footer>
 </html>
