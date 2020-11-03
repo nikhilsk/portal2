@@ -147,17 +147,20 @@ session_start();
     $r1=mysqli_fetch_assoc($new);
     $_SESSION["marq1"]=$r1['filename'];
     $_SESSION["marq2"]=$r1['category'];
+    $_SESSION["marq3"]=$r1['uploader'];
     }
   else
     {
     $_SESSION["marq1"]='null';
     $_SESSION["marq2"]='null';
+    $_SESSION["marq3"]='null';
     }
  }
  else
     {
     $_SESSION["marq1"]='null';
     $_SESSION["marq2"]='null';
+    $_SESSION["marq3"]='null';
     }
  
   
@@ -255,8 +258,8 @@ session_start();
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
       <marquee>
-      <span style="color:red"  style="font-weight:bold">NEW- </span><?php 
-         echo ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")"; 
+      <span style="color:red"  style="font-weight:bold">NEW FILE- </span><?php 
+         echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]) ; 
        ?></marquee>
       
       <form action="" method="post">
