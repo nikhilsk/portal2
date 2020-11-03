@@ -286,9 +286,8 @@ session_start();
           <i class="fas fa-file-video" aria-hidden="true" style="color:red;"></i>
         <?php endif; ?>
         <?php echo $row['filename'] ?></th>
-      <th><?php echo $row['uploader'] ?></th>
+        <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
-
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
         
@@ -299,7 +298,7 @@ session_start();
                      <article class = "media">
                         <div class = "media-content">
                            <div class = "content">
-                           <?php if($row['category']=='workshops'):?>
+                           <?php if ($row['category']=='workshops'):?>
                               <p>
                                    <strong> <?php echo $row['filename'];$slno=$slno+1;echo $slno;?></strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
@@ -313,7 +312,7 @@ session_start();
                               </p>
                               <?php endif; ?>
 
-                              <?php if($row['category']=='projects'):?>
+                              <?php if ($row['category']=='projects'):?>
                                 <p>
                               <strong> <?php echo $row['filename'];echo $i;$i=$i+1;?> -</strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
@@ -329,7 +328,7 @@ session_start();
                               </p>
                               <?php endif; ?>
 
-                              <?php if($row['category']=='webinars'):?>
+                              <?php if ($row['category']=='webinars'):?>
                                 <p>
                               <strong> <?php echo $row['filename'];?> -</strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
@@ -345,7 +344,7 @@ session_start();
                               </p>
                               <?php endif;?>
 
-                              <?php if($row['category']=='research'):?>
+                              <?php if ($row['category']=='research'):?>
                                 <p>
                               <strong> <?php echo $row['filename'];?> -</strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
@@ -385,7 +384,7 @@ if(isset($_SESSION['loginid'])):?>
 
       <script>
       function confirmDelete(delUrl) {
-        if (confirm("Are you sure you want to delete")) 
+        if (confirm("Are you sure you want to delete?")) 
         {
         document.location = delUrl;
         }
