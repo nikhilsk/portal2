@@ -26,36 +26,27 @@ session_start();
 
   
 
-  if(isset($_POST['search']) or isset($_SESSION['search']))
+  if(isset($_POST['search']))
   {
     //   echo $_POST['search'];
-    if(isset($_POST['search']))
-    {
     $_SESSION['search']=$_POST['search'];
-    $string=mysqli_real_escape_string($conn,$_POST['search']);
-    echo $_SESSION['search'];
-    echo $_POST['search'];
-    }
-    else{
-      $string=$_SESSION['search'];
-      echo $string;
-    }
-  //   $limit = isset($_POST["filter"]) ? $_SESSION['filter']=$_POST["filter"] : 5;
-  //   $page = isset($_GET['page']) ? $_GET['page'] : 1;
-	// $start = ($page - 1) * $limit;
+    $limit = isset($_POST["filter"]) ? $_SESSION['filter']=$_POST["filter"] : 5;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+	$start = ($page - 1) * $limit;
+      $string=mysqli_real_escape_string($conn,$_POST['search']);
       
-  //     $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
-  //     $records=$result->fetch_all(MYSQLI_ASSOC);
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
+      $records=$result->fetch_all(MYSQLI_ASSOC);
       
-  //     $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start,$limit");
-  //     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start,$limit");
+      $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
-  //     $recCount = $result1->fetch_all(MYSQLI_ASSOC);
-  //     $total = $recCount[0]['id'];
-  //       $pages = ceil( $total / $limit );
+      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
+      $total = $recCount[0]['id'];
+        $pages = ceil( $total / $limit );
         
-  //     $Previous = $page - 1;
-  //       $Next = $page + 1;
+      $Previous = $page - 1;
+        $Next = $page + 1;
 
 
 
@@ -84,7 +75,7 @@ session_start();
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
       $start = ($page - 1) * $limit;
 
-      // $string=mysqli_real_escape_string($conn,$_POST['search']);
+      $string=mysqli_real_escape_string($conn,$_POST['search']);
       $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start, $limit ");
@@ -102,8 +93,6 @@ session_start();
       }
     
   }
-
-
   else
   {
     if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
