@@ -113,7 +113,7 @@ session_start();
     else
     {
        $limit=5;
-       echo "hello";
+      //  echo "hello";
     }
     // echo $limit;
     // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
