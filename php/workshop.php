@@ -367,7 +367,7 @@ session_start();
                            <div class = "content">
                            <?php if($row['category']=='workshops'):?>
                               <p>
-                                   <strong> <?php echo $row['filename'];$slno=$slno+1;echo $slno;?></strong> 
+                                   <strong> <?php echo $row['filename'];?></strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
@@ -434,6 +434,18 @@ session_start();
                <button class = "modal-close is-large" aria-label = "close"></button>
             </div>
          </div>
+         <script>
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+         
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
       
       
 
@@ -469,10 +481,16 @@ if(isset($_SESSION['loginid'])):?>
     </ul>
 </nav>
 
-    <footer class="footer">
+<footer class="footer">
   <div class="content has-text-centered">
-    <p>
-      <strong>© Copyright 2020. All Rights Reserved.</strong> 
+    <p> 
+      <br>
+      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <br>
+      <strong>Contact us: </strong>
+      <br>Email: info@bmsce.ac.in 
+      <br>Fax: +91-80-26614357
+      <br><span style="color:grey">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
     </p>
   </div>
 </footer>
@@ -488,43 +506,6 @@ if(isset($_SESSION['loginid'])):?>
 		})
 	})
 </script>
-<script>
-      var a=document.querySelectorAll(".modal-button");
-      console.log(a);
-      a.forEach((e, i) => {
-  // console.log(a[i].id);
-  // console.log(a[i].name);
 
-  e.addEventListener("click", () => {
-    // let c = prompt("Enter the number of plates u want to delete");
-    // if (c <= a[i].name) {
-    //   a[i].name -= c;
-    // } else {
-    //   alert("You havent ordered those many plates");
-    // // }
-    // data = {
-    //   dishn: a[i].id,
-    //   quan: a[i].name,
-    // };
-    // send1(data);
-    // location.reload();
-    console.log(e);
-    var target = $(this).data("target");
-    e.classList.toggle("is-clipped");
-    e.classList.toggle("is-active");
-  });
-});
-
-        //  $("./").click(function() {
-        //     var target = $(this).data("target");
-        //     $("html").addClass("is-clipped");
-        //     $(target).addClass("is-active");
-        //  });
-         
-        //  $(".modal-close").click(function() {
-        //     $("html").removeClass("is-clipped");
-        //     $(this).parent().removeClass("is-active");
-        //  });
-      </script>
   </body>
 </html>

@@ -93,7 +93,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="main.php" class="navbar-item">
+      <a href="testing.php" class="navbar-item">
         Home
       </a>
       <?php
@@ -239,4 +239,17 @@
   </div>
 </div>
   </body>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p> 
+      <br>
+      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <br>
+      <strong>Contact us: </strong>
+      <br>Email: info@bmsce.ac.in 
+      <br>Fax: +91-80-26614357
+      <br><span style="color:grey">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+    </p>
+  </div>
+</footer>
 </html>

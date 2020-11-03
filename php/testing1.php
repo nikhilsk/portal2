@@ -291,7 +291,7 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <?php if ($row['category']=='workshops'):?>
-        <th><button class="button is-link is-outlined button is-primary modal-button"  type="submit" name="mod" onclick="window.loaction.href='testing.php?rowid=<?php echo $row['id'] ?>';">View Details</button></th>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal1"  type="submit" name="mod" onclick="window.loaction.href='modal1.php?rowid=<?php echo $row['id'] ?>';">View Details</button></th>
         <?php endif; ?>
         <?php if ($row['category']=='projects'):?>
         <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal2">View Details</button></th>

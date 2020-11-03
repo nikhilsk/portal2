@@ -381,7 +381,7 @@ session_start();
 
                               <?php if($row['category']=='projects'):?>
                                 <p>
-                              <strong> <?php echo $row['filename'];echo $i;$i=$i+1;?> -</strong> 
+                              <strong> <?php echo $row['filename'];?> -</strong> 
                                  <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
@@ -434,6 +434,18 @@ session_start();
                <button class = "modal-close is-large" aria-label = "close"></button>
             </div>
          </div>
+         <script>
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+         
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
       
       
 
@@ -469,13 +481,6 @@ if(isset($_SESSION['loginid'])):?>
     </ul>
 </nav>
 
-    <footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      <strong>© Copyright 2020. All Rights Reserved.</strong> 
-    </p>
-  </div>
-</footer>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#filter").change(function(){
@@ -526,5 +531,19 @@ if(isset($_SESSION['loginid'])):?>
         //     $(this).parent().removeClass("is-active");
         //  });
       </script>
+      
   </body>
+  <footer class="footer">
+  <div class="content has-text-centered">
+    <p> 
+      <br>
+      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <br>
+      <strong>Contact us: </strong>
+      <br>Email: info@bmsce.ac.in 
+      <br>Fax: +91-80-26614357
+      <br><span style="color:grey">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+    </p>
+  </div>
+</footer>
 </html>

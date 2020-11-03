@@ -7,17 +7,36 @@ $db='portal';
 $conn = new mysqli($host, $user, $password,$db);
 
 $conn ->select_db($db) or die( "Unable to select database");
+?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
+    ></script>
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+      <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
 
-  if (isset($_GET['rowid'])) 
+  <?php if (isset($_GET['rowid'])) 
 {
     $id = $_GET['rowid'];
     $sql = "SELECT * FROM resources WHERE id=$id";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);
-
+    $row = mysqli_fetch_assoc($result);         
     if ($row['category']=='workshops'): ?>
- 
-    <div class = "modal">
+    
+    <div id="modal1" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
                   <div class = "box">
@@ -43,6 +62,7 @@ $conn ->select_db($db) or die( "Unable to select database");
                <button class = "modal-close is-large" aria-label = "close"></button>
             </div>
          </div>
+
          <script>
          $(".modal-button").click(function() {
             var target = $(this).data("target");
@@ -58,3 +78,6 @@ $conn ->select_db($db) or die( "Unable to select database");
       <?php endif;
 }
     ?>
+
+    </body>
+    </html>
