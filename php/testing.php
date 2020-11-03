@@ -29,10 +29,16 @@ session_start();
   if(isset($_POST['search']))
   {
     //   echo $_POST['search'];
+    $_SESSION['search']=$_POST['search'];
+    $limit = isset($_POST["filter"]) ? $_SESSION['filter']=$_POST["filter"] : 5;
+    $page = isset($_GET['page']) ? $_GET['page'] : 1;
+	$start = ($page - 1) * $limit;
       $string=mysqli_real_escape_string($conn,$_POST['search']);
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%'");
+      
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%'");
+      
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start,$limit");
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
@@ -41,10 +47,76 @@ session_start();
         
       $Previous = $page - 1;
         $Next = $page + 1;
+
+
+
+        if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
+        {
+          if(isset($_POST['filter']))
+          {
+          $_SESSION['filter']=$_POST["filter"];
+          $limit=$_SESSION['filter'];
+          
+          // echo $_SESSION['filter'];
+          }
+          else{
+            $limit=$_SESSION['filter'];
+          //   echo $_SESSION['filter'];
+          // echo $limit;
+          }
+        }
+        else
+        {
+           $limit=5;
+           echo "hello";
+        }
+        // echo $limit;
+        // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
+      $page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $start = ($page - 1) * $limit;
+
+      $string=mysqli_real_escape_string($conn,$_POST['search']);
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
+      $records=$result->fetch_all(MYSQLI_ASSOC);
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start, $limit ");
+
+      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
+      $total = $recCount[0]['id'];
+        $pages = ceil( $total / $limit );
+        if($page>1)
+      {
+      $Previous = $page - 1;
+      }
+      if($page<$pages)
+      {
+        $Next = $page + 1;
+      }
     
   }
   else
   {
+    if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
+    {
+      if(isset($_POST['filter']))
+      {
+      $_SESSION['filter']=$_POST["filter"];
+      $limit=$_SESSION['filter'];
+      
+      // echo $_SESSION['filter'];
+      }
+      else{
+        $limit=$_SESSION['filter'];
+      //   echo $_SESSION['filter'];
+      // echo $limit;
+      }
+    }
+    else
+    {
+       $limit=5;
+       echo "hello";
+    }
+    // echo $limit;
+    // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
   $result1 = $conn->query("SELECT count(id) AS id FROM resources");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
@@ -185,7 +257,15 @@ session_start();
       <form action="" method="post">
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php if (isset($_POST['search'])) echo $_POST['search']; ?>" />
+          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php 
+          if (isset($_POST['search']))
+          {
+            echo $_POST['search'];
+          }
+          elseif(isset($_SESSION['search']))
+          {
+            echo $_SESSION['search'];
+          }  ?>" />
           
           <span class="icon is-left">
             <i class="fas fa-search" aria-hidden="true"></i>
@@ -225,6 +305,14 @@ session_start();
        } ?>"><?= $limit; ?></option>
 		<?php endforeach; ?>
       
+<<<<<<< HEAD
+=======
+      <option <?php ?> value="<?= 1; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 1) ? 'selected="selected"' : ''; ?>><?= $limit=1; ?></option>
+		  <option <?php ?> value="<?= 5; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 5) ? 'selected="selected"' : ''; ?> ><?= $limit=5; ?></option>
+		  <option <?php ?> value="<?= 10; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 10) ? 'selected="selected"' : ''; ?>><?= $limit=10; ?></option>
+		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
+		      
+>>>>>>> 24aab316515fa3263b4b4ffcfeef0cb3bd42af02
     </select>
     </form>
   </div>
@@ -382,10 +470,14 @@ if(isset($_SESSION['loginid'])):?>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
     <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
 
-  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6">Next page</a>
+  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
+<<<<<<< HEAD
     <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
+=======
+  <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
+>>>>>>> 24aab316515fa3263b4b4ffcfeef0cb3bd42af02
     <?php endfor; ?>
     </ul>
 </nav>
