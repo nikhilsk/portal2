@@ -277,7 +277,7 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
