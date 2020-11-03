@@ -279,7 +279,7 @@ session_start();
       </div>
       </form>
       <p class="panel-tabs ">
-        <a href="./testing.php.php" ><strong>All</strong></a>
+        <a href="./testing.php" ><strong>All</strong></a>
         <a href="./projects.php" class="is-active"> <Strong>Projects</Strong> </a>
         <a href="./research.php"> <strong>Research Papers</strong> </a>
         <a href="./webinar.php"> <strong>Webinars</strong> </a>
