@@ -68,7 +68,7 @@ session_start();
         else
         {
            $limit=5;
-           echo "hello";
+          //  echo "hello";
         }
         // echo $limit;
         // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
@@ -282,7 +282,7 @@ session_start();
       </div>
       </form>
       <p class="panel-tabs ">
-        <a href="./testing.php.php" class="is-active"><strong>All</strong></a>
+        <a href="./testing.php" class="is-active"><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
         <a href="./research.php"> <strong>Research Papers</strong> </a>
         <a href="./webinar.php"> <strong>Webinars</strong> </a>
@@ -453,9 +453,15 @@ session_start();
       
 
 <?php 
-if(isset($_SESSION['loginid'])):?>
+if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
 
     <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('removetest.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
+<?php endif; ?>
+
+<?php 
+if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
+
+    <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>

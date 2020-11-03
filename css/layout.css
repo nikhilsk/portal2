@@ -18,8 +18,6 @@
   border-color: #445ae3;
 }
 
-
-
 .container {
   align-content: center;
   margin-top: 100px;
@@ -79,4 +77,9 @@
   transform: translateY(0);
   box-shadow: none;
   background-color: #445ae3;
+}
+::-webkit-input-placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
 }
