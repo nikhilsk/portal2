@@ -1,7 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
-   include 'modal1.php';
+//   include 'abcd.php';
   $host='localhost';
   $user='root';
   $password='';
@@ -12,16 +12,16 @@ session_start();
   $conn ->select_db($db) or die( "Unable to select database");
 
   $slno=0;
-  if(isset($_POST['filter']))
-  {
-      $_SESSION['norecords']=$_POST['filter'];
-      $limit=$_SESSION['norecords'];
-    //   header("location:testing.php");
-  }
-  else
-  {
-      $limit=10;
-  }
+  // if(isset($_POST['filter']))
+  // {
+  //     $_SESSION['norecords']=$_POST['filter'];
+  //     $limit=$_SESSION['norecords'];
+  //   //   header("location:testing.php");
+  // }
+  // else
+  // {
+  //     $limit=10;
+  // }
   
 
   
@@ -125,9 +125,14 @@ session_start();
 	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
 	$total = $recCount[0]['id'];
     $pages = ceil( $total / $limit );
-    
-	$Previous = $page - 1;
+    if($page>1)
+  {
+  $Previous = $page - 1;
+  }
+  if($page<$pages)
+  {
     $Next = $page + 1;
+  }
   }
 
   $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
@@ -293,26 +298,12 @@ session_start();
   
     <select name="filter" id="filter">
       <option disabled="disabled" selected="selected">--No of records--</option>
-      <?php foreach([1,5,10,25,50,100] as $limit): ?>
-      <option value="<?php 
-      if(isset($_POST['filter']))
-      {
-        echo $_POST['filter'];
-       }
-       else
-       {
-         echo $limit;
-       } ?>"><?= $limit; ?></option>
-		<?php endforeach; ?>
       
-<<<<<<< HEAD
-=======
       <option <?php ?> value="<?= 1; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 1) ? 'selected="selected"' : ''; ?>><?= $limit=1; ?></option>
 		  <option <?php ?> value="<?= 5; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 5) ? 'selected="selected"' : ''; ?> ><?= $limit=5; ?></option>
 		  <option <?php ?> value="<?= 10; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 10) ? 'selected="selected"' : ''; ?>><?= $limit=10; ?></option>
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
->>>>>>> 24aab316515fa3263b4b4ffcfeef0cb3bd42af02
     </select>
     </form>
   </div>
@@ -365,7 +356,7 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal">View Details</button></th>
+        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
@@ -473,11 +464,7 @@ if(isset($_SESSION['loginid'])):?>
   <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
-<<<<<<< HEAD
-    <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link" aria-label="Goto page 1"><?= $i; ?></a></li>
-=======
   <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
->>>>>>> 24aab316515fa3263b4b4ffcfeef0cb3bd42af02
     <?php endfor; ?>
     </ul>
 </nav>
