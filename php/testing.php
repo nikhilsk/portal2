@@ -265,7 +265,7 @@ session_start();
       <form action="" method="post">
       <div class="panel-block">
         <p class="control has-icons-left">
-          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php 
+          <input class="input" type="text" name="search" id="search" style="color:red" placeholder="Search" value="<?php 
           if (isset($_POST['search']))
           {
             echo $_POST['search'];
@@ -455,7 +455,7 @@ session_start();
 <?php 
 if(isset($_SESSION['loginid'])):?>
 
-    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('remove.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
+    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('removetest.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>
