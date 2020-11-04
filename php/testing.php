@@ -461,7 +461,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
 <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 
-    <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
+    <th><button class="button is-danger is-outlined hov" title="Not uploaded by you!" type="submit" disabled >Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>

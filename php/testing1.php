@@ -68,7 +68,7 @@ session_start();
         else
         {
            $limit=5;
-           echo "hello";
+          //  echo "hello";
         }
         // echo $limit;
         // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
@@ -182,6 +182,16 @@ session_start();
     ></script>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <style> 
+    div.columns { 
+      margin-top: 50px; 
+    } 
+  
+    .modal-content { 
+      margin-top: 100px; 
+      width: 450px; 
+    } 
+  </style> 
     <title>Document</title>
   </head>
   <body>
@@ -282,7 +292,7 @@ session_start();
       </div>
       </form>
       <p class="panel-tabs ">
-        <a href="./testing.php.php" class="is-active"><strong>All</strong></a>
+        <a href="./testing.php" class="is-active"><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
         <a href="./research.php"> <strong>Research Papers</strong> </a>
         <a href="./webinar.php"> <strong>Webinars</strong> </a>
@@ -359,33 +369,20 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details </button></th>
-        
-        <div id = "modal" class = "modal">
-               <div class = "modal-background"></div>
-               <div class = "modal-content">
-                  <div class = "box">
-                     <article class = "media">
-                        <div class = "media-content">
-                           <div class = "content">
-                           <?php if($row['category']=='workshops'):?>
-                              <p>
-                                   <strong> <?php echo $row['filename'];?></strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['drivelink']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='projects'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
+        <div class='container has-text-centered'> 
+    <div class='columns is-mobile is-centered'> 
+      <div class='column is-4'> 
+        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
+        <div id="modal1" class="modal"> 
+          <div class="modal-background"></div> 
+          <div class="modal-content"> 
+  
+            <div class='box'> 
+              <h1 class='title' 
+                  style='color:green'> 
+                  <strong> <?php echo $row['filename'];?> -</strong></h1> 
+              <p class='is-family-monospace'> 
+              <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
                                  <br>
@@ -395,52 +392,26 @@ session_start();
                                        else {echo $row['drivelink'];}?></p>
                                  <p>Project Link:
                                  <?php echo $row['link'];?>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='webinars'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Web Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif;?>
-
-                              <?php if($row['category']=='research'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Name of conference/journal:
-                                 <?php echo $row['confer'];?>
-                              </p>
-                              <?php endif; ?>
-                           </div>  
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <button class = "modal-close is-large" aria-label = "close"></button>
-            </div>
-         </div>
-         <script> 
-    // Bulma does not have JavaScript included, 
-    // hence custom JavaScript has to be 
-    // written to open or close the modal 
+                 
+              </p> 
+              <div class='buttons'> 
+                <button class='button is-fullwidth'> 
+                  Know more about GfG 
+                </button> 
+              </div> 
+            </div> 
+          </div> 
+          <button class="modal-close is-large" 
+                  aria-label="close"> 
+            Model 
+          </button> 
+        </div> 
+      </div> 
+    </div> 
+  </div> 
+  
+  <script> 
+     
     const modal =  
           document.querySelector('.modal'); 
     const btn =  
@@ -466,13 +437,21 @@ session_start();
       } 
     }) 
   </script> 
+        
+           
       
       
 
 <?php 
-if(isset($_SESSION['loginid'])):?>
+if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
 
     <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('removetest.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
+<?php endif; ?>
+
+<?php 
+if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
+
+    <th><button class="button is-danger is-outlined hov" title="Not uploaded by you!" type="submit" disabled >Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>
