@@ -1,7 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
-//   include 'abcd.php';
+  include 'modal1.php';
   $host='localhost';
   $user='root';
   $password='';
@@ -369,20 +369,98 @@ session_start();
         <th><?php echo $row['dcount'] ?></th>
 
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <div class='container has-text-centered'> 
-    <div class='columns is-mobile is-centered'> 
-      <div class='column is-4'> 
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
-        <div id="modal1" class="modal"> 
-          <div class="modal-background"></div> 
-          <div class="modal-content"> 
-  
-            <div class='box'> 
-              <h1 class='title' 
-                  style='color:green'> 
-                  <strong> <?php echo $row['filename'];?> -</strong></h1> 
-              <p class='is-family-monospace'> 
-              <small><?php echo ucfirst($row['category']);?> </small> 
+        <?php if ($row['category']=='workshops'):?>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal1" >View Details <?php echo $row['id']; ?></button></th>
+        
+        <div id="modal1" class = "modal">
+               <div class = "modal-background"></div>
+               <div class = "modal-content">
+                  <div class = "box">
+                     <article class = "media">
+                        <div class = "media-content">
+                           <div class = "content">
+                              <p>
+                                <strong> <?php echo $row['filename'];?></strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['drivelink']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                              </p>                             
+                           </div>  
+                        </div>
+                     </article>
+                  </div>
+               </div>
+               <button class = "modal-close is-large" aria-label = "close"></button>
+            </div>
+         </div>
+
+         <script>
+         $(".modal-button").click(function() {
+            var target = $(this).data("target");
+            $("html").addClass("is-clipped");
+            $(target).addClass("is-active");
+         });
+         
+         $(".modal-close").click(function() {
+            $("html").removeClass("is-clipped");
+            $(this).parent().removeClass("is-active");
+         });
+      </script>
+      <?php endif; ?>
+
+      <?php if ($row['category']=='projects'):?>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal2" >View Details <?php echo $row['id']; ?></button></th>
+        <div id="modal2" class = "modal">
+        <div class = "modal-background"></div>
+        <div class = "modal-content">
+          <div class = "box">
+              <article class = "media">
+                <div class = "media-content">
+                    <div class = "content">
+                      <p>
+                      <strong> <?php echo $row['filename'];?> -</strong> 
+                          <small><?php echo ucfirst($row['category']);?> </small> 
+                          <br>
+                          <p><?php echo $row['descrip'];?></p>
+                          <br>
+                          <p>Google drive Link: 
+                          <?php if($row['link']==NULL)
+                                  {echo 'NA';}
+                                else {echo $row['drivelink'];}?></p>
+                          <p>Project Link:
+                          <?php echo $row['link'];?>
+                      </p>
+                      <script>
+                      $(".modal-button").click(function() {
+                          var target = $(this).data("target");
+                          $("html").addClass("is-clipped");
+                          $(target).addClass("is-active");
+                      });
+                      
+                      $(".modal-close").click(function() {
+                          $("html").removeClass("is-clipped");
+                          $(this).parent().removeClass("is-active");
+                      });
+                    </script>
+      <?php endif; ?>
+
+      <?php if ($row['category']=='research'):?>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal3" >View Details <?php echo $row['id']; ?></button></th>
+        <div id="modal3" class = "modal">
+        <div class = "modal-background"></div>
+        <div class = "modal-content">
+          <div class = "box">
+              <article class = "media">
+                <div class = "media-content">
+                    <div class = "content">
+                      <p>
+                      <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
                                  <br>
                                  <p><?php echo $row['descrip'];?></p>
                                  <br>
@@ -390,57 +468,59 @@ session_start();
                                  <?php if($row['link']==NULL)
                                           {echo 'NA';}
                                        else {echo $row['drivelink'];}?></p>
-                                 <p>Project Link:
+                                 <p>Name of conference/journal:
+                                 <?php echo $row['confer'];?>
+                              </p>
+                              <script>
+                      $(".modal-button").click(function() {
+                          var target = $(this).data("target");
+                          $("html").addClass("is-clipped");
+                          $(target).addClass("is-active");
+                      });
+                      
+                      $(".modal-close").click(function() {
+                          $("html").removeClass("is-clipped");
+                          $(this).parent().removeClass("is-active");
+                      });
+                    </script>
+     <?php endif; ?>
+
+     <?php if ($row['category']=='webinars'):?>
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal4" >View Details <?php echo $row['id']; ?></button></th>
+        <div id="modal4" class = "modal">
+        <div class = "modal-background"></div>
+        <div class = "modal-content">
+          <div class = "box">
+              <article class = "media">
+                <div class = "media-content">
+                    <div class = "content">
+                      <p>
+                      <strong> <?php echo $row['filename'];?> -</strong> 
+                                 <small><?php echo ucfirst($row['category']);?> </small> 
+                                 <br>
+                                 <p><?php echo $row['descrip'];?></p>
+                                 <br>
+                                 <p>Google drive Link: 
+                                 <?php if($row['link']==NULL)
+                                          {echo 'NA';}
+                                       else {echo $row['drivelink'];}?></p>
+                                 <p>Web Link:
                                  <?php echo $row['link'];?>
-                 
-              </p> 
-              <div class='buttons'> 
-                <button class='button is-fullwidth'> 
-                  Know more about GfG 
-                </button> 
-              </div> 
-            </div> 
-          </div> 
-          <button class="modal-close is-large" 
-                  aria-label="close"> 
-            Model 
-          </button> 
-        </div> 
-      </div> 
-    </div> 
-  </div> 
-  
-  <script> 
-     
-    const modal =  
-          document.querySelector('.modal'); 
-    const btn =  
-          document.querySelector('#btn') 
-    const close =  
-          document.querySelector('.modal-close') 
-  
-    btn.addEventListener('click', 
-                         function () { 
-      modal.style.display = 'block' 
-    }) 
-  
-    close.addEventListener('click', 
-                           function () { 
-      modal.style.display = 'none' 
-    }) 
-  
-    window.addEventListener('click', 
-                            function (event) { 
-      if (event.target.className ===  
-          'modal-background') { 
-        modal.style.display = 'none' 
-      } 
-    }) 
-  </script> 
-        
-           
-      
-      
+                              </p>
+                              <script>
+                      $(".modal-button").click(function() {
+                          var target = $(this).data("target");
+                          $("html").addClass("is-clipped");
+                          $(target).addClass("is-active");
+                      });
+                      
+                      $(".modal-close").click(function() {
+                          $("html").removeClass("is-clipped");
+                          $(this).parent().removeClass("is-active");
+                      });
+                    </script>
+     <?php endif; ?>
+   
 
 <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>

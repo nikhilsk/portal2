@@ -36,7 +36,7 @@ $conn ->select_db($db) or die( "Unable to select database");
     $row = mysqli_fetch_assoc($result);         
     if ($row['category']=='workshops'): ?>
     
-    <div id="modal1" class = "modal">
+    <div id="modal" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">
                   <div class = "box">

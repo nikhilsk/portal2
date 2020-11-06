@@ -255,8 +255,8 @@ session_start();
     <nav class="panel is-link">
       <p class="panel-heading">Resources</p>
       <marquee>
-      <span style="color:red"  style="font-weight:bold">NEW- </span><?php 
-         echo ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")"; 
+      <span style="color:red"  style="font-weight:bold">NEW FILE- </span><?php 
+         echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]) ; 
        ?></marquee>
       
       <form action="" method="post">
@@ -452,7 +452,7 @@ session_start();
       <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
 
-    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('removetest.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
+    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('remove.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
 <?php endif; ?>
 
 <?php 

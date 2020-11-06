@@ -19,7 +19,8 @@ if (isset($_GET['file_id']))
         
         if((mysqli_query($conn,$sql)))
         {
-                header("location:testing.php"); 
+                header("location:testing.php");
+                unlink("../uploads/".$file['file']); 
         }
         else
         {

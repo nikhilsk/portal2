@@ -20,6 +20,7 @@ if (isset($_GET['file_id']))
         $sqlq = "SELECT * FROM resources WHERE id=$id";
         $result = mysqli_query($conn, $sqlq);
         $file = mysqli_fetch_assoc($result);
+       
         if((mysqli_query($conn,$sql)))
         {
             if($file['category']=='workshops'){
@@ -30,9 +31,8 @@ if (isset($_GET['file_id']))
                 header("location:research.php");}
             else if($file['category']=='webinars'){
                     header("location:webinar.php");}
-            else{
-                header("location:testing.php");
-            }
+            
+            unlink("../uploads/".$file['file']);
         }
         else
         {
