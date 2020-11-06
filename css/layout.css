@@ -84,8 +84,8 @@
   opacity: 1; /* Firefox */
 }
 
-.hov:hover{
-  border: 1px solid #888;
-  background-color: #dddddd;
-  font-weight: bold;
+.hov:hover {
+  /* border: 1px #888; */
+  /* background-color: #dddddd; */
+  /* font-weight: italic; */
 }
