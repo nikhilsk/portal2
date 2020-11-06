@@ -34,9 +34,11 @@ $host='localhost';
         $updateQuery =  mysqli_query($conn, "update resources set dcount='$newCount' WHERE id='$id'");
         header("location:testing.php");
         //header("Refresh:0 ; url=testing.php");
-        
         exit;
-        
+    }
+    else
+    {
+
     }
 }
 ?>

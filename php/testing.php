@@ -358,7 +358,13 @@ session_start();
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
 
+        <?php if ($row['file']!=NULL):?>
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <?php endif; ?>
+        <?php if ($row['file']==NULL):?>
+        <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
+        <?php endif; ?>
+
         <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
@@ -461,7 +467,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
 <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 
-    <th><button class="button is-danger is-outlined hov" title="Not uploaded by you!" type="submit" disabled >Remove</button></th>
+    <th><button class="button is-danger is-outlined hov" title="Not uploaded by you!!" type="submit" disabled >Remove</button></th>
 <?php endif; ?>
     </tr>   
         <?php endforeach; ?>
