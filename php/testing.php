@@ -210,18 +210,8 @@ session_start();
         Home
       </a>
       <?php
-   if(!isset($_SESSION['loginid']))
-   {
-      echo "<a class='navbar-item' href='./login.php'>
-        Login
-      </a>";
-   }
-   else{
-               
-      echo "<a class='navbar-item' href='./destroy.php'>";
-      echo "Logout";
-      echo "</a>";
-
+   if(isset($_SESSION['loginid']))
+  {
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
@@ -238,6 +228,19 @@ session_start();
       <div class="navbar-item">
         <div class="buttons">
         <?php 
+        if(!isset($_SESSION['loginid']))
+        {
+           echo "<a class='button is-danger is-outlined' href='./login.php'>
+             Login
+           </a>";
+        }
+        else{
+                    
+           echo "<a class='button is-danger is-outlined' href='./destroy.php'>";
+           echo "Logout";
+           echo "</a>";
+        }
+        
             if(isset($_SESSION['loginid']))
             {
                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
