@@ -13,5 +13,5 @@ $nameofteacher=$_SESSION['name'];
 // session_start();
 $_SESSION['myupload']=$nameofteacher;
 $_SESSION['name']=$nameofteacher; 
-header("location:testing.php");
+header("location:workshop.php");
 ?>

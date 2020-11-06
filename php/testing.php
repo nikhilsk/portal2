@@ -206,7 +206,7 @@ session_start();
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="testing.php" class="navbar-item">
+      <a href="uppro.php" class="navbar-item">
         Home
       </a>
       <?php
@@ -480,8 +480,6 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 <?php }}
 else
 {?>
-
-
 <tr>
     <th><?php 
         // $_SESSION['num']=$_SESSION['num']+1;
