@@ -231,14 +231,14 @@ session_start();
         if(!isset($_SESSION['loginid']))
         {
            echo "<a class='button is-success is-outlined' href='./login.php'>
-             <strong>Login</strong>
+             <strong>Login<strong>
            </a>";
         }
         else{
                     
            echo "<a class='button is-success is-outlined' href='./destroy.php'>
           <strong>Logout</strong>
-           </a>";
+            </a>";
         }
         
             if(isset($_SESSION['loginid']))

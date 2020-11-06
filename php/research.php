@@ -224,7 +224,7 @@ session_start();
     echo $_SESSION['name'];
       echo "</a>";
 
-      echo "<a class='navbar-item' href='./teacherupload.php'>";
+      echo "<a class='navbar-item' href='./myuploads.php'>";
       echo "My uploads";
       echo "</a>";
    }
