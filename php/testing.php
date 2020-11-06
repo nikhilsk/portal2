@@ -437,7 +437,7 @@ session_start();
                                  <p>Google drive Link: 
                                  <?php if($row['link']==NULL)
                                           {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
+                                        {echo $row['drivelink'];}?></p>
                                  <p>Name of conference/journal:
                                  <?php echo $row['confer'];?>
                               </p>
