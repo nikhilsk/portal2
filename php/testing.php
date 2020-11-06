@@ -215,7 +215,7 @@ session_start();
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
-      echo "</a>";
+    echo "</a>";
 
       echo "<a class='navbar-item' href='./teacherupload.php'>";
       echo "My uploads";
@@ -230,15 +230,15 @@ session_start();
         <?php 
         if(!isset($_SESSION['loginid']))
         {
-           echo "<a class='button is-danger is-outlined' href='./login.php'>
-             Login
+           echo "<a class='button is-success is-outlined' href='./login.php'>
+             <strong>Login</strong>
            </a>";
         }
         else{
                     
-           echo "<a class='button is-danger is-outlined' href='./destroy.php'>";
-           echo "Logout";
-           echo "</a>";
+           echo "<a class='button is-success is-outlined' href='./destroy.php'>
+          <strong>Logout</strong>
+           </a>";
         }
         
             if(isset($_SESSION['loginid']))
