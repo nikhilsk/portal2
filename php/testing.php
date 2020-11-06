@@ -175,7 +175,7 @@ session_start();
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/layout1.css" />
     <script
       defer
       src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
@@ -210,18 +210,8 @@ session_start();
         Home
       </a>
       <?php
-   if(!isset($_SESSION['loginid']))
-   {
-      echo "<a class='navbar-item' href='./login.php'>
-        Login
-      </a>";
-   }
-   else{
-               
-      echo "<a class='navbar-item' href='./destroy.php'>";
-      echo "Logout";
-      echo "</a>";
-
+   if(isset($_SESSION['loginid']))
+  {
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
@@ -238,6 +228,19 @@ session_start();
       <div class="navbar-item">
         <div class="buttons">
         <?php 
+        if(!isset($_SESSION['loginid']))
+        {
+           echo "<a class='button is-danger is-outlined' href='./login.php'>
+             Login
+           </a>";
+        }
+        else{
+                    
+           echo "<a class='button is-danger is-outlined' href='./destroy.php'>";
+           echo "Logout";
+           echo "</a>";
+        }
+        
             if(isset($_SESSION['loginid']))
             {
                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
