@@ -224,7 +224,7 @@ session_start();
     echo $_SESSION['name'];
       echo "</a>";
 
-      echo "<a class='navbar-item' href='./teacherupload.php'>";
+      echo "<a class='navbar-item' href='./uppro.php'>";
       echo "My uploads";
       echo "</a>";
    }
@@ -332,7 +332,8 @@ session_start();
   
   <tbody>
   
-  <?php foreach($records as $row) :  ?>    
+  <?php foreach($records as $row) :  ?> 
+    
     <tr>
     <th><?php 
         // $_SESSION['num']=$_SESSION['num']+1;
@@ -461,6 +462,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
     </tr>   
+
         <?php endforeach; ?>
     
   </tbody>

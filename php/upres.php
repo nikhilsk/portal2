@@ -224,8 +224,8 @@ session_start();
     echo $_SESSION['name'];
       echo "</a>";
 
-      echo "<a class='navbar-item' href='./upres.php'>";
-      echo "My uploads";
+      echo "<a class='navbar-item' href='./research.php'>";
+      echo "All uploads";
       echo "</a>";
    }
    ?>
@@ -332,7 +332,8 @@ session_start();
   
   <tbody>
   
-  <?php foreach($records as $row) :  ?>  
+  <?php foreach($records as $row) : 
+    if($row['uploader']==$_SESSION['name']): ?>  
       
     <tr>
     <th><?php 
@@ -462,6 +463,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
     </tr>  
+    <?php endif; ?>
         <?php endforeach; ?>
     
   </tbody>

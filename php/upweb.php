@@ -35,10 +35,10 @@ session_start();
 	$start = ($page - 1) * $limit;
       $string=mysqli_real_escape_string($conn,$_POST['search']);
       
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit");
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='research' LIMIT $start,$limit");
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='webinars' LIMIT $start,$limit");
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
@@ -76,9 +76,9 @@ session_start();
       $start = ($page - 1) * $limit;
 
       $string=mysqli_real_escape_string($conn,$_POST['search']);
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit");
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit ");
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit ");
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
       $total = $recCount[0]['id'];
@@ -117,10 +117,10 @@ session_start();
     }
     // echo $limit;
     // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
-  $result1 = $conn->query("SELECT count(id) AS id FROM resources where category='research'");
+  $result1 = $conn->query("SELECT count(id) AS id FROM resources where category='webinars'");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
-    $result = $conn->query("SELECT * FROM resources where category='research' LIMIT $start, $limit");
+    $result = $conn->query("SELECT * FROM resources where category='webinars' LIMIT $start, $limit");
 	$records = $result->fetch_all(MYSQLI_ASSOC);
 	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
 	$total = $recCount[0]['id'];
@@ -135,7 +135,7 @@ session_start();
   }
   }
 
-  $sqlq=mysqli_query($conn, "Select max(id) as id from resources where category='research'");
+  $sqlq=mysqli_query($conn, "Select max(id) as id from resources where category='webinars'");
   $z=mysqli_fetch_assoc($sqlq);
 
  if ($z['id']>0)
@@ -224,8 +224,8 @@ session_start();
     echo $_SESSION['name'];
       echo "</a>";
 
-      echo "<a class='navbar-item' href='./upres.php'>";
-      echo "My uploads";
+      echo "<a class='navbar-item' href='./webinar.php'>";
+      echo "All uploads";
       echo "</a>";
    }
    ?>
@@ -281,8 +281,8 @@ session_start();
       <p class="panel-tabs ">
         <a href="./testing.php" ><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
-        <a href="./research.php" class="is-active"> <strong>Research Papers</strong> </a>
-        <a href="./webinar.php"> <strong>Webinars</strong> </a>
+        <a href="./research.php"> <strong>Research Papers</strong> </a>
+        <a href="./webinar.php" class="is-active"> <strong>Webinars</strong> </a>
         <a href="./workshop.php"><strong>Workshops</strong></a>
         
       </p>
@@ -332,8 +332,9 @@ session_start();
   
   <tbody>
   
-  <?php foreach($records as $row) :  ?>  
-      
+  <?php foreach($records as $row) : 
+    if($row['uploader']==$_SESSION['name']): ?>    
+    
     <tr>
     <th><?php 
         // $_SESSION['num']=$_SESSION['num']+1;
@@ -356,7 +357,7 @@ session_start();
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
 
-        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='research.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='webinar.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
@@ -461,7 +462,8 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 
     <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
-    </tr>  
+    </tr> 
+    <?php endif; ?>
         <?php endforeach; ?>
     
   </tbody>
@@ -478,12 +480,12 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       </script>
 <br>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-    <a href="research.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
+    <a href="webinar.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
 
-  <a href="research.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
+  <a href="webinar.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
-  <li><a href="research.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
+  <li><a href="webinar.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
     <?php endfor; ?>
     </ul>
 </nav>
