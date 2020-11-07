@@ -212,14 +212,10 @@ session_start();
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
       echo "</a>";
-
-      echo "<a class='navbar-item' href='./uppro.php'>";
-      echo "My uploads";
-      echo "</a>";
    }
    ?>
     </div>
-    
+
     <div class="navbar-end">
       <div class="navbar-item">
         <div class="buttons">
@@ -304,9 +300,19 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
+    </div>
     </form>
+    <?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='uppro.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>My Uploads</a>";
+          
+         echo "<a href='projectsupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
+    
   </div>
-</div>
+
 <br>
 <br>
 

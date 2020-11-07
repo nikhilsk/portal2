@@ -210,14 +210,9 @@ session_start();
       <?php
    if(isset($_SESSION['loginid']))
   {
-    
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
     echo "</a>";
-
-      echo "<a class='navbar-item' href='./up.php'>";
-      echo "My uploads";
-      echo "</a>";
    }
    ?>
     </div>
@@ -308,13 +303,14 @@ session_start();
     </select>
     </div>
     </form>
-    <div class="">
-          <a href="up.php" class="button is-black is-outlined1 " style="margin-left:71vw;margin-top:0vh;"><strong>My Uploads</strong></a>
+    <?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>My Uploads</a>";
           
-          <a href="workshopupload.php" class="button is-black is-outlined1 " style="margin-left:60vw;margin-top:0vh;"><strong>Upload</strong></a>
-          </div>
-  
-
+         echo "<a href='workshopupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
 </div>
 <br>
 <br>

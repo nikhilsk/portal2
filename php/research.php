@@ -208,40 +208,36 @@ session_start();
       </a>
       <?php
    if(isset($_SESSION['loginid']))
-   {
-     
-     echo "<a class='navbar-item' href=''>Hello , ";
-     echo $_SESSION['name'];
-     echo "</a>";
- 
-       echo "<a class='navbar-item' href='./up.php'>";
-       echo "My uploads";
-       echo "</a>";
-    }
-    ?>
-     </div>
- 
-     <div class="navbar-end">
-       <div class="navbar-item">
-         <div class="buttons">
-         <?php 
-         if(!isset($_SESSION['loginid']))
-         {
-            echo "<a class='button is-success is-outlined' href='./login.php'>
-              <strong>Login<strong>
+  {
+    
+    echo "<a class='navbar-item' href=''>Hello , ";
+    echo $_SESSION['name'];
+    echo "</a>";
+   }
+   ?>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+        <?php 
+        if(!isset($_SESSION['loginid']))
+        {
+           echo "<a class='button is-success is-outlined' href='./login.php'>
+             <strong>Login<strong>
+           </a>";
+        }
+        else{
+                    
+           echo "<a class='button is-success is-outlined' href='./destroy.php'>
+          <strong>Logout</strong>
             </a>";
-         }
-         else{
-                     
-            echo "<a class='button is-success is-outlined' href='./destroy.php'>
-           <strong>Logout</strong>
+
+               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+               <strong>Upload</strong>
              </a>";
- 
-                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
-                <strong>Upload</strong>
-              </a>";
-             }
-         ?>
+            }
+        ?>
           <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
@@ -305,8 +301,17 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
+    </div>
     </form>
-  </div>
+    <?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='upres.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>My Uploads</a>";
+          
+         echo "<a href='researchpaperupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
+
 </div>
 <br>
 <br>

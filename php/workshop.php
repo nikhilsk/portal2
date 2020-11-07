@@ -214,9 +214,6 @@ session_start();
      echo $_SESSION['name'];
      echo "</a>";
  
-       echo "<a class='navbar-item' href='./up.php'>";
-       echo "My uploads";
-       echo "</a>";
     }
     ?>
      </div>
@@ -305,9 +302,19 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
+    </div>
     </form>
+    <?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='upwork.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>My Uploads</a>";
+          
+         echo "<a href='workshopupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
+    
   </div>
-</div>
+
 <br>
 <br>
 

@@ -207,26 +207,12 @@ session_start();
         Home
       </a>
       <?php
-   if(!isset($_SESSION['loginid']))
-   {
-      echo "<a class='navbar-item' href='./login.php'>
-        Login
-      </a>";
-   }
-   else{
-               
-      echo "<a class='navbar-item' href='./destroy.php'>";
-      echo "Logout";
-      echo "</a>";
-
+   if(isset($_SESSION['loginid']))
+  {
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
-      echo "</a>";
-
-      echo "<a class='navbar-item' href='./projects.php'>";
-      echo "All uploads";
-      echo "</a>";
+    echo "</a>";
    }
    ?>
     </div>
@@ -235,6 +221,19 @@ session_start();
       <div class="navbar-item">
         <div class="buttons">
         <?php 
+        if(!isset($_SESSION['loginid']))
+        {
+           echo "<a class='button is-success is-outlined' href='./login.php'>
+             <strong>Login<strong>
+           </a>";
+        }
+        else{
+                    
+           echo "<a class='button is-success is-outlined' href='./destroy.php'>
+          <strong>Logout</strong>
+            </a>";
+        }
+        
             if(isset($_SESSION['loginid']))
             {
                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
@@ -305,8 +304,16 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
+    </div>
     </form>
-  </div>
+    <?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='projects.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>All Uploads</a>";
+          
+         echo "<a href='projectsupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
 </div>
 <br>
 <br>
