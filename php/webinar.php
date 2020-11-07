@@ -207,41 +207,41 @@ session_start();
         Home
       </a>
       <?php
-   if(isset($_SESSION['loginid']))
+   if(!isset($_SESSION['loginid']))
    {
-     
-     echo "<a class='navbar-item' href=''>Hello , ";
-     echo $_SESSION['name'];
-     echo "</a>";
- 
-       echo "<a class='navbar-item' href='./up.php'>";
-       echo "My uploads";
-       echo "</a>";
-    }
-    ?>
-     </div>
- 
-     <div class="navbar-end">
-       <div class="navbar-item">
-         <div class="buttons">
-         <?php 
-         if(!isset($_SESSION['loginid']))
-         {
-            echo "<a class='button is-success is-outlined' href='./login.php'>
-              <strong>Login<strong>
-            </a>";
-         }
-         else{
-                     
-            echo "<a class='button is-success is-outlined' href='./destroy.php'>
-           <strong>Logout</strong>
+      echo "<a class='navbar-item' href='./login.php'>
+        Login
+      </a>";
+   }
+   else{
+               
+      echo "<a class='navbar-item' href='./destroy.php'>";
+      echo "Logout";
+      echo "</a>";
+
+    
+    echo "<a class='navbar-item' href=''>Hello , ";
+    echo $_SESSION['name'];
+      echo "</a>";
+
+      echo "<a class='navbar-item' href='./teacherupload.php'>";
+      echo "My uploads";
+      echo "</a>";
+   }
+   ?>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+        <?php 
+            if(isset($_SESSION['loginid']))
+            {
+               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+               <strong>Upload</strong>
              </a>";
- 
-                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
-                <strong>Upload</strong>
-              </a>";
-             }
-         ?>
+            }
+        ?>
           <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
@@ -340,7 +340,6 @@ session_start();
   <tbody>
   
   <?php foreach($records as $row) :  ?>    
-    
     <tr>
     <th><?php 
         // $_SESSION['num']=$_SESSION['num']+1;
@@ -468,8 +467,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 
     <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
-    </tr> 
-    
+    </tr>   
         <?php endforeach; ?>
     
   </tbody>

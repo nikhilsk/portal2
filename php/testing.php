@@ -306,8 +306,15 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
+    </div>
     </form>
-  </div>
+    <div class="">
+          <a href="up.php" class="button is-black is-outlined1 " style="margin-left:71vw;margin-top:0vh;"><strong>My Uploads</strong></a>
+          
+          <a href="workshopupload.php" class="button is-black is-outlined1 " style="margin-left:60vw;margin-top:0vh;"><strong>Upload</strong></a>
+          </div>
+  
+
 </div>
 <br>
 <br>
