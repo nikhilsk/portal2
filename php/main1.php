@@ -94,9 +94,12 @@ session_start();
           <a class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
+          <a class="button is-link is-outlined">
+            <strong>Department of ISE</strong>
+          </a>
           
         </div>
-      </div>
+      </div>   
     </div>
   </div>
 </nav>

@@ -172,7 +172,7 @@ session_start();
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="../css/layout1.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
     <script
       defer
       src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
@@ -182,8 +182,6 @@ session_start();
     <title>Document</title>
   </head>
   <body>
-
-
   <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
@@ -203,16 +201,17 @@ session_start();
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="testing.php" class="navbar-item">
+      <a href="main.php" class="navbar-item">
         Home
       </a>
       <?php
    if(isset($_SESSION['loginid']))
-  {
+   {
+               
     
     echo "<a class='navbar-item' href=''>Hello , ";
     echo $_SESSION['name'];
-    echo "</a>";
+      echo "</a>";
    }
    ?>
     </div>
@@ -221,19 +220,20 @@ session_start();
       <div class="navbar-item">
         <div class="buttons">
         <?php 
-        if(!isset($_SESSION['loginid']))
-        {
-           echo "<a class='button is-success is-outlined' href='./login.php'>
-             <strong>Login<strong>
-           </a>";
-        }
-        else{
-                    
-           echo "<a class='button is-success is-outlined' href='./destroy.php'>
-          <strong>Logout</strong>
+            if(isset($_SESSION['loginid']))
+            {
+               echo "<a class='button is-success is-outlined' href='./destroy.php'>
+               <strong>Logout</strong>
+             </a>";
+            }
+            else{
+              
+              echo "<a class='button is-danger is-outlined' href='./login.php'>
+              <strong>Login</strong>
             </a>";
-        }
-        
+            }
+        ?>
+          <?php 
             if(isset($_SESSION['loginid']))
             {
                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
@@ -241,12 +241,12 @@ session_start();
              </a>";
             }
         ?>
-          <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
+          <a class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
           
         </div>
-      </div>
+      </div>   
     </div>
   </div>
 </nav>
