@@ -35,10 +35,10 @@ session_start();
 	$start = ($page - 1) * $limit;
       $string=mysqli_real_escape_string($conn,$_POST['search']);
       
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit");
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%'  LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='webinars' LIMIT $start,$limit");
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%'  LIMIT $start,$limit");
       $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
@@ -76,9 +76,9 @@ session_start();
       $start = ($page - 1) * $limit;
 
       $string=mysqli_real_escape_string($conn,$_POST['search']);
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit");
+      $result=$conn->query("Select * from resources where filename LIKE '%$string%'  LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='webinars' LIMIT $start, $limit ");
+      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' LIMIT $start, $limit ");
 
       $recCount = $result1->fetch_all(MYSQLI_ASSOC);
       $total = $recCount[0]['id'];
@@ -117,10 +117,10 @@ session_start();
     }
     // echo $limit;
     // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
-  $result1 = $conn->query("SELECT count(id) AS id FROM resources where category='webinars'");
+  $result1 = $conn->query("SELECT count(id) AS id FROM resources ");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
-    $result = $conn->query("SELECT * FROM resources where category='webinars' LIMIT $start, $limit");
+    $result = $conn->query("SELECT * FROM resources  LIMIT $start, $limit");
 	$records = $result->fetch_all(MYSQLI_ASSOC);
 	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
 	$total = $recCount[0]['id'];
@@ -135,7 +135,7 @@ session_start();
   }
   }
 
-  $sqlq=mysqli_query($conn, "Select max(id) as id from resources where category='webinars'");
+  $sqlq=mysqli_query($conn, "Select max(id) as id from resources ");
   $z=mysqli_fetch_assoc($sqlq);
 
  if ($z['id']>0)
@@ -282,8 +282,8 @@ session_start();
         <a href="./testing.php" ><strong>All</strong></a>
         <a href="./projects.php"> <Strong>Projects</Strong> </a>
         <a href="./research.php"> <strong>Research Papers</strong> </a>
-        <a href="./webinar.php" class="is-active"> <strong>Webinars</strong> </a>
-        <a href="./workshop.php"><strong>Workshops</strong></a>
+        <a href="./webinar.php"> <strong>Webinars</strong> </a>
+        <a href="./workshop.php" class="is-active"><strong>Workshops</strong></a>
         
       </p>
 
@@ -305,15 +305,8 @@ session_start();
 		  <option <?php ?> value="<?= 25; ?>" <?php echo (isset($_SESSION['filter']) && $_SESSION['filter'] == 25) ? 'selected="selected"' : ''; ?>><?= $limit=25; ?></option>
 		      
     </select>
-    </div>
     </form>
-
-    <div class="">
-          <a href="up.php" class="button is-black " style="margin-left:1vw;margin-top:0vh;">My Uploads</a>
-          
-          <a href="workshopupload.php" class="button is-black " style="margin-left:0.3vw;margin-top:0vh;">Upload</a>
-          </div>
-  
+  </div>
 </div>
 <br>
 <br>
@@ -362,7 +355,7 @@ session_start();
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
 
-        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='webinar.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">
@@ -484,12 +477,12 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       </script>
 <br>
     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
-    <a href="webinar.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
+    <a href="testing.php?page=<?= $Previous; ?>" class="pagination-previous button is-black ml-6">Previous</a>
 
-  <a href="webinar.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
+  <a href="testing.php?page=<?= $Next; ?>" class="pagination-next mr-6 button is-black">Next page</a>
   <ul class="pagination-list">
   <?php for($i = 1; $i<= $pages; $i++) : ?>
-  <li><a href="webinar.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
+  <li><a href="testing.php?page=<?= $i; ?>" class="pagination-link button is-black" aria-label="Goto page 1"><?= $i; ?></a></li>
     <?php endfor; ?>
     </ul>
 </nav>
@@ -519,43 +512,6 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 		})
 	})
 </script>
-<script>
-      var a=document.querySelectorAll(".modal-button");
-      console.log(a);
-      a.forEach((e, i) => {
-  // console.log(a[i].id);
-  // console.log(a[i].name);
 
-  e.addEventListener("click", () => {
-    // let c = prompt("Enter the number of plates u want to delete");
-    // if (c <= a[i].name) {
-    //   a[i].name -= c;
-    // } else {
-    //   alert("You havent ordered those many plates");
-    // // }
-    // data = {
-    //   dishn: a[i].id,
-    //   quan: a[i].name,
-    // };
-    // send1(data);
-    // location.reload();
-    console.log(e);
-    var target = $(this).data("target");
-    e.classList.toggle("is-clipped");
-    e.classList.toggle("is-active");
-  });
-});
-
-        //  $("./").click(function() {
-        //     var target = $(this).data("target");
-        //     $("html").addClass("is-clipped");
-        //     $(target).addClass("is-active");
-        //  });
-         
-        //  $(".modal-close").click(function() {
-        //     $("html").removeClass("is-clipped");
-        //     $(this).parent().removeClass("is-active");
-        //  });
-      </script>
   </body>
 </html>
