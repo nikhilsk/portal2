@@ -307,13 +307,14 @@ session_start();
     </select>
     </div>
     </form>
-
-    <div class="">
-          <a href="up.php" class="button is-black " style="margin-left:1vw;margin-top:0vh;">My Uploads</a>
+<?php
+if(isset($_SESSION['name']))
+{
+echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top:0vh;'>My Uploads</a>";
           
-          <a href="workshopupload.php" class="button is-black " style="margin-left:0.3vw;margin-top:0vh;">Upload</a>
-          </div>
-  
+         echo "<a href='workshopupload.php' class='button is-black' style='margin-left:0.3vw;margin-top:0vh;'>Upload</a>";
+}      
+  ?>
 </div>
 <br>
 <br>
