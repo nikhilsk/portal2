@@ -172,7 +172,7 @@ session_start();
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
-    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/layout1.css" />
     <script
       defer
       src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
@@ -367,7 +367,7 @@ echo "<a href='upwork.php' class='button is-black' style='margin-left:1vw;margin
         <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
         <?php endif; ?>
         <?php if ($row['file']==NULL):?>
-        <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
+        <th><button class="button is-success is-outlined " title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
         <?php endif; ?>
         <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
