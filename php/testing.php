@@ -227,8 +227,7 @@ session_start();
              <strong>Login<strong>
            </a>";
         }
-        else{
-                    
+        else{  
            echo "<a class='button is-success is-outlined' href='./destroy.php'>
           <strong>Logout</strong>
             </a>";

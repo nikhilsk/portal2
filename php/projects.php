@@ -222,9 +222,9 @@ session_start();
         <?php 
             if(!isset($_SESSION['loginid']))
             {
-              echo "<a class='navbar-item' href='./login.php'>
-              Login
-            </a>";
+               echo "<a class='button is-success is-outlined' href='./login.php'>
+                 <strong>Login<strong>
+               </a>";
             }
             else{
              
