@@ -201,7 +201,7 @@ session_start();
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="main.php" class="navbar-item">
+      <a href="testing.php" class="navbar-item">
         Home
       </a>
       <?php
