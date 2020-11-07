@@ -207,41 +207,41 @@ session_start();
         Home
       </a>
       <?php
-   if(!isset($_SESSION['loginid']))
+   if(isset($_SESSION['loginid']))
    {
-      echo "<a class='navbar-item' href='./login.php'>
-        Login
-      </a>";
-   }
-   else{
-               
-      echo "<a class='navbar-item' href='./destroy.php'>";
-      echo "Logout";
-      echo "</a>";
-
-    
-    echo "<a class='navbar-item' href=''>Hello , ";
-    echo $_SESSION['name'];
-      echo "</a>";
-
-      echo "<a class='navbar-item' href='./upres.php'>";
-      echo "My uploads";
-      echo "</a>";
-   }
-   ?>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-        <?php 
-            if(isset($_SESSION['loginid']))
-            {
-               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
-               <strong>Upload</strong>
+     
+     echo "<a class='navbar-item' href=''>Hello , ";
+     echo $_SESSION['name'];
+     echo "</a>";
+ 
+       echo "<a class='navbar-item' href='./up.php'>";
+       echo "My uploads";
+       echo "</a>";
+    }
+    ?>
+     </div>
+ 
+     <div class="navbar-end">
+       <div class="navbar-item">
+         <div class="buttons">
+         <?php 
+         if(!isset($_SESSION['loginid']))
+         {
+            echo "<a class='button is-success is-outlined' href='./login.php'>
+              <strong>Login<strong>
+            </a>";
+         }
+         else{
+                     
+            echo "<a class='button is-success is-outlined' href='./destroy.php'>
+           <strong>Logout</strong>
              </a>";
-            }
-        ?>
+ 
+                echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+                <strong>Upload</strong>
+              </a>";
+             }
+         ?>
           <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
             <strong>Department of ISE</strong>
           </a>
