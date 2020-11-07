@@ -224,7 +224,7 @@ session_start();
     echo $_SESSION['name'];
       echo "</a>";
 
-      echo "<a class='navbar-item' href='./up.php'>";
+      echo "<a class='navbar-item' href='./upres.php'>";
       echo "My uploads";
       echo "</a>";
    }
@@ -333,10 +333,7 @@ session_start();
   <tbody>
   
   <?php foreach($records as $row) :  ?>  
-    <?php if(isset($_SESSION['myupload'])){
-    
-    if($row['uploader']==$_SESSION['myupload']){
-    ?>     
+      
     <tr>
     <th><?php 
         // $_SESSION['num']=$_SESSION['num']+1;
@@ -465,138 +462,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
 <?php endif; ?>
     </tr>  
-    <?php }}
-else
-{?> 
-<tr>
-    <th><?php 
-        // $_SESSION['num']=$_SESSION['num']+1;
-        echo $row['id'];
-    ?></th>
-      <th>
-            <?php if ($row['category']=='projects'):?>
-          <i class="fab fa-github" aria-hidden="true" style="color:black;"></i>
-        <?php endif; ?>
-        <?php if ($row['category']=='workshops'):?>
-          <i class="fas fa-book" aria-hidden="true" style="color:blue;"></i>
-        <?php endif; ?>
-        <?php if ($row['category']=='research'):?>
-          <i class="fas fa-scroll" aria-hidden="true" style="color:black;"></i>
-        <?php endif; ?>
-        <?php if ($row['category']=='webinars'):?>
-          <i class="fas fa-file-video" aria-hidden="true" style="color:red;"></i>
-        <?php endif; ?>
-        <?php echo $row['filename'] ?></th>
-      <th><?php echo $row['uploader'] ?></th>
-        <th><?php echo $row['dcount'] ?></th>
-
-        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='research.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
-        
-        <div id = "modal" class = "modal">
-               <div class = "modal-background"></div>
-               <div class = "modal-content">
-                  <div class = "box">
-                     <article class = "media">
-                        <div class = "media-content">
-                           <div class = "content">
-                           <?php if($row['category']=='workshops'):?>
-                              <p>
-                                   <strong> <?php echo $row['filename'];?></strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['drivelink']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='projects'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];echo $i;$i=$i+1;?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Project Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='webinars'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Web Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif;?>
-
-                              <?php if($row['category']=='research'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Name of conference/journal:
-                                 <?php echo $row['confer'];?>
-                              </p>
-                              <?php endif; ?>
-                           </div>  
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <button class = "modal-close is-large" aria-label = "close"></button>
-            </div>
-         </div>
-         <script>
-         $(".modal-button").click(function() {
-            var target = $(this).data("target");
-            $("html").addClass("is-clipped");
-            $(target).addClass("is-active");
-         });
-         
-         $(".modal-close").click(function() {
-            $("html").removeClass("is-clipped");
-            $(this).parent().removeClass("is-active");
-         });
-      </script>
-      
-      
-
-      <?php 
-if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
-
-    <th><button class="button is-danger is-outlined" type="submit" onclick=window.location.href="javascript:confirmDelete('remove.php?file_id=<?php echo $row['id']?>')">Remove</button></th>
-<?php endif; ?>
-
-<?php 
-if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
-
-    <th><button class="button is-danger is-outlined" type="submit" disabled>Remove</button></th>
-<?php endif; ?>
-    </tr> 
-        <?php }endforeach; ?>
+        <?php endforeach; ?>
     
   </tbody>
 </table>
