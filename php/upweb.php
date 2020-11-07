@@ -364,8 +364,12 @@ echo "<a href='webinar.php' class='button is-black' style='margin-left:1vw;margi
         <?php echo $row['filename'] ?></th>
       <th><?php echo $row['uploader'] ?></th>
         <th><?php echo $row['dcount'] ?></th>
-
-        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='webinar.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <?php if ($row['file']!=NULL):?>
+        <th><button class="button is-success is-outlined" type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';">Download</button></th>
+        <?php endif; ?>
+        <?php if ($row['file']==NULL):?>
+        <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
+        <?php endif; ?>
         <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
         
         <div id = "modal" class = "modal">

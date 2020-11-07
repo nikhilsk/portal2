@@ -1,1 +1,0 @@
-onclick="window.location.href='modal1.php?file_id=<?php echo $row['id']?>';"
