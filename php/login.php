@@ -60,7 +60,7 @@ if(mysqli_num_rows($helloname)>0)
   <body>
 
 
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="background:#e8e9e8;">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
         <div class="logo ml-4" style="color: #0168fa;font-size:1vw 1vh;">
@@ -69,6 +69,14 @@ if(mysqli_num_rows($helloname)>0)
         
         <span style="color: #0168fa;">CAMPUS</span>
     </a>
+    <!-- <a class="navbar-item" href="">
+    <button class="button is-link" onclick="location.href='./testing.php';">
+          <span class="icon is-small">
+      <i class="fas fa-home"></i>
+    </span>
+            <span>View resources</span>
+      </button>
+      </a> -->
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -87,17 +95,16 @@ if(mysqli_num_rows($helloname)>0)
       <div class="navbar-item">
         <div class="buttons">
         
-          <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
-            <strong>Department of ISE</strong>
-          </a>
+         
           <button class="button is-link" onclick="location.href='./testing.php';">
           <span class="icon is-small">
       <i class="fas fa-home"></i>
-      <!-- <strong>Home</strong> -->
-    </span>
-            <span>Home</span>
+         </span>
+            <span>View resources</span>
       </button>
-          
+      <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
+            <strong>Department of ISE</strong>
+          </a>
         </div>
       </div>
     
@@ -141,7 +148,7 @@ if(mysqli_num_rows($helloname)>0)
 
       </div>
 </div>
-      <div class="column m-4 p-4">
+      <div class="column m-4 p-4" style="margin-left:2vw;">
       <br><br><br>
       <img src="../img/login3.png" alt=""></div>
       </div>
