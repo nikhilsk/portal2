@@ -543,6 +543,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       <strong style="color:black">Contact us: </strong>
       <br>Email: info@bmsce.ac.in 
       <br>Fax: +91-80-26614357
+      <br>
       <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
       
     </p>
