@@ -211,8 +211,8 @@ session_start();
       <?php
    if(isset($_SESSION['loginid']))
    {
-    echo <<<HereDocString <a href='' class='navbar-item' style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
-    onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'"> HereDocString;
+    echo "<a class='navbar-item' href='' style='color:white;' onMouseOver=\"this.style.backgroundColor='hsl(217, 71%, 58%)'\"
+    onMouseOut=\"this.style.backgroundColor='hsl(217, 71%, 53%)'\">Hello, ";
     echo $_SESSION['name'];
       echo "</a>";
    }
