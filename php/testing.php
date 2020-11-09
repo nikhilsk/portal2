@@ -253,8 +253,8 @@ session_start();
     </div>
   </div>
 </nav>
-    <nav class="panel is-link">
-      <p class="panel-heading">Resources</p>
+    <nav class="panel is-link" >
+      <!-- <p class="panel-heading">Resources</p> -->
       <marquee>
       <span style="color:red"  style="font-weight:bold">NEW FILE- </span><?php 
          echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]) ; 
