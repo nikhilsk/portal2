@@ -60,14 +60,18 @@ if(mysqli_num_rows($helloname)>0)
   <body>
 
 
+<<<<<<< HEAD
   <nav class="navbar" role="navigation" aria-label="main navigation">
+=======
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
+>>>>>>> 7752e21798a603dbd01a3b4f759866896ccc50d8
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-        <div class="logo ml-4" style="color: #0168fa;font-size:1vw 1vh;">
+        <div class="logo ml-4" style="color: black	;font-size:1vw 1vh;">
             <strong>BMSCE</strong>
         </div>
         
-        <span style="color: #0168fa;">CAMPUS</span>
+        <span style="color: white;">RESOURCES</span>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -87,17 +91,16 @@ if(mysqli_num_rows($helloname)>0)
       <div class="navbar-item">
         <div class="buttons">
         
-          <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button is-link is-outlined">
-            <strong>Department of ISE</strong>
-          </a>
-          <button class="button is-link" onclick="location.href='./testing.php';">
+         
+          <button class="button" onclick="location.href='./testing.php';">
           <span class="icon is-small">
       <i class="fas fa-home"></i>
-      <!-- <strong>Home</strong> -->
-    </span>
-            <span>Home</span>
+         </span>
+            <span><strong>View resources</strong></span>
       </button>
-          
+      <a href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" class="button  is-outlined">
+            <strong>Department of ISE</strong>
+          </a>
         </div>
       </div>
     
