@@ -188,11 +188,11 @@ session_start();
   <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-        <div class="logo" style="color: black;font-size:1vw 1vh;">
+        <div class="logo" style="color: #0d0043;font-size:1vw 1vh;">
             <strong>BMSCE</strong>
         </div>
         
-        <span style="color:white;">CAMPUS</span>
+        <span style="color:white;">RESOURCES</span>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -204,15 +204,15 @@ session_start();
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="testing.php" class="navbar-item">
+      <a href="testing.php" class="navbar-item hov" style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
+   onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'" >
         Home
       </a>
       <?php
    if(isset($_SESSION['loginid']))
    {
-               
-    
-    echo "<a class='navbar-item' href=''>Hello , ";
+    echo <<<HereDocString <a href='' class='navbar-item' style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
+    onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'"> HereDocString;
     echo $_SESSION['name'];
       echo "</a>";
    }
@@ -225,13 +225,13 @@ session_start();
         <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-success is-outlined' href='./destroy.php'>
+               echo "<a class='button is-primary' href='./destroy.php'>
                <strong>Logout</strong>
              </a>";
             }
             else{
               
-              echo "<a class='button is-danger is-outlined' href='./login.php'>
+              echo "<a class='button is-primary' href='./login.php'>
               <strong>Login</strong>
             </a>";
             }
@@ -239,12 +239,12 @@ session_start();
           <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+               echo "<a class='button is-danger' href='./workshopupload.php'>
                <strong>Upload</strong>
              </a>";
             }
         ?>
-          <a class="button is-link is-outlined">
+          <a class="button is-ghost" href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" >
             <strong>Department of ISE</strong>
           </a>
           

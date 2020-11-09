@@ -222,13 +222,13 @@ session_start();
         <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-success is-outlined' href='./destroy.php'>
+               echo "<a class='button is-success ' href='./destroy.php'>
                <strong>Logout</strong>
              </a>";
             }
             else{
               
-              echo "<a class='button is-danger is-outlined' href='./login.php'>
+              echo "<a class='button is-danger ' href='./login.php'>
               <strong>Login</strong>
             </a>";
             }
@@ -236,7 +236,7 @@ session_start();
           <?php 
             if(isset($_SESSION['loginid']))
             {
-               echo "<a class='button is-danger is-outlined' href='./workshopupload.php'>
+               echo "<a class='button is-darkblue' href='./workshopupload.php'>
                <strong>Upload</strong>
              </a>";
             }
