@@ -185,14 +185,14 @@ session_start();
     <title>Document</title>
   </head>
   <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-        <div class="logo" style="color: #0168fa;font-size:1vw 1vh;">
+        <div class="logo" style="color: black;font-size:1vw 1vh;">
             <strong>BMSCE</strong>
         </div>
         
-        <span style="color: #0168fa;">CAMPUS</span>
+        <span style="color:white;">CAMPUS</span>
     </a>
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
