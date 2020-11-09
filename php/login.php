@@ -167,7 +167,7 @@ if(mysqli_num_rows($helloname)>0)
   <div class="content has-text-centered">
     <p> 
       <br>
-      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <a href="https://bmsce.ac.in/" target="_blank" style="color:black">BMSCE Home Page</a>
       <br>
       <strong class="txt">Contact us: </strong>
       <br>Email: info@bmsce.ac.in 
