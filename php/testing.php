@@ -533,8 +533,8 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       </script>
       
   </body>
-  <footer class="footer">
-  <div class="content has-text-centered" style="background:hsl(217, 71%, 53%); color:white;">
+  <footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
+  <div class="content has-text-centered" >
     <p> 
       <br>
       <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
@@ -544,7 +544,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
       <br>Email: info@bmsce.ac.in 
       <br>Fax: +91-80-26614357
       <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
-      <br><br>
+      
     </p>
   </div>
 </footer>
