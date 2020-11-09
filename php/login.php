@@ -175,7 +175,7 @@ if(mysqli_num_rows($helloname)>0)
       <br><span style="color:black">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
     </p>
     </div>
-    <button class="button" style="margin-left:90vw;margin-top:10vh;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
+    <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
       <i class="fas fa-arrow-up"></i>
     </span></button>
   
