@@ -63,7 +63,7 @@ if(mysqli_num_rows($helloname)>0)
   <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-        <div class="logo ml-4" style="color: black	;font-size:1vw 1vh;">
+        <div class="logo ml-4" style="color: black	;font-size:1.5vw 1.5vh;">
             <strong>BMSCE</strong>
         </div>
         
