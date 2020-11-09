@@ -55,7 +55,16 @@ if(mysqli_num_rows($helloname)>0)
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
-  
+  <style>
+    body
+    {
+      /* background:#cccbcc; */
+    }
+    .txt
+    {
+      color:black;
+    }
+  </style>
   </head>
   <body>
 
@@ -116,15 +125,15 @@ if(mysqli_num_rows($helloname)>0)
     <div class="columns">
       
   <div class="column is-one-fifths m-6 p-6">
-  <br><br>
+  <br><br><br><br>
     <div class="card p-4" style="background:hsl(217, 71%, 53%);">
     <!-- <button class="button is-fullwidth is-outlined" style="color:blue;">Faculty Sign-In</button> -->
-    <strong style="color:white;font-family: 'Roboto Condensed', sans-serif;">WELCOME TO BMSCE RESOURCES</strong>
+    <strong style="color:black;font-family: 'Roboto Condensed', sans-serif;">WELCOME TO BMSCE RESOURCES</strong>
     <br>
-    <h3 style="color:white;font-family: 'Roboto Condensed', sans-serif;">To keep connected with us please login with your personal credentials</h3>
+    <h3 style="color:black;font-family: 'Roboto Condensed', sans-serif;">To keep connected with us please login with your personal credentials</h3>
     <br>
     <form action="" method="post">    <div class="field">
-    <label class="label" style="color:white;">Email</label>
+    <label class="label" style="color:black;">Email</label>
   <div class="control has-icons-left">
     <input class="input is-info" type="text" name="emailid" placeholder="Enter your mail id" required>
     <span class="icon is-small is-left">
@@ -133,7 +142,7 @@ if(mysqli_num_rows($helloname)>0)
   </div>
 </div>
 <div class="field">
-<label class="label" style="color:white;">Password</label>
+<label class="label" style="color:black;">Password</label>
   <div class="control has-icons-left">
     <input class="input is-info" name="psw" type="password" placeholder="Enter password" required>
     <span class="icon is-small is-left">
@@ -150,8 +159,21 @@ if(mysqli_num_rows($helloname)>0)
 </div>
       <div class="column m-4 p-4" style="margin-left:2vw;">
       <br><br><br>
-      <img src="../img/login3.png" alt=""></div>
+      <img src="../img/login4.jpg" alt=""></div>
       </div>
    
   </body>
+  <footer class="footer txt" style="background:hsl(217, 71%, 53%);">
+  <div class="content has-text-centered">
+    <p> 
+      <br>
+      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
+      <br>
+      <strong class="txt">Contact us: </strong>
+      <br>Email: info@bmsce.ac.in 
+      <br>Fax: +91-80-26614357
+      <br><span style="color:black">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+    </p>
+  </div>
+</footer>
 </html>
