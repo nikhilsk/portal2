@@ -60,19 +60,23 @@ if(mysqli_num_rows($helloname)>0)
   <body>
 
 
-<<<<<<< HEAD
-  <nav class="navbar" role="navigation" aria-label="main navigation">
-=======
   <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
->>>>>>> 7752e21798a603dbd01a3b4f759866896ccc50d8
   <div class="navbar-brand">
     <a class="navbar-item" href="">
-        <div class="logo ml-4" style="color: black	;font-size:1vw 1vh;">
+        <div class="logo ml-4" style="color: black	;font-size:1.5vw 1.5vh;">
             <strong>BMSCE</strong>
         </div>
         
         <span style="color: white;">RESOURCES</span>
     </a>
+    <!-- <a class="navbar-item" href="">
+    <button class="button is-link" onclick="location.href='./testing.php';">
+          <span class="icon is-small">
+      <i class="fas fa-home"></i>
+    </span>
+            <span>View resources</span>
+      </button>
+      </a> -->
 
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -144,7 +148,7 @@ if(mysqli_num_rows($helloname)>0)
 
       </div>
 </div>
-      <div class="column m-4 p-4">
+      <div class="column m-4 p-4" style="margin-left:2vw;">
       <br><br><br>
       <img src="../img/login3.png" alt=""></div>
       </div>
