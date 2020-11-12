@@ -16,12 +16,46 @@ $host='localhost';
         $q2=mysqli_fetch_assoc($que2);
         $que3= mysqli_query($conn,"select count(category) as id from resources where category='workshops'");
         $q3=mysqli_fetch_assoc($que3);
+        $que4= mysqli_query($conn,"select count(category) as id from resources where category='research'");
+        $q4=mysqli_fetch_assoc($que4);
+        $que5= mysqli_query($conn,"select count(category) as id from resources where category='projects'");
+        $q5=mysqli_fetch_assoc($que5);
+        $que6= mysqli_query($conn,"select count(category) as id from resources where category='webinars'");
+        $q6=mysqli_fetch_assoc($que6);
+
         $que= mysqli_query($conn,"select count(id) as id from resources");
         $q=mysqli_fetch_assoc($que);
-        // echo $q['id'];
-        // echo $q2['id'];
-        // echo $q3['id'];
-        // echo $q['id'];
+        $qued=mysqli_query($conn,"select sum(dcount) as down from resources");
+        $qd=mysqli_fetch_assoc($qued);
+      
+        session_start();
+        $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
+        $z=mysqli_fetch_assoc($sqlq);
+
+          if ($z['id']>0)
+          {
+            $rid=$z['id'];
+            $new=mysqli_query($conn, "select * from resources where id=$rid");
+            if(mysqli_num_rows($new)>0)
+              {
+              $r1=mysqli_fetch_assoc($new);
+              $_SESSION["marq1"]=$r1['filename'];
+              $_SESSION["marq2"]=$r1['category'];
+              $_SESSION["marq3"]=$r1['uploader'];
+              }
+            else
+              {
+              $_SESSION["marq1"]='null';
+              $_SESSION["marq2"]='null';
+              $_SESSION["marq3"]='null';
+              }
+          }
+          else
+              {
+              $_SESSION["marq1"]='null';
+              $_SESSION["marq2"]='null';
+              $_SESSION["marq3"]='null';
+              }
           
 ?>
 <!DOCTYPE html>
@@ -123,7 +157,8 @@ $host='localhost';
           <p class="subtitle">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
         <article class="tile is-child notification is-warning">
-          <p class="title">...What's new!!</p>
+          <p class="title">...What's new!! <div class="subtitle"><br> <span><strong>New File:</strong> </span>
+         <?php echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]); ?></div></p>
           <p class="subtitle"></p>
         </article>
       </div>
@@ -167,12 +202,12 @@ $host='localhost';
     </span>&nbsp;Authentication</p><br>
         <p class="subtitle">Who can download resources?<br><span class="icon is-small">
       <i class="fas fa-id-card"></i>
-    </span>&nbsp;All students of BMSCE have access to all the resources</p>
+    </span>&nbsp;All students of BMSCE have access to all the resources.</p>
         <!-- <progress class="progress" value="15" max="100">15%</progress> -->
         
         <p class="subtitle">Who can upload resources?<br><span class="icon is-small">
       <i class="fas fa-chalkboard-teacher"></i>
-    </span>&nbsp;All teachers of BMSCE have access to upload the resources</p>
+    </span>&nbsp;All teachers of BMSCE ISE Department have access to upload the resources.</p>
         <div class="content">
           <!-- Content -->
         </div>
@@ -183,25 +218,26 @@ $host='localhost';
     <article class="tile is-child notification is-black" style="background:#00416A">
       <div class="content">
       <!-- <br><br> -->
-        <p class="title m-4 ">Statistics</p>
+        <p class="title m-4 "><u>Statistics</u></p>
         <p class="subtitle m-4 p-4"></p>
         <div class="content">
           <!-- Content -->
-          <p>Total number of files <?php echo $q['id']; ?></p>
-          <!-- <progress class="progress is-primary" value="15" max="100">15%</progress> -->
+          <p><strong>Total number of files- <?php echo $q['id']; ?></strong></p>
+          <progress class="progress is-primary" value="100" max="100">15%</progress> 
           
-          <p>Total number of workshops</p>
+          <p>Number of workshops- <?php echo $q3['id']; ?></p>
           <progress class="progress is-primary" value=<?php echo $q3['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
-          <p>Total number of research papers</p>
-          <progress class="progress is-primary" value="15" max="100">15%</progress>
-          <p>Total number of projects</p>
-          <progress class="progress is-primary" value="15" max="100">15%</progress>
-          <p>Total number of webinars</p>
-          <progress class="progress is-primary" value="15" max="100">15%</progress>
-          <p>Total number of downloads <?php echo $q4['id']; ?></p>
-          <!-- <progress class="progress is-primary" value="15" max="100">15%</progress> -->
-          <p>Number of teachers who use this application</p>
-          <progress class="progress is-primary" value="15" max="100">15%</progress>
+          <p>Number of research papers- <?php echo $q4['id']; ?></p>
+          <progress class="progress is-primary" value=<?php echo $q4['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <p>Number of projects- <?php echo $q5['id']; ?></p>
+          <progress class="progress is-primary" value=<?php echo $q5['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <p>Number of webinars- <?php echo $q6['id']; ?></p>
+          <progress class="progress is-primary" value=<?php echo $q6['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <br>
+          <p><strong>Total number of downloads- <?php echo $qd['down']; ?></strong></p>
+           <progress class="progress is-primary" value="100" max="100">15%</progress> 
+          <p><strong>Number of teachers who use this application: <?php echo $q2['id']; ?></strong></p>
+          <progress class="progress is-primary" value="15" max="15">15%</progress>
         </div>
       </div>
     </article>
