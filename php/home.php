@@ -1,3 +1,29 @@
+<?php
+
+$host='localhost';
+  $user='root';
+  $password='';
+  $db='portal';
+  
+  $conn = new mysqli($host, $user, $password,$db);
+  
+  $conn ->select_db($db) or die( "Unable to select database");
+
+        $que= mysqli_query($conn,"select count(id) as id from resources");
+        $q=mysqli_fetch_assoc($que);
+        
+        $que2= mysqli_query($conn,"select count(DISTINCT uploader) as id from resources");
+        $q2=mysqli_fetch_assoc($que2);
+        $que3= mysqli_query($conn,"select count(category) as id from resources where category='workshops'");
+        $q3=mysqli_fetch_assoc($que3);
+        $que= mysqli_query($conn,"select count(id) as id from resources");
+        $q=mysqli_fetch_assoc($que);
+        // echo $q['id'];
+        // echo $q2['id'];
+        // echo $q3['id'];
+        // echo $q['id'];
+          
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,6 +47,7 @@
     body
     {
       /* background:#cccbcc; */
+      /* font-size:0.5vw; */
     }
     .txt
     {
@@ -96,8 +123,8 @@
           <p class="subtitle">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
         <article class="tile is-child notification is-warning">
-          <p class="title">...tiles</p>
-          <p class="subtitle">Bottom tile</p>
+          <p class="title">...What's new!!</p>
+          <p class="subtitle"></p>
         </article>
       </div>
       <div class="tile is-parent">
@@ -123,20 +150,29 @@
           <!-- <figure class="">
         
           </figure> -->
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="button is-ghost">Click here to Upload</button>
+          <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
+          <!-- &nbsp;&nbsp;&nbsp; -->
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <button onclick="location.href='./login.php';" class="button is-ghost"><span class="icon is-small">
+      <i class="fas fa-upload"></i>
+    </span>&nbsp;&nbsp;&nbsp;Click here to Upload</button>
         </article>
       </div>
     </div>
     <div class="tile is-parent">
       <article class="tile is-child notification is-danger">
-        <p class="title">Authentication</p>
-        <p class="subtitle">Who can download resources?</p>
-        <p class="subtitle">All students of BMSCE have access to all the resources</p>
+      
+        <p class="title"><span class="icon is-small">
+      <i class="fas fa-key"></i>
+    </span>&nbsp;Authentication</p><br>
+        <p class="subtitle">Who can download resources?<br><span class="icon is-small">
+      <i class="fas fa-id-card"></i>
+    </span>&nbsp;All students of BMSCE have access to all the resources</p>
         <!-- <progress class="progress" value="15" max="100">15%</progress> -->
         
-        <p class="subtitle">Who can upload resources?</p>
-        <p>All teachers of BMSCE have access to upload the resources</p>
+        <p class="subtitle">Who can upload resources?<br><span class="icon is-small">
+      <i class="fas fa-chalkboard-teacher"></i>
+    </span>&nbsp;All teachers of BMSCE have access to upload the resources</p>
         <div class="content">
           <!-- Content -->
         </div>
@@ -151,6 +187,21 @@
         <p class="subtitle m-4 p-4"></p>
         <div class="content">
           <!-- Content -->
+          <p>Total number of files <?php echo $q['id']; ?></p>
+          <!-- <progress class="progress is-primary" value="15" max="100">15%</progress> -->
+          
+          <p>Total number of workshops</p>
+          <progress class="progress is-primary" value=<?php echo $q3['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <p>Total number of research papers</p>
+          <progress class="progress is-primary" value="15" max="100">15%</progress>
+          <p>Total number of projects</p>
+          <progress class="progress is-primary" value="15" max="100">15%</progress>
+          <p>Total number of webinars</p>
+          <progress class="progress is-primary" value="15" max="100">15%</progress>
+          <p>Total number of downloads <?php echo $q4['id']; ?></p>
+          <!-- <progress class="progress is-primary" value="15" max="100">15%</progress> -->
+          <p>Number of teachers who use this application</p>
+          <progress class="progress is-primary" value="15" max="100">15%</progress>
         </div>
       </div>
     </article>
