@@ -8,6 +8,7 @@ $host='localhost';
   $conn = new mysqli($host, $user, $password,$db);
   
   $conn ->select_db($db) or die( "Unable to select database");
+  $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
 
         $que= mysqli_query($conn,"select count(id) as id from resources");
         $q=mysqli_fetch_assoc($que);

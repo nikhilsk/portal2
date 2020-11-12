@@ -22,7 +22,8 @@ session_start();
   // {
   //     $limit=10;
   // }
-  
+  $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
+// echo $_SESSION['current_file_name']."\n";
 
   
 
@@ -56,7 +57,9 @@ session_start();
           {
           $_SESSION['filter']=$_POST["filter"];
           $limit=$_SESSION['filter'];
+          $_GET['page']=1;
           
+header("location:temp.php");
           // echo $_SESSION['filter'];
           }
           else{
@@ -101,7 +104,9 @@ session_start();
       {
       $_SESSION['filter']=$_POST["filter"];
       $limit=$_SESSION['filter'];
+      $_GET['page']=1;
       
+header("location:temp.php");
       // echo $_SESSION['filter'];
       }
       else{

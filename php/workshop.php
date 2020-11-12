@@ -24,6 +24,7 @@ session_start();
   // }
   
 
+  $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
   
 
   if(isset($_POST['search']))
@@ -56,7 +57,9 @@ session_start();
           {
           $_SESSION['filter']=$_POST["filter"];
           $limit=$_SESSION['filter'];
+          $_GET['page']=1;
           
+header("location:temp.php");
           // echo $_SESSION['filter'];
           }
           else{
@@ -101,7 +104,9 @@ session_start();
       {
       $_SESSION['filter']=$_POST["filter"];
       $limit=$_SESSION['filter'];
-      
+      $_GET['page']=1;
+          
+header("location:temp.php");
       // echo $_SESSION['filter'];
       }
       else{

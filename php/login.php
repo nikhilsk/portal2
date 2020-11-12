@@ -8,7 +8,8 @@
      $conn = new mysqli($host, $user, $password,$db);
      
      $conn ->select_db($db) or die( "Unable to select database");
-     
+     $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
+
   if(isset($_POST['emailid']))
   {
     $_SESSION['loginid']=$_POST['emailid'];
