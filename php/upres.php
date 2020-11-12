@@ -512,18 +512,24 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     </ul>
 </nav>
 
-<footer class="footer">
-  <div class="content has-text-centered">
+<footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
+  <div class="content has-text-centered" >
     <p> 
+      <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
       <br>
-      <a href="https://bmsce.ac.in/" target="_blank">BMSCE Home Page</a>
       <br>
-      <strong>Contact us: </strong>
+      <strong style="color:black">Contact us: </strong>
       <br>Email: info@bmsce.ac.in 
       <br>Fax: +91-80-26614357
-      <br><span style="color:grey">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+      <br>
+      <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+      
     </p>
   </div>
+  
+  <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
+      <i class="fas fa-arrow-up"></i>
+    </span></button>
 </footer>
 <script type="text/javascript">
 	$(document).ready(function(){
