@@ -244,23 +244,26 @@ $host='localhost';
   </div>
 </div>
 
-<footer class="footer txt" style="background:hsl(217, 71%, 53%);">
-  <div class="content has-text-centered">
+<footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
+  <div class="content has-text-centered" >
     <p> 
+      <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
       <br>
-      <a href="https://bmsce.ac.in/" target="_blank" style="color:black">BMSCE Home Page</a>
       <br>
-      <strong class="txt">Contact us: </strong>
+      <strong style="color:black">Contact us: </strong>
       <br>Email: info@bmsce.ac.in 
       <br>Fax: +91-80-26614357
-      <br><span style="color:black">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+      <br>
+      <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
+      
     </p>
-    </div>
-    <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
+  </div>
+  
+  <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
       <i class="fas fa-arrow-up"></i>
     </span></button>
-  
 </footer>
+
 
 <script>
 //Get the button
