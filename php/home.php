@@ -246,7 +246,7 @@ $host='localhost';
 </div>
 
 <footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
-  <div class="content has-text-centered" >
+  <div class="content has-text-centered"  >
     <p> 
       <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
       <br>

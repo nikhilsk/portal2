@@ -164,9 +164,10 @@ if(mysqli_num_rows($helloname)>0)
       </div>
    
   </body>
-  <footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
-  <div class="content has-text-centered" >
+  <footer class="footer" >
+  <div class="content has-text-centered"  style="background:hsl(217, 71%, 53%); color:white;">
     <p> 
+    <br>
       <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
       <br>
       <br>
@@ -176,12 +177,15 @@ if(mysqli_num_rows($helloname)>0)
       <br>
       <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
       
-    </p>
-  </div>
-  
-  <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
+      <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
       <i class="fas fa-arrow-up"></i>
     </span></button>
+    <br>
+    </p>
+    
+  </div>
+  
+ 
 </footer>
 
 <script>
