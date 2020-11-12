@@ -16,25 +16,28 @@ if (isset($_GET['file_id']))
     {
         $id = $_GET['file_id'];
         $sql=  "delete from resources where id=$id";
+        $sqlq = "SELECT * FROM resources WHERE id=$id";
+        $result = mysqli_query($conn, $sqlq);
+        $file = mysqli_fetch_assoc($result);
         
         if((mysqli_query($conn,$sql)))
         {
-                header("location:testing.php");
-                unlink("../uploads/".$file['file']); 
+            unlink("../uploads/".$file['file']);    
+            header("location:testing.php");
+            
         }
         else
         {
             header("location:testing.php");   
         }
-        exit;
+        
     }
     else
     {
         header("location:testing.php");   
-        exit;
-    
+        
     }
-
+    exit;
 }
 
 ?>

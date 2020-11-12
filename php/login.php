@@ -124,13 +124,13 @@ if(mysqli_num_rows($helloname)>0)
   
     <div class="columns">
       
-  <div class="column is-one-fifths m-6 p-6">
+  <div class="column is-one-fifths m-6 p-6" >
   <br><br><br><br>
     <div class="card p-4" style="background:hsl(217, 71%, 53%);">
     <!-- <button class="button is-fullwidth is-outlined" style="color:blue;">Faculty Sign-In</button> -->
-    <strong style="color:black;font-family: 'Roboto Condensed', sans-serif;">WELCOME TO BMSCE RESOURCES</strong>
+    <strong style="color:white;font-family: 'Roboto Condensed', sans-serif;">WELCOME TO BMSCE RESOURCES</strong>
     <br>
-    <h3 style="color:black;font-family: 'Roboto Condensed', sans-serif;">To keep connected with us please login with your personal credentials</h3>
+    <h3 style="color:white;font-family: 'Roboto Condensed', sans-serif;">To keep connected with us please login with your personal credentials</h3>
     <br>
     <form action="" method="post">    <div class="field">
     <label class="label" style="color:black;">Email</label>
@@ -150,7 +150,7 @@ if(mysqli_num_rows($helloname)>0)
     </span>
   </div>
   <br>
-  <button type="submit" class="button is-success is-fullwidth p-3" style="background:white;color:black;">Login</button>
+  <button type="submit" class="button is-success is-rounded is-fullwidth p-3" style="background:white;color:black;">Login</button>
 </div>
 
 </form>
