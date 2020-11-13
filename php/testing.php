@@ -1,6 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
+  // include 'modal1.php';
 //   include 'abcd.php';
   $host='localhost';
   $user='root';
@@ -10,7 +11,10 @@ session_start();
   $conn = new mysqli($host, $user, $password,$db);
   
   $conn ->select_db($db) or die( "Unable to select database");
-
+  if(isset($_GET['file_id']))
+  {
+      $_SESSION['modid']=$_GET['file_id'];
+  }
   $slno=0;
   // if(isset($_POST['filter']))
   // {
@@ -377,85 +381,10 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
         <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
         <?php endif; ?>
 
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
-        
-        <div id = "modal" class = "modal">
-               <div class = "modal-background"></div>
-               <div class = "modal-content">
-                  <div class = "box">
-                     <article class = "media">
-                        <div class = "media-content">
-                           <div class = "content">
-                           <?php if($row['category']=='workshops'):?>
-                              <p>
-                                   <strong> <?php echo $row['filename'];?></strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['drivelink']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='projects'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Project Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='webinars'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Web Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif;?>
-
-                              <?php if($row['category']=='research'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                        {echo $row['drivelink'];}?></p>
-                                 <p>Name of conference/journal:
-                                 <?php echo $row['confer'];?>
-                              </p>
-                              <?php endif; ?>
-                           </div>  
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <button class = "modal-close is-large" aria-label = "close"></button>
-            </div>
-         </div>
-         <script>
+        <th><button class="button is-link is-outlined button is-primary modal-button1 "  onclick="window.location.href='modal.php?file_id=<?php echo $row['id']; ?>'" data-target = "#modal" >View Details</button></th>
+       
+                          
+         <!-- <script>
          $(".modal-button").click(function() {
             var target = $(this).data("target");
             $("html").addClass("is-clipped");
@@ -466,7 +395,7 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
             $("html").removeClass("is-clipped");
             $(this).parent().removeClass("is-active");
          });
-      </script>
+      </script> -->
 
 <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
