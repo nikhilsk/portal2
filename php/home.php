@@ -163,7 +163,7 @@ $host='localhost';
           <p class="subtitle" style="color: #0d0043; font-weight:500">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
         <article class="tile is-child notification is-warning animate__animated animate__fadeInUp" style="background:#05386B">
-          <p class="title" style="color:white;">...What's new!! <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
+          <p class="title" style="color:white;"><span class="animate__animated animate__flash animate__infinite	infinite">...What's new!!</span> <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
          <?php echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]); ?></div></p>
           <p class="subtitle"></p>
         </article>
