@@ -1,7 +1,8 @@
 <?php 
 session_start();
   include 'download.php';
-  include 'video.php';
+  // include 'modal.php';
+//   include 'abcd.php';
   $host='localhost';
   $user='root';
   $password='';
