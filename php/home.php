@@ -159,7 +159,7 @@ $host='localhost';
         
         </p>
           <p class="subtitle"><strong style="color: black;">BMSCE</strong><span style="color: white;">RESOURCES</span></p>
-          <p class="subtitle" style="color:#05386B; font-weight:500">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
+          <p class="subtitle" style="color:#0d0043; font-weight:500">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
         <article class="tile is-child notification is-warning animate__animated animate__fadeInUp" style="background:#05386B">
           <p class="title" style="color:white;"><span class="animate__animated animate__flash animate__infinite	infinite">...What's new!!</span> <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
@@ -210,12 +210,12 @@ $host='localhost';
         <p class="title" style="color:#05386B"><span class="icon is-small" >
       <i class="fas fa-key"></i>
     </span>&nbsp;Authentication</p>
-        <p class="subtitle" style="color:black; font-weight:500">Who can download resources?<br><span class="icon is-small">
+        <p class="subtitle" style="color:#0d0043; font-weight:500">Who can download resources?<br><span class="icon is-small">
       <i class="fas fa-id-card"></i>
     </span>&nbsp;All students of BMSCE have access to all the resources.</p>
         <!-- <progress class="progress" value="15" max="100">15%</progress> -->
         
-        <p class="subtitle" style="color:black; font-weight:500">Who can upload resources?<br><span class="icon is-small">
+        <p class="subtitle" style="color:#0d0043; font-weight:500">Who can upload resources?<br><span class="icon is-small">
       <i class="fas fa-chalkboard-teacher"></i>
     </span>&nbsp;All teachers of BMSCE ISE Department have access to upload the resources.</p>
         <div class="content">
