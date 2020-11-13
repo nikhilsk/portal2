@@ -11,6 +11,8 @@ $host='localhost';
   
   if (isset($_GET['file_id'])) 
 {
+  // echo $_GET['file_id'];
+  // echo 'hey';
     $id = $_GET['file_id'];
     // fetch file to download from database
     $sql = "SELECT * FROM resources WHERE id=$id";

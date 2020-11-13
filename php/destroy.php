@@ -1,6 +1,5 @@
 <?php 
 session_start();
-$tbl = $_SESSION["tno"];
 $host='localhost';
 $user='root';
 $password='';

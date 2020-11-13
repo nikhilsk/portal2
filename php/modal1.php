@@ -7,6 +7,7 @@ $db='portal';
 $conn = new mysqli($host, $user, $password,$db);
 
 $conn ->select_db($db) or die( "Unable to select database");
+// echo "hey";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,13 +28,16 @@ $conn ->select_db($db) or die( "Unable to select database");
     <title>Document</title>
   </head>
   <body>
-
-  <?php if (isset($_GET['rowid'])) 
-{
-    $id = $_GET['rowid'];
+  <?php 
+  
+  echo isset($_GET['file_id'])?1:0;
+  if (isset($_GET['file_id'])) 
+{  echo "hey";
+    $id = $_GET['file_id'];
     $sql = "SELECT * FROM resources WHERE id=$id";
     $result = mysqli_query($conn, $sql);
-    $row = mysqli_fetch_assoc($result);         
+    $row = mysqli_fetch_assoc($result); 
+   //  echo '<p>sdvsvs</p>';        
     if ($row['category']=='workshops'): ?>
     
     <div id="modal" class = "modal">
@@ -78,6 +82,6 @@ $conn ->select_db($db) or die( "Unable to select database");
       <?php endif;
 }
     ?>
-
+<?php include 'footer.php'; ?>
     </body>
     </html>
