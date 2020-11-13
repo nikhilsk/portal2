@@ -171,6 +171,7 @@ header("location:temp.php");
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  <script src="../js/message.js"></script> 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -372,8 +373,9 @@ echo "<a href='upweb.php' class='button is-black' style='margin-left:1vw;margin-
         <?php if ($row['file']==NULL):?>
         <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
         <?php endif; ?>
-        <th><button class="button is-link is-outlined button is-primary modal-button <?php echo $row['id']; ?>" data-target = "#modal">View Details</button></th>
-        
+        <th><button class="button is-link is-outlined button is-primary modal-button" data-target = "#modal" onClick="fun(this,'<?php echo $row['id'];?>');">View Details</button></th>
+        <div id = "modal" class = "modal">        
+        </div>
         <div id = "modal" class = "modal">
                <div class = "modal-background"></div>
                <div class = "modal-content">

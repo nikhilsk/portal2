@@ -17,7 +17,7 @@ $id=$_GET['nameid'];
 $que= mysqli_query($conn,"select * from resources where id='$id'");
 $q=mysqli_fetch_assoc($que);
 
-$arr=array("name"=>$q['filename'],"descrip"=>$q['descrip'],"link"=>$q['link']);
+$arr=array("name"=>$q['filename'],"descrip"=>$q['descrip'],"link"=>$q['link'],"drive"=>$q['drivelink'],"category"=>$q['category']);
 echo json_encode($arr);
 }
 

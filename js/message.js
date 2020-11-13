@@ -50,6 +50,19 @@ let send1 = async (data) => {
         return res.json();
       })
       .then((data) => {
+        if(data.descrip==null)
+        {
+          data.descrip="NA";
+        }
+        if(data.link==null)
+        {
+          data.link="NA";
+        }
+        if(data.drive==null)
+        {
+          data.drive="NA";
+        }
+        data.category= (data.category)[0].toUpperCase() + (data.category).slice(1);
         model.innerHTML = `
         <div class = "modal-background"></div>
                <div class = "modal-content">
@@ -58,11 +71,12 @@ let send1 = async (data) => {
                         <div class = "media-content">
                         <article class="message is-link">
                         <div class="message-header">
-                          <p>${data.name}</p>
+                          <p>${data.name}- ${data.category}</p>
                         </div>
                         <div class="message-body">
-                            ${data.descrip} <br>
-                            ${data.link}
+                          <span style="color:#00008B;"><strong>Description: </strong></span>${data.descrip} <br>
+                          <span style="color:#00008B;"><strong>Drive Link: </strong></span>${data.drive}<br>
+                          <span style="color:#00008B;"><strong>Link: </strong></span>${data.link}
                         </div>
                       </article> 
                         </div>

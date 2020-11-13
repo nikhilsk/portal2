@@ -1,8 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
-  // include 'modal.php';
-//   include 'abcd.php';
+  include 'video.php';
   $host='localhost';
   $user='root';
   $password='';
@@ -386,8 +385,7 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
 
         <th><button class="button is-link is-outlined button is-primary modal-button"  onClick="fun(this,'<?php echo $row['id'];?>');" data-target = "#modal" >View Details</button></th>
     
-        <div id = "modal" class = "modal">
-               
+        <div id = "modal" class = "modal">        
         </div>
             
          <script>
