@@ -223,23 +223,54 @@ $host='localhost';
         <p class="subtitle m-4 p-4"></p>
         <div class="content">
           <!-- Content -->
-          <p><strong>Total number of files- <?php echo $q['id']; ?></strong></p>
+          <p style="font-size:20px"><strong>Total number of files- <span id="value"> <?php echo $q['id']; ?></span></strong></p>
           <progress class="progress is-primary" value="100" max="100">15%</progress> 
           
-          <p>Number of workshops- <?php echo $q3['id']; ?></p>
+          <p>Number of workshops- <span id="val4"><?php echo $q3['id']; ?></span></p>
           <progress class="progress is-primary" value=<?php echo $q3['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
-          <p>Number of research papers- <?php echo $q4['id']; ?></p>
+          <p>Number of research papers- <span id="val5"><?php echo $q4['id']; ?></span></p>
           <progress class="progress is-primary" value=<?php echo $q4['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
-          <p>Number of projects- <?php echo $q5['id']; ?></p>
+          <p>Number of projects- <span id="val6"><?php echo $q5['id']; ?></span></p>
           <progress class="progress is-primary" value=<?php echo $q5['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
-          <p>Number of webinars- <?php echo $q6['id']; ?></p>
+          <p>Number of webinars- <span id="val7"><?php echo $q6['id']; ?></span></p>
           <progress class="progress is-primary" value=<?php echo $q6['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
           <br>
-          <p><strong>Total number of downloads- <?php echo $qd['down']; ?></strong></p>
+          <p style="font-size:20px"><strong>Total number of downloads- <span id="val2"><?php echo $qd['down'];?> </span></strong></p>
            <progress class="progress is-primary" value="100" max="100">15%</progress> 
-          <p><strong>Number of teachers who use this application: <?php echo $q2['id']; ?></strong></p>
+
+          <p style="font-size:20px"><strong>Number of teachers using this website- <span id="val3"><?php echo $q2['id'];?></span></strong></p>
           <progress class="progress is-primary" value="15" max="15">15%</progress>
         </div>
+        <script>
+        function animateValue(obj, start, end, duration) 
+          {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+              if (!startTimestamp) startTimestamp = timestamp;
+              const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+              obj.innerHTML = Math.floor(progress * (end - start) + start);
+              if (progress < 1) {
+                window.requestAnimationFrame(step);
+              }
+            };
+            window.requestAnimationFrame(step);
+          }
+          const obj = document.getElementById("value");
+          const obj2= document.getElementById("val2");
+          const obj3= document.getElementById("val3");
+          const obj4= document.getElementById("val4");
+          const obj5= document.getElementById("val5");
+          const obj6= document.getElementById("val6");
+          const obj7= document.getElementById("val7");
+          animateValue(obj, 0, <?php echo $q['id'];?> , 2000); 
+          animateValue(obj2, 0, <?php echo $qd['down'];?>, 2000);
+          animateValue(obj3, 0, <?php echo $q2['id'];?> , 2000); 
+          animateValue(obj4, 0, <?php echo $q3['id'];?> , 2000); 
+          animateValue(obj5, 0, <?php echo $q4['id'];?> , 2000); 
+          animateValue(obj6, 0, <?php echo $q5['id'];?> , 2000); 
+          animateValue(obj7, 0, <?php echo $q6['id'];?> , 2000); 
+        </script>
+
       </div>
     </article>
   </div>
