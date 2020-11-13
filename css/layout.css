@@ -2,5 +2,8 @@
   color: blue;
 } */
 /* /* css/layout.css} */
-
+.progress::-webkit-progress-value
+{
+  transition: width 1s ease;
+}
 
