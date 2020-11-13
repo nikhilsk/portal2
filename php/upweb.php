@@ -211,7 +211,7 @@ header("location:temp.php");
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a href="testing.php" class="navbar-item hov" style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
+      <a href="home.php" class="navbar-item hov" style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
    onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'" >
         Home
       </a>

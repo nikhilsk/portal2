@@ -193,9 +193,14 @@ $host='localhost';
           <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -->
           <!-- &nbsp;&nbsp;&nbsp; -->
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <?php if (isset($_SESSION['name'])):?>
+          <button onclick="location.href='./testing.php';" class="button is-ghost"><span class="icon is-small">
+      <i class="fas fa-upload"></i>
+          </span>&nbsp;&nbsp;&nbsp;Click here to Upload</button> <?php endif;?>
+          <?php if (!isset($_SESSION['name'])):?>
           <button onclick="location.href='./login.php';" class="button is-ghost"><span class="icon is-small">
       <i class="fas fa-upload"></i>
-    </span>&nbsp;&nbsp;&nbsp;Click here to Upload</button>
+          </span>&nbsp;&nbsp;&nbsp;Click here to Upload</button> <?php endif;?>
         </article>
       </div>
     </div>
