@@ -179,7 +179,7 @@ header("location:temp.php");
 <html lang="en">
   <head>
 
-    <script src="../js/message.js"></script> 
+  <script src="../js/message.js"></script> 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -330,10 +330,10 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
 </div>
 <br>
 <br>
-<div id="txt"></div>
+
 <div style="display:flex;margin:auto;width:94%;">
 
-    <table class="table is-bordered is-fullwidth is-striped">
+    <table class="table is-bordered is-fullwidth is-striped" id='mytable'>
   <thead>
   <tr>
         <th>Sl No</th>
@@ -384,21 +384,16 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
         <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
         <?php endif; ?>
 
-        <th><button class="button is-link is-outlined button is-primary modal-button1 "  onClick="fun('<?php echo $row['id'];?>');" data-target = "#modal" >View Details</button></th>
-       
-                          
-         <!-- <script>
-         $(".modal-button").click(function() {
-            var target = $(this).data("target");
-            $("html").addClass("is-clipped");
-            $(target).addClass("is-active");
-         });
+        <th><button class="button is-link is-outlined button is-primary modal-button"  onClick="fun(this,'<?php echo $row['id'];?>');" data-target = "#modal" >View Details</button></th>
+    
+        <div id = "modal" class = "modal">
+               
+        </div>
+            
+         <script>
          
-         $(".modal-close").click(function() {
-            $("html").removeClass("is-clipped");
-            $(this).parent().removeClass("is-active");
-         });
-      </script> -->
+      </script>
+  
 
 <?php 
 if(isset($_SESSION['loginid']) and $row['uploader']==$_SESSION['name']):?>
@@ -412,7 +407,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     <th><button class="button is-danger is-outlined hov" title="Not uploaded by you!!" type="submit" disabled >Remove</button></th>
 <?php endif; ?>
     </tr>   
-
+    <tr><div id="txt"></div></tr>
         <?php endforeach; ?>
     
   </tbody>

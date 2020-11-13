@@ -1,5 +1,19 @@
 <?php 
-// session_start();
+ini_set("allow_url_fopen", true);
+session_start();
+if(isset($_GET['nameid']))
+{
+    $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");
+
+   echo json_encode($age);
+}
+
+$json = file_get_contents("php://input");
+$data = json_decode( preg_replace('/[\x00-\x1F\x80-\xFF]/', 'cat', $json), true );
+echo $json;
+echo $data;
+echo isset($data)?1:0;
+echo isset($json)?1:0;
 $host='localhost';
 $user='root';
 $password='';
