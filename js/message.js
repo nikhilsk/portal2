@@ -52,21 +52,21 @@ let send1 = async (data) => {
       .then((data) => {
         if(data.descrip==null)
         {
-          data.descrip="NA";
+          data.descrip="Not Specified";
         }
         if(data.link==null)
         {
-          data.link="NA";
+          data.link="Not Specified";
         }
         if(data.drive==null)
         {
-          data.drive="NA";
+          data.drive="Not Specified";
         }
         data.category= (data.category)[0].toUpperCase() + (data.category).slice(1);
         model.innerHTML = `
         <div class = "modal-background"></div>
                <div class = "modal-content">
-                  <div class = "box">
+                  
                      <article class = "media">
                         <div class = "media-content">
                         <article class="message is-link">
@@ -75,14 +75,14 @@ let send1 = async (data) => {
                         </div>
                         <div class="message-body">
                           <span style="color:#00008B;"><strong>Description: </strong></span>${data.descrip} <br>
-                          <span style="color:#00008B;"><strong>Drive Link: </strong></span>${data.drive}<br>
-                          <span style="color:#00008B;"><strong>Link: </strong></span>${data.link}
+                          <span style="color:#00008B;"><strong>Drive Link:</strong><a href="${data.drive}" target="_blank"> ${data.drive}</a></span><br>
+                          <span style="color:#00008B;"><strong>Link: </strong><a href="${data.link}" target="_blank"> ${data.link}</a></span>
                         </div>
                       </article> 
                         </div>
                      </article>
                   </div>
-               </div>
+               
                <button class = "modal-close is-large" aria-label = "close1"></button>
             </div>
         `;
