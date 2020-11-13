@@ -1,7 +1,7 @@
 <?php 
 session_start();
   include 'download.php';
-  // include 'modal1.php';
+  // include 'modal.php';
 //   include 'abcd.php';
   $host='localhost';
   $user='root';
@@ -178,6 +178,8 @@ header("location:temp.php");
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
+    <script src="../js/message.js"></script> 
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -328,8 +330,9 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
 </div>
 <br>
 <br>
-
+<div id="txt"></div>
 <div style="display:flex;margin:auto;width:94%;">
+
     <table class="table is-bordered is-fullwidth is-striped">
   <thead>
   <tr>
@@ -345,11 +348,11 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
       echo "<th>Delete</th>";
 }
 ?>
+
     </tr>
   </thead>
-  
   <tbody>
-  
+ 
   <?php foreach($records as $row) :  ?>  
     
     <tr>
@@ -381,7 +384,7 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
         <th><button class="button is-success is-outlined hov" title="No file is Uploaded! Check description." type="submit" name="down" onclick="window.location.href='testing.php?file_id=<?php echo $row['id'] ?>';" disabled>Download</button></th>
         <?php endif; ?>
 
-        <th><button class="button is-link is-outlined button is-primary modal-button1 "  onclick="window.location.href='modal.php?file_id=<?php echo $row['id']; ?>'" data-target = "#modal" >View Details</button></th>
+        <th><button class="button is-link is-outlined button is-primary modal-button1 "  onClick="fun('<?php echo $row['id'];?>');" data-target = "#modal" >View Details</button></th>
        
                           
          <!-- <script>
