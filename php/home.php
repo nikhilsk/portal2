@@ -70,6 +70,10 @@ $host='localhost';
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <!-- <link rel="stylesheet" href="../css/layout.css" /> -->
     <script
       defer
@@ -150,21 +154,21 @@ $host='localhost';
   <div class="tile is-vertical is-8">
     <div class="tile">
       <div class="tile is-parent is-vertical">
-        <article class="tile is-child notification is-primary" >
+        <article class="tile is-child notification is-primary animate__animated animate__fadeInRight" >
           <p class="title" style="color:#05386B">Why??
         
         </p>
           <p class="subtitle"><strong style="color: black;">BMSCE</strong><span style="color: white;">RESOURCES</span></p>
           <p class="subtitle" style="color:#05386B; font-weight:500">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
-        <article class="tile is-child notification is-warning" style="background:#05386B">
+        <article class="tile is-child notification is-warning animate__animated animate__fadeInUp" style="background:#05386B">
           <p class="title" style="color:white;">...What's new!! <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
          <?php echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]); ?></div></p>
           <p class="subtitle"></p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification " style="background:#05386B;">
+        <article class="tile is-child notification animate__animated animate__fadeInDown" style="background:#05386B;">
           <p class="title" style="color: white;"> File Uploader</p>
           <p class="subtitle" style="color: #00d1b2;">What does the website do?</p>
           <!-- <div class="columns">
@@ -196,7 +200,7 @@ $host='localhost';
       </div>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child notification " style="background:#00d1b2; color:white;">
+      <article class="tile is-child notification animate__animated animate__fadeInRight" style="background:#00d1b2; color:white;">
       
         <p class="title" style="color:#05386B"><span class="icon is-small" >
       <i class="fas fa-key"></i>
@@ -216,7 +220,7 @@ $host='localhost';
     </div>
   </div>
   <div class="tile is-parent">
-    <article class="tile is-child notification is-black" style="background:#05386B">
+    <article class="tile is-child notification is-black animate__animated animate__fadeInLeft" style="background:#05386B">
       <div class="content">
       <!-- <br><br> -->
         <p class="title m-4 ">Statistics</p>
