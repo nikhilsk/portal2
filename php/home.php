@@ -150,23 +150,23 @@ $host='localhost';
   <div class="tile is-vertical is-8">
     <div class="tile">
       <div class="tile is-parent is-vertical">
-        <article class="tile is-child notification is-primary">
-          <p class="title">Why??
+        <article class="tile is-child notification is-primary" >
+          <p class="title" style="color:#4056A1"><u>Why??</u>
         
         </p>
-          <p class="subtitle"><strong style="color: black	;">BMSCE</strong><span style="color: white;">RESOURCES</span></p>
+          <p class="subtitle"><strong style="color: black;">BMSCE</strong><span style="color: white;">RESOURCES</span></p>
           <p class="subtitle">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
-        <article class="tile is-child notification is-warning">
-          <p class="title">...What's new!! <div class="subtitle"><br> <span><strong>New File:</strong> </span>
+        <article class="tile is-child notification is-warning" style="background:#4056A1">
+          <p class="title" style="color:white;">...<u>What's new!!</u> <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
          <?php echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]); ?></div></p>
           <p class="subtitle"></p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification is-info">
-          <p class="title"> File Uploader</p>
-          <p class="subtitle">What does the website do?</p>
+        <article class="tile is-child notification " style="background:#4056A1;">
+          <p class="title" style="color: white;"> <u>File Uploader</u></p>
+          <p class="subtitle" style="color: white;">What does the website do?</p>
           <!-- <div class="columns">
           <div class="column "> -->
           <!-- <figure class="is-4by3sdf"> -->
@@ -182,7 +182,7 @@ $host='localhost';
         
           </div> -->
           <!-- </div> -->
-          <p class="subtitle" style="margin-left:5vw;margin-top:-1vh;font-size:2vw bold;">Upload and download files</p>
+          <p class="subtitle" style="margin-left:5vw;margin-top:-1vh;font-size:2vw bold; color: white;">Upload and download files</p>
           <!-- <figure class="">
         
           </figure> -->
@@ -196,11 +196,11 @@ $host='localhost';
       </div>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child notification is-danger">
+      <article class="tile is-child notification " style="background:#00d1b2; color:white;">
       
-        <p class="title"><span class="icon is-small">
+        <p class="title" style="color:#4056A1"><span class="icon is-small" >
       <i class="fas fa-key"></i>
-    </span>&nbsp;Authentication</p><br>
+    </span>&nbsp;<u>Authentication</u></p><br>
         <p class="subtitle">Who can download resources?<br><span class="icon is-small">
       <i class="fas fa-id-card"></i>
     </span>&nbsp;All students of BMSCE have access to all the resources.</p>
@@ -216,7 +216,7 @@ $host='localhost';
     </div>
   </div>
   <div class="tile is-parent">
-    <article class="tile is-child notification is-black" style="background:#00416A">
+    <article class="tile is-child notification is-black" style="background:#4056A1">
       <div class="content">
       <!-- <br><br> -->
         <p class="title m-4 "><u>Statistics</u></p>

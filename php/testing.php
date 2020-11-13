@@ -59,7 +59,7 @@ session_start();
           $limit=$_SESSION['filter'];
           $_GET['page']=1;
           
-header("location:temp.php");
+          header("location:temp.php");
           // echo $_SESSION['filter'];
           }
           else{
@@ -413,7 +413,7 @@ echo "<a href='up.php' class='button is-black' style='margin-left:1vw;margin-top
                                        else {echo $row['drivelink'];}?></p>
                                  <p>Project Link:
                                  <?php echo $row['link'];?>
-                              </p>
+                              </p>  
                               <?php endif; ?>
 
                               <?php if($row['category']=='webinars'):?>
