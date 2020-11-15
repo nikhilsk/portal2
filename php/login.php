@@ -40,7 +40,7 @@ if(mysqli_num_rows($helloname)>0)
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
     />
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="../css/layout.css" /> -->
+   
     <script
       defer
       src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"
