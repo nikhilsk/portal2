@@ -2,81 +2,58 @@
 include 'database.php';
   include 'download.php';
 //   include 'abcd.php';
-  
   $slno=0;
-  // if(isset($_POST['filter']))
-  // {
-  //     $_SESSION['norecords']=$_POST['filter'];
-  //     $limit=$_SESSION['norecords'];
-  //   //   header("location:testing.php");
-  // }
-  // else
-  // {
-  //     $limit=10;
-  // }
-  
+
   $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
 
   
-
-  if(isset($_POST['search']))
+  if(isset($_POST['search']) or isset($_SESSION['search']))
   {
-    //   echo $_POST['search'];
+    if(isset($_POST['search']))
+    {
+    
     $_SESSION['search']=$_POST['search'];
-    $limit = isset($_POST["filter"]) ? $_SESSION['filter']=$_POST["filter"] : 5;
+    $string=mysqli_real_escape_string($conn,$_POST['search']);
+    }
+    else{
+        $string=$_SESSION['search'];
+    }
+  
+    
+    if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
+    {
+      if(isset($_POST['filter']))
+      {
+      $_SESSION['filter']=$_POST["filter"];
+      $limit=$_SESSION['filter'];
+      $_GET['page']=1;
+      
+        header("location:temp.php");
+      }
+      else{
+        $limit=$_SESSION['filter'];
+      
+      }
+    }
+    else
+    {
+       $limit=5;
+       echo "hello";
+    }
+    
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
+    echo $page;
 	$start = ($page - 1) * $limit;
-      $string=mysqli_real_escape_string($conn,$_POST['search']);
-      
+      echo $start;
       $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='research' LIMIT $start,$limit");
-      $page = isset($_GET['page']) ? $_GET['page'] : 1;
+      $result1 = mysqli_query($conn,"SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='research'  ");
 
-      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
-      $total = $recCount[0]['id'];
-        $pages = ceil( $total / $limit );
-        
-      $Previous = $page - 1;
-        $Next = $page + 1;
-
-
-
-        if(isset($_POST["filter"]) or isset($_SESSION['filter']) )
-        {
-          if(isset($_POST['filter']))
-          {
-          $_SESSION['filter']=$_POST["filter"];
-          $limit=$_SESSION['filter'];
-          $_GET['page']=1;
-          
-header("location:temp.php");
-          // echo $_SESSION['filter'];
-          }
-          else{
-            $limit=$_SESSION['filter'];
-          //   echo $_SESSION['filter'];
-          // echo $limit;
-          }
-        }
-        else
-        {
-           $limit=5;
-           echo "hello";
-        }
-        // echo $limit;
-        // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
-      $page = isset($_GET['page']) ? $_GET['page'] : 1;
-      $start = ($page - 1) * $limit;
-
-      $string=mysqli_real_escape_string($conn,$_POST['search']);
-      $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit");
-      $records=$result->fetch_all(MYSQLI_ASSOC);
-      $result1 = $conn->query("SELECT count(id) AS id FROM resources where filename LIKE '%$string%' and category='research' LIMIT $start, $limit ");
-
-      $recCount = $result1->fetch_all(MYSQLI_ASSOC);
-      $total = $recCount[0]['id'];
+      $recCount = mysqli_fetch_assoc($result1);
+      $total = $recCount['id'];
+      
+    echo $total.'<br>';
         $pages = ceil( $total / $limit );
         if($page>1)
       {
@@ -98,29 +75,25 @@ header("location:temp.php");
       $limit=$_SESSION['filter'];
       $_GET['page']=1;
           
-header("location:temp.php");
-      // echo $_SESSION['filter'];
+      header("location:temp.php");
       }
       else{
         $limit=$_SESSION['filter'];
-      //   echo $_SESSION['filter'];
-      // echo $limit;
+ 
       }
     }
     else
     {
        $limit=5;
-      //  echo "hello";
     }
-    // echo $limit;
-    // echo isset($_SESSION['filter'])?$_SESSION['filter']:$limit;
   $result1 = $conn->query("SELECT count(id) AS id FROM resources where category='research'");
   $page = isset($_GET['page']) ? $_GET['page'] : 1;
 	$start = ($page - 1) * $limit;
     $result = $conn->query("SELECT * FROM resources where category='research' LIMIT $start, $limit");
 	$records = $result->fetch_all(MYSQLI_ASSOC);
-	$recCount = $result1->fetch_all(MYSQLI_ASSOC);
-	$total = $recCount[0]['id'];
+
+      $recCount = mysqli_fetch_assoc($result1);
+      $total = $recCount['id'];
     $pages = ceil( $total / $limit );
     if($page>1)
   {
@@ -178,45 +151,7 @@ header("location:temp.php");
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
   </head>
-  <body><?php include 'navbar.php'; ?>
-    <nav class="panel is-link">
-      
-      <marquee>
-      <span style="color:red"  style="font-weight:bold">NEW FILE- </span><?php 
-         echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]) ; 
-       ?></marquee>
-      
-      <form action="" method="post">
-      <div class="panel-block">
-        <p class="control has-icons-left">
-          <input class="input" type="text" name="search" id="search" placeholder="Search" value="<?php 
-          if (isset($_POST['search']))
-          {
-            echo $_POST['search'];
-          }
-          elseif(isset($_SESSION['search']))
-          {
-            echo $_SESSION['search'];
-          }  ?>" />
-          
-          <span class="icon is-left">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </span>
-        </p>
-      </div>
-      </form>
-      <p class="panel-tabs ">
-        <a href="./testing.php" ><strong>All</strong></a>
-        <a href="./projects.php"> <Strong>Projects</Strong> </a>
-        <a href="./research.php" class="is-active"> <strong>Research Papers</strong> </a>
-        <a href="./webinar.php"> <strong>Webinars</strong> </a>
-        <a href="./workshop.php"><strong>Workshops</strong></a>
-        
-      </p>
-
-
-
-    </nav>
+  <body><?php include 'navbar.php';  include 'panel.php';?>
     <br>
     
 <div style="display:flex;margin:auto;width:94%;">
