@@ -276,7 +276,6 @@ echo "<a href='projects.php' class='button is-black' style='margin-left:1vw;marg
     
     <tr>
     <th><?php 
-        // $_SESSION['num']=$_SESSION['num']+1;
         echo $row['id'];
     ?></th>
       <th>
