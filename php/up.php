@@ -363,22 +363,5 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 		})
 	})
 </script>
-<script>
-      var a=document.querySelectorAll(".modal-button");
-      console.log(a);
-      a.forEach((e, i) => {
- 
-
-  e.addEventListener("click", () => {
-    
-    console.log(e);
-    var target = $(this).data("target");
-    e.classList.toggle("is-clipped");
-    e.classList.toggle("is-active");
-  });
-});
-
-      
-      </script>
       
   </body><?php include 'footer.php'; ?></html>
