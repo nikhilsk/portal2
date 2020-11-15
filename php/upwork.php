@@ -38,13 +38,13 @@ include 'database.php';
     else
     {
        $limit=5;
-       echo "hello";
+      //  echo "hello";
     }
     
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    echo $page;
+    // echo $page;
 	$start = ($page - 1) * $limit;
-      echo $start;
+      // echo $start;
       $result=$conn->query("Select * from resources where filename LIKE '%$string%' and category='workshops' and uploader='$tname' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       
@@ -53,7 +53,7 @@ include 'database.php';
       $recCount = mysqli_fetch_assoc($result1);
       $total = $recCount['id'];
       
-    echo $total.'<br>';
+    // echo $total.'<br>';
         $pages = ceil( $total / $limit );
         if($page>1)
       {

@@ -3,9 +3,9 @@ include 'database.php';
   include 'download.php';
 //   include 'abcd.php';
   $slno=0;
-
+// session_start();
   $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
-  $tname=$_SESSION['name'];
+  // $tname=$_SESSION['name'];
   
   if(isset($_POST['search']) or isset($_SESSION['search']))
   {
@@ -38,13 +38,13 @@ include 'database.php';
     else
     {
        $limit=5;
-       echo "hello";
+      //  echo "hello";
     }
     
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    echo $page;
+    // echo $page;
 	$start = ($page - 1) * $limit;
-      echo $start;
+      // echo $start;
       $result=$conn->query("Select * from resources where filename LIKE '%$string%' LIMIT $start, $limit");
       $records=$result->fetch_all(MYSQLI_ASSOC);
       
@@ -53,7 +53,7 @@ include 'database.php';
       $recCount = mysqli_fetch_assoc($result1);
       $total = $recCount['id'];
       
-    echo $total.'<br>';
+    // echo $total.'<br>';
         $pages = ceil( $total / $limit );
         if($page>1)
       {
