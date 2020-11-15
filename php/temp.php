@@ -1,14 +1,4 @@
-<?php 
-session_start();
-$tbl = $_SESSION["tno"];
-$host='localhost';
-$user='root';
-$password='';
-$db='portal';
-
-$conn = new mysqli($host, $user, $password,$db);
-$conn ->select_db($db) or die( "Unable to select database");
-
+<?php include 'database.php';
 // session_destroy();
 
 // $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);

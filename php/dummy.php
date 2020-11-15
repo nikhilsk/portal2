@@ -1,13 +1,6 @@
 <?php
 
-
-$host='localhost';
-$user='root';
-$password='';
-$db='portal';
-
-$conn = new mysqli($host, $user, $password,$db);
-$conn ->select_db($db) or die( "Unable to select database");
+include 'database.php';
 if(isset($_GET['nameid']))
 {
 //     $age = array("Peter"=>"35", "Ben"=>"37", "Joe"=>"43");

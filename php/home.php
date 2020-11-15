@@ -1,13 +1,5 @@
 <?php
-
-$host='localhost';
-  $user='root';
-  $password='';
-  $db='portal';
-  
-  $conn = new mysqli($host, $user, $password,$db);
-  
-  $conn ->select_db($db) or die( "Unable to select database");
+include 'database.php';
   $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
 
         $que= mysqli_query($conn,"select count(id) as id from resources");
@@ -29,7 +21,6 @@ $host='localhost';
         $qued=mysqli_query($conn,"select sum(dcount) as down from resources");
         $qd=mysqli_fetch_assoc($qued);
       
-        session_start();
         $sqlq=mysqli_query($conn, "Select max(id) as id from resources");
         $z=mysqli_fetch_assoc($sqlq);
 
@@ -92,6 +83,9 @@ $host='localhost';
     {
       color:black;
     }
+    .progress::-webkit-progress-value {
+  transition: width 0.1s ease;
+}
   </style>
 <body>
 
@@ -233,22 +227,26 @@ $host='localhost';
         <div class="content">
           <!-- Content -->
           <p style="font-size:20px"><strong>Total number of files- <span id="value"> <?php echo $q['id']; ?></span></strong></p>
-          <progress class="progress is-primary" value="100" max="100">15%</progress> 
+          <progress class="progress is-primary" id="pb1" value="100" max="100">15%</progress> 
           
           <p>Number of workshops- <span id="val4"><?php echo $q3['id']; ?></span></p>
-          <progress class="progress is-primary" value=<?php echo $q3['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <progress class="progress is-primary" id="pb2" value=<?php echo $q3['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+
           <p>Number of research papers- <span id="val5"><?php echo $q4['id']; ?></span></p>
-          <progress class="progress is-primary" value=<?php echo $q4['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <progress class="progress is-primary" id="pb3" value=<?php echo $q4['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+
           <p>Number of projects- <span id="val6"><?php echo $q5['id']; ?></span></p>
-          <progress class="progress is-primary" value=<?php echo $q5['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <progress class="progress is-primary" id="pb4" value=<?php echo $q5['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+
           <p>Number of webinars- <span id="val7"><?php echo $q6['id']; ?></span></p>
-          <progress class="progress is-primary" value=<?php echo $q6['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+          <progress class="progress is-primary" id="pb5" value=<?php echo $q6['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
+
           <br>
           <p style="font-size:20px"><strong>Total number of downloads- <span id="val2"><?php echo $qd['down'];?> </span></strong></p>
-           <progress class="progress is-primary" value="100" max="100">15%</progress> 
+           <progress class="progress is-primary" id="pb6" value="100" max="100">15%</progress> 
 
           <p style="font-size:20px"><strong>Number of teachers using this website- <span id="val3"><?php echo $q2['id'];?></span></strong></p>
-          <progress class="progress is-primary" value="15" max="15">15%</progress>
+          <progress class="progress is-primary" id="p7" value="15" max="15">15%</progress>
         </div>
         <script>
         function animateValue(obj, start, end, duration) 
@@ -284,47 +282,17 @@ $host='localhost';
     </article>
   </div>
 </div>
-
-<footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
-  <div class="content has-text-centered"  >
-    <p> 
-      <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
-      <br>
-      <br>
-      <strong style="color:black">Contact us: </strong>
-      <br>Email: info@bmsce.ac.in 
-      <br>Fax: +91-80-26614357
-      <br>
-      <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
-      
-    </p>
-  </div>
-  
-  <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
-      <i class="fas fa-arrow-up"></i>
-    </span></button>
-</footer>
-
-
+<?php include 'footer.php'; ?>
 <script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
+var progressArr = [5, 15, 30, 40, 60, 65, 80, 90, 95, 100];
+function fillProgress() {
+  progressArr.forEach(function(num, index) {
+    setTimeout(function() {
+      $('#pb1').val(num);
+    }, 300 * index);
+  });
 }
 
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
+fillProgress();
 </script>
 </html>

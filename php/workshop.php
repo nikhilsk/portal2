@@ -1,16 +1,7 @@
 <?php 
-session_start();
+include 'database.php';
   include 'download.php';
 //   include 'abcd.php';
-  $host='localhost';
-  $user='root';
-  $password='';
-  $db='portal';
-  
-  $conn = new mysqli($host, $user, $password,$db);
-  
-  $conn ->select_db($db) or die( "Unable to select database");
-
   $slno=0;
   // if(isset($_POST['filter']))
   // {
@@ -188,74 +179,7 @@ header("location:temp.php");
     <title>Document</title>
   </head>
   <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-        <div class="logo" style="color: #0d0043;font-size:1vw 1vh;">
-            <strong>BMSCE</strong>
-        </div>
-        
-        <span style="color:white;">RESOURCES</span>
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a href="home.php" class="navbar-item hov" style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
-   onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'" >
-        Home
-      </a>
-      <?php
-   if(isset($_SESSION['loginid']))
-   {
-    echo "<a class='navbar-item' href='' style='color:white;' onMouseOver=\"this.style.backgroundColor='hsl(217, 71%, 58%)'\"
-    onMouseOut=\"this.style.backgroundColor='hsl(217, 71%, 53%)'\">Hello, ";
-    echo $_SESSION['name'];
-      echo "</a>";
-   }
-   ?>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-        <?php 
-            if(isset($_SESSION['loginid']))
-            {
-               echo "<a class='button is-primary' href='./destroy.php'>
-               <strong>Logout</strong>
-             </a>";
-            }
-            else{
-              
-              echo "<a class='button is-primary' href='./login.php'>
-              <strong>Login</strong>
-            </a>";
-            }
-        ?>
-          <?php 
-            if(isset($_SESSION['loginid']))
-            {
-               echo "<a class='button is-danger' href='./workshopupload.php'>
-               <strong>Upload</strong>
-             </a>";
-            }
-        ?>
-          <a class="button is-ghost" href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" >
-            <strong>Department of ISE</strong>
-          </a>
-          
-        </div>
-      </div>   
-    </div>
-  </div>
-</nav>
+  <?php include 'navbar.php'; ?>
     <nav class="panel is-link">
       
       <marquee>
@@ -509,26 +433,7 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
     <?php endfor; ?>
     </ul>
 </nav>
-
-<footer class="footer" style="background:hsl(217, 71%, 53%); color:white;">
-  <div class="content has-text-centered" >
-    <p> 
-      <a href="https://bmsce.ac.in/" target="_blank" style="color:hsl(217, 71%, 53%);" class="button is-rounded">BMSCE Home Page</a>
-      <br>
-      <br>
-      <strong style="color:black">Contact us: </strong>
-      <br>Email: info@bmsce.ac.in 
-      <br>Fax: +91-80-26614357
-      <br>
-      <br><span style="color:#dbdcdc">Website designed by Nikhil S.K & Gowrishankar G- 3rd Year ISE Department, BMSCE</span>
-      
-    </p>
-  </div>
-  
-  <button class="button" style="margin-left:90%;" onclick="topFunction()" id="myBtn" title="Go to top"><span class="icon is-small">
-      <i class="fas fa-arrow-up"></i>
-    </span></button>
-</footer>
+<?php include 'footer.php'; ?>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$("#filter").change(function(){

@@ -1,13 +1,5 @@
 <?php 
-session_start();
-$host='localhost';
-$user='root';
-$password='';
-$db='portal';
-
-$conn = new mysqli($host, $user, $password,$db);
-$conn ->select_db($db) or die( "Unable to select database");
-
+include 'database.php';
 session_destroy();
 
 header("location:testing.php");

@@ -1,15 +1,8 @@
 <?php 
-session_start();
+include 'database.php';
   include 'download.php';
-//   include 'abcd.php';
-  $host='localhost';
-  $user='root';
-  $password='';
-  $db='portal';
-  
-  $conn = new mysqli($host, $user, $password,$db);
-  
-  $conn ->select_db($db) or die( "Unable to select database");
+
+
 
   $slno=0;
   // if(isset($_POST['filter']))
@@ -188,75 +181,7 @@ header("location:temp.php");
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <title>Document</title>
   </head>
-  <body>
-  <nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-        <div class="logo" style="color: #0d0043;font-size:1vw 1vh;">
-            <strong>BMSCE</strong>
-        </div>
-        
-        <span style="color:white;">RESOURCES</span>
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a href="home.php" class="navbar-item hov" style="color:white;"  onMouseOver="this.style.backgroundColor='hsl(217, 71%, 58%)'"
-   onMouseOut="this.style.backgroundColor='hsl(217, 71%, 53%)'" >
-        Home
-      </a>
-      <?php
-   if(isset($_SESSION['loginid']))
-   {
-    echo "<a class='navbar-item' href='' style='color:white;' onMouseOver=\"this.style.backgroundColor='hsl(217, 71%, 58%)'\"
-    onMouseOut=\"this.style.backgroundColor='hsl(217, 71%, 53%)'\">Hello, ";
-    echo $_SESSION['name'];
-      echo "</a>";
-   }
-   ?>
-    </div>
-
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-        <?php 
-            if(isset($_SESSION['loginid']))
-            {
-               echo "<a class='button is-primary' href='./destroy.php'>
-               <strong>Logout</strong>
-             </a>";
-            }
-            else{
-              
-              echo "<a class='button is-primary' href='./login.php'>
-              <strong>Login</strong>
-            </a>";
-            }
-        ?>
-          <?php 
-            if(isset($_SESSION['loginid']))
-            {
-               echo "<a class='button is-danger' href='./workshopupload.php'>
-               <strong>Upload</strong>
-             </a>";
-            }
-        ?>
-          <a class="button is-ghost" href="https://bmsce.ac.in/home/Information-Science-and-Engineering-About" target="_blank" >
-            <strong>Department of ISE</strong>
-          </a>
-          
-        </div>
-      </div>   
-    </div>
-  </div>
-</nav>
+  <body><?php include 'navbar.php'; ?>
     <nav class="panel is-link">
       
       <marquee>
@@ -381,95 +306,6 @@ echo "<a href='uppro.php' class='button is-black' style='margin-left:1vw;margin-
         <th><button class="button is-link is-outlined button is-primary modal-button " data-target = "#modal" onClick="fun(this,'<?php echo $row['id'];?>');">View Details</button></th>
         <div id = "modal" class = "modal">        
         </div>
-
-        <div id = "modal" class = "modal">
-               <div class = "modal-background"></div>
-               <div class = "modal-content">
-                  <div class = "box">
-                     <article class = "media">
-                        <div class = "media-content">
-                           <div class = "content">
-                           <?php if($row['category']=='workshops'):?>
-                              <p>
-                                   <strong> <?php echo $row['filename'];$slno=$slno+1;echo $slno;?></strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['drivelink']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='projects'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Project Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif; ?>
-
-                              <?php if($row['category']=='webinars'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Web Link:
-                                 <?php echo $row['link'];?>
-                              </p>
-                              <?php endif;?>
-
-                              <?php if($row['category']=='research'):?>
-                                <p>
-                              <strong> <?php echo $row['filename'];?> -</strong> 
-                                 <small><?php echo ucfirst($row['category']);?> </small> 
-                                 <br>
-                                 <p><?php echo $row['descrip'];?></p>
-                                 <br>
-                                 <p>Google drive Link: 
-                                 <?php if($row['link']==NULL)
-                                          {echo 'NA';}
-                                       else {echo $row['drivelink'];}?></p>
-                                 <p>Name of conference/journal:
-                                 <?php echo $row['confer'];?>
-                              </p>
-                              <?php endif; ?>
-                           </div>  
-                        </div>
-                     </article>
-                  </div>
-               </div>
-               <button class = "modal-close is-large" aria-label = "close"></button>
-            </div>
-         </div>
-         <script>
-         $(".modal-button").click(function() {
-            var target = $(this).data("target");
-            $("html").addClass("is-clipped");
-            $(target).addClass("is-active");
-         });
-         
-         $(".modal-close").click(function() {
-            $("html").removeClass("is-clipped");
-            $(this).parent().removeClass("is-active");
-         });
-      </script>
       
       
 
@@ -524,43 +360,5 @@ if(isset($_SESSION['loginid']) and $row['uploader']!=$_SESSION['name']):?>
 		})
 	})
 </script>
-<script>
-      var a=document.querySelectorAll(".modal-button");
-      console.log(a);
-      a.forEach((e, i) => {
-  // console.log(a[i].id);
-  // console.log(a[i].name);
-
-  e.addEventListener("click", () => {
-    // let c = prompt("Enter the number of plates u want to delete");
-    // if (c <= a[i].name) {
-    //   a[i].name -= c;
-    // } else {
-    //   alert("You havent ordered those many plates");
-    // // }
-    // data = {
-    //   dishn: a[i].id,
-    //   quan: a[i].name,
-    // };
-    // send1(data);
-    // location.reload();
-    console.log(e);
-    var target = $(this).data("target");
-    e.classList.toggle("is-clipped");
-    e.classList.toggle("is-active");
-  });
-});
-
-        //  $("./").click(function() {
-        //     var target = $(this).data("target");
-        //     $("html").addClass("is-clipped");
-        //     $(target).addClass("is-active");
-        //  });
-         
-        //  $(".modal-close").click(function() {
-        //     $("html").removeClass("is-clipped");
-        //     $(this).parent().removeClass("is-active");
-        //  });
-      </script>
   </body>
 </html>

@@ -1,13 +1,5 @@
 <?php
-  session_start();
-     $host='localhost';
-     $user='root';
-     $password='';
-     $db='portal';
-     
-     $conn = new mysqli($host, $user, $password,$db);
-     
-     $conn ->select_db($db) or die( "Unable to select database");
+  include 'database.php';
      $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
 
   if(isset($_POST['emailid']))
