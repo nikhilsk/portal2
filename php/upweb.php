@@ -3,7 +3,11 @@ include 'database.php';
   include 'download.php';
 //   include 'abcd.php';
   $slno=0;
-
+  if(!isset($_SESSION['name']))
+  {
+    $name=$_SESSION['current_file_name'];
+    header("location:$name");
+  }
   $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
   $tname=$_SESSION['name'];
   

@@ -1,5 +1,10 @@
 <?php 
   include 'database.php';
+  if(!isset($_SESSION['name']))
+{
+  $name=$_SESSION['current_file_name'];
+  header("location:$name");
+}
 $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
 
   if (isset($_POST['save']))
