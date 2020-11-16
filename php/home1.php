@@ -87,14 +87,16 @@ include 'database.php';
     }
 
     .circle-wrap {  
-        margin-left:10px;
+      position: relative;
+      left:10px;
   width: 150px;
   height: 150px;
   background: #e6e2e7;
   border-radius: 50%;
 }
 .circle-wrap2 {
- margin-left: 230px;
+  position: relative;
+ left: 155%;
  width: 150px;
  height: 150px;
  background: #e6e2e7;
