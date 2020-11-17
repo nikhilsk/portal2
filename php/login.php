@@ -1,7 +1,10 @@
 <?php
   include 'database.php';
      $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
-
+     if(!isset($_SESSION['marq3']))
+     {
+       header("location:home.php");
+     }
   if(isset($_POST['emailid']))
   {
     $_SESSION['loginid']=$_POST['emailid'];

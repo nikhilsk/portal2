@@ -4,6 +4,10 @@ include 'database.php';
 //   include 'abcd.php';
   $slno=0;
 // session_start();
+if(!isset($_SESSION['marq3']))
+{
+  header("location:home.php");
+}
   $_SESSION['current_file_name'] = basename($_SERVER['PHP_SELF']);
   // $tname=$_SESSION['name'];
   
