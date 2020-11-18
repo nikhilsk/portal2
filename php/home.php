@@ -143,7 +143,7 @@ include 'database.php';
 </nav>
 
 
-<div class="tile is-ancestor m-4 p-4">
+<div class="tile is-ancestor m-2 p-2" style="">
   <div class="tile is-vertical is-8">
     <div class="tile">
       <div class="tile is-parent is-vertical">
