@@ -71,13 +71,21 @@ include 'database.php';
     ></script>
     <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
       <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      
 </head>
 <style>
     p
     {
       font-size:1vw;
     }
-
+    .bg1
+    {
+        background:#05386B;
+    }
+    .bg2
+    {
+        background:hsl(217, 71%, 53%);
+    }
     .txt
     {
       color:black;
@@ -89,7 +97,7 @@ include 'database.php';
 <body>
 
 
-<nav class="navbar" role="navigation" aria-label="main navigation" style="background:hsl(217, 71%, 53%);">
+<nav class="navbar bg2" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="">
         <div class="logo ml-4" style="color: black;font-size:1.5vw 1.5vh;">
@@ -139,21 +147,21 @@ include 'database.php';
   <div class="tile is-vertical is-8">
     <div class="tile">
       <div class="tile is-parent is-vertical">
-        <article class="tile is-child notification is-primary animate__animated animate__fadeInRight" sty >
+        <article class="tile is-child box animate__animated animate__fadeInRight" class="bg2" >
           <p class="title" style="color:#05386B">Why??
         
          </p>
           <p class="subtitle"><strong style="color: black;">BMSCE</strong><span style="color: white;">RESOURCES</span></p>
           <p class="subtitle" style="color:#0d0043; font-weight:500;font-size:1vw;">A one stop website where professors can upload any useful resource- be it projects and research papers or information about webinars and workshops. Also, a hassle free platform for students to find all useful resources & announcements in the department.</p>
         </article>
-        <article class="tile is-child notification is-warning animate__animated animate__fadeInUp" style="background:#05386B">
+        <article class="tile is-child notification animate__animated animate__fadeInUp bg1" >
           <p class="title" style="color:white;"><span class="animate__animated animate__flash animate__infinite	infinite">...What's new!!</span> <div class="subtitle" style="color:#00d1b2;"><br> <span ><strong style="color:#00d1b2;">New File:</strong> </span>
          <?php echo  ucfirst($_SESSION["marq1"])." (". ucfirst($_SESSION["marq2"]).")" . " has been uploaded by " .ucfirst($_SESSION["marq3"]); ?></div></p>
           <p class="subtitle"></p>
         </article>
       </div>
       <div class="tile is-parent">
-        <article class="tile is-child notification animate__animated animate__fadeInDown" style="background:#05386B;">
+        <article class="tile is-child notification animate__animated animate__fadeInDown bg1" style="">
           <p class="title" style="color: white;"> File Uploader</p>
           <p class="subtitle" style="color: #00d1b2;">What does the website do?</p>
          
@@ -175,7 +183,7 @@ include 'database.php';
       </div>
     </div>
     <div class="tile is-parent">
-      <article class="tile is-child notification animate__animated animate__fadeInRight " style="background:#00d1b2; color:white;">
+      <article class="tile is-child notification animate__animated animate__fadeInRight " style="background:hsl(217, 71%, 53%);; color:white;">
             
         <p class="title" style="color:#05386B;font-size:1vw;"><span class="icon is-small" >
         <i class="fas fa-key"></i>
@@ -192,9 +200,9 @@ include 'database.php';
       </article>
     </div>
   </div>
-  <div class="tile is-parent">
-    <article class="tile is-child notification is-black animate__animated animate__fadeInLeft" style="background:#05386B">
-      <div class="content">
+  <div class="tile is-parent is-vertical">
+    <article class="tile is-child box animate__animated animate__fadeInLeft" class="">
+      <div class="content1">
       <!-- <br><br> -->
         <p class="title ">Statistics</p>
         <!-- <p class="subtitle m-4 p-4"></p> -->
@@ -216,11 +224,6 @@ include 'database.php';
           <progress class="progress is-primary" id="pb5" value=<?php echo $q6['id']; ?> max=<?php echo $q['id']; ?>>15%</progress>
 
         
-          <p style=""><strong>Total number of downloads- <span id="val2"><?php echo $qd['down'];?> </span></strong></p>
-           <progress class="progress is-primary" id="pb6" value="100" max="100">15%</progress> 
-
-          <p style=""><strong>Number of teachers using this website- <span id="val3"><?php echo $q2['id'];?></span></strong></p>
-          <progress class="progress is-primary" id="p7" value="15" max="15">15%</progress>
         </div>
         <script>
         function animateValue(obj, start, end, duration) 
@@ -253,6 +256,15 @@ include 'database.php';
         </script>
 
       </div>
+    </article>
+    <article class="tile is-child box is-black animate__animated animate__fadeInLeft bg1" style=";">
+          <div class="content">
+    <p style=""><strong>Total number of downloads- <span id="val2"><?php echo $qd['down'];?> </span></strong></p>
+           <progress class="progress is-primary" id="pb6" value="100" max="100">15%</progress> 
+
+          <p style=""><strong>Number of teachers using this website- <span id="val3"><?php echo $q2['id'];?></span></strong></p>
+          <progress class="progress is-primary" id="p7" value="15" max="15">15%</progress>
+          </div>
     </article>
   </div>
 </div>

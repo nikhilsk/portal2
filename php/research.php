@@ -1,6 +1,7 @@
 <?php 
 include 'database.php';
   include 'download.php';
+  include "marquee.php" ;
 //   include 'abcd.php';
   $slno=0;
   if(!isset($_SESSION['marq3']))
